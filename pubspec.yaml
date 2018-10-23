@@ -66,3 +66,14 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
+  fonts:
+    - family: quicksand
+      fonts:
+        - asset: font/Quicksand-Regular.otf
+        - asset: font/Quicksand-Italic.otf
+          style: italic
+        - asset: font/Quicksand-Bold.otf
+          weight: 700
+        - asset: font/Quicksand-BoldItalic.otf
+          style: italic
+          weight: 700
