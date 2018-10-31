@@ -6,7 +6,7 @@ class LoginPage extends StatelessWidget {
     return new MaterialApp(
       title: 'Login Page',
       home: new Scaffold(
-        appbar: AppBar(
+        appBar: AppBar(
           title: Text(
             'Login Page',
           ),
