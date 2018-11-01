@@ -1,6 +1,9 @@
 import 'User.dart';
 
-class Group{
-  List<User> userList;
+class Group {
+  String name;
+  DateTime dateCreated;
+
+  List<User> users;
 
 }

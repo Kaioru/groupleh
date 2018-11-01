@@ -3,11 +3,9 @@ import 'Group.dart';
 class User{
   String name;
   int age;
-  List<Group> groupList;
+  List<Group> groups;
   LearningStyle preferredLearningStyle;
 
-  User(this.name, this.age, this.preferredLearningStyle)
-
-
+  User(this.name, this.age, this.preferredLearningStyle);
 
 }
