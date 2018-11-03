@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
       title: 'Home Page',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Welome Home',)
+          title: Text('Welome Home')
           ),
         body: Center(
         child: Text('Welcome to Home')
