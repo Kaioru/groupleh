@@ -4,6 +4,9 @@ void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
+  static ThemeData theme = ThemeData.dark();
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -20,7 +23,11 @@ class MyApp extends StatelessWidget {
         fontFamily: 'quicksand',
         primarySwatch: Colors.blue,
       ),
-      home: new MyHomePage(title: 'Flutter Demo Home Page'),
+      home: new MaterialApp(
+        title: 'Flutter Demo Home Page',
+        theme: theme,
+        home: new MyHomePage(),
+      ),
     );
   }
 }
