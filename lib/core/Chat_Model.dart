@@ -7,7 +7,7 @@ class ChatModel {
   ChatModel({this.name, this.message, this.time, this.avatarUrl});
 }
 
-List<ChatModel> dummyData = [
+List<ChatModel> dummyUsers = [
   new ChatModel(
       name: "Pawan Kumar",
       message: "Hey Flutter, You are so amazing !",
