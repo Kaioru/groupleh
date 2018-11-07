@@ -24,4 +24,4 @@ List<Group> dummyGroups = [
     dateCreated: new DateTime(2018,1,30),
     users: [dummyUsers[0], dummyUsers[1], dummyUsers[2]]
   )
-]
+];

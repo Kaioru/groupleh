@@ -23,7 +23,7 @@ List<User> dummyUsers = [
     groups: [dummyGroups[0], dummyGroups[1]],
     preferredLearningStyle: LearningStyle.Collaborative,
     avatarUrl:
-      "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb"),
+      "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb",
   ),
 
   new User (
@@ -32,7 +32,7 @@ List<User> dummyUsers = [
     groups: [dummyGroups[0], dummyGroups[1]],
     preferredLearningStyle: LearningStyle.Collaborative,
     avatarUrl:
-      "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb"),
+      "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb",
   ),
   
   new User (
@@ -41,7 +41,7 @@ List<User> dummyUsers = [
     groups: [dummyGroups[0], dummyGroups[1]],
     preferredLearningStyle: LearningStyle.Focused,
     avatarUrl:
-      "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb"),
+      "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb",
   ),
   
   new User (
@@ -57,4 +57,4 @@ List<User> dummyUsers = [
     groups: [dummyGroups[0]],
     preferredLearningStyle: LearningStyle.Collaborative
   )
-]
+];
