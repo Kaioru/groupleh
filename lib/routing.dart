@@ -6,4 +6,5 @@ final routes = {
   '/': (context) => new HomePage(),
   '/login': (context) => new LoginPage(),
   '/register': (context) => new RegistrationPage(),
+
 };
