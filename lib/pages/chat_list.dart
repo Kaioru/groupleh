@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../core/User.dart';
+import '../core/Group.dart';
+import '../core/Chat_Model.dart';
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -9,10 +10,11 @@ class ChatScreen extends StatefulWidget {
 }
 
 class ChatScreenState extends State<ChatScreen> {
+  final List<ChatModel> dan = dummyUsers;
   @override
   Widget build(BuildContext context) {
     return new ListView.builder(
-      itemCount: dummyUsers.length,
+      itemCount: dan.length,
       itemBuilder: (context, i) => new Column(
             children: <Widget>[
               new Divider(
@@ -22,25 +24,26 @@ class ChatScreenState extends State<ChatScreen> {
                 leading: new CircleAvatar(
                   foregroundColor: Theme.of(context).primaryColor,
                   backgroundColor: Colors.grey,
-                  backgroundImage: new NetworkImage(dummyUsers[i].avatarUrl),
+                  backgroundImage: new NetworkImage(dan[i].avatarUrl),
                 ),
                 title: new Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     new Text(
-                      dummyUsers[i].name,
+                      dan[i].name,
                       style: new TextStyle(fontWeight: FontWeight.bold),
                     ),
                     new Text(
-                      dummyUsers[i].age.toString(),
+                      dan[i].time,
                       style: new TextStyle(color: Colors.grey, fontSize: 14.0),
                     ),
+                    
                   ],
                 ),
                 subtitle: new Container(
                   padding: const EdgeInsets.only(top: 5.0),
                   child: new Text(
-                    dummyUsers[i].groups.toString(),
+                    dan[i].name,
                     style: new TextStyle(color: Colors.grey, fontSize: 15.0),
                   ),
                 ),
