@@ -1,4 +1,4 @@
-package com.example.groupleh;
+package co.kaioru.groupleh;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
