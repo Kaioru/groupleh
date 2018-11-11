@@ -5,6 +5,9 @@ void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
+  static ThemeData theme = ThemeData.light();
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -19,7 +22,6 @@ class MyApp extends StatelessWidget {
         // or press Run > Flutter Hot Reload in IntelliJ). Notice that the
         // counter didn't reset back to zero; the application is not restarted.
         fontFamily: 'quicksand',
-        primarySwatch: Colors.blue,
       ),
       home: new GroupLehHome(),
     );
