@@ -6,7 +6,7 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'chat_message_list.dart';
-import 'package:image_picker'
+import 'package:image_picker/image_picker.dart';
 
 var _scaffoldContext;
 
@@ -77,14 +77,13 @@ class _ChatScreenState extends State<ChatScreen> {
                   color: Theme.of(context).accentColor,
                 ),
                 onPressed: () async {
-                  File imageFile = await ImagePick
                 }
               )
             )
           ],
         )
       )
-    )
+    );
   }
 
 
