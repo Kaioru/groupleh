@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import '../core/Group.dart';
 import '../core/Chat_Model.dart';
 
-class ChatScreen extends StatefulWidget {
+class GroupChatList extends StatefulWidget {
   @override
-  ChatScreenState createState() {
-    return new ChatScreenState();
-  }
+  _GroupChatListState createState() => _GroupChatListState();
 }
 
-class ChatScreenState extends State<ChatScreen> {
+class _GroupChatListState extends State<GroupChatList> {
   final List<ChatModel> dan = dummyUsers;
   @override
   Widget build(BuildContext context) {
