@@ -1,37 +1,64 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'package:flutter/services.dart';
-import 'package:groupleh/app/app.dart';
-=======
-import 'routing.dart';
-import 'auth/login.dart';
->>>>>>> dev-ui
 
-void main() => runApp(new MyApp());
-
-class MyApp extends StatelessWidget {
-<<<<<<< HEAD
-  static ThemeData theme = ThemeData.dark();
-
-  @override
-  Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
-
-    return new MaterialApp(
-      title: 'GroupLeh',
-      theme: theme,
-      home: App(),
-=======
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-
-        initialRoute: '/login',
-        routes: routes,
->>>>>>> dev-ui
-    );
-  }
+void main() {
+  runApp(MaterialApp(
+    title: "ListView",
+    home: Scaffold(
+      appBar: AppBar(title: Text("Long List View"),),
+      body: getListView()
+    ),
+  ));
 }
+
+// Long List View
+List<String> getListElements() {
+  var items = List<String>.generate(1000, (counter) => "Item $counter");
+  return items;
+}
+
+Widget getListView() {
+  var listItems = getListElements();
+
+  var listView = ListView.builder(
+      itemBuilder: (context, index) {
+        return ListTile(
+          leading: Icon(Icons.group),
+          title: Text(listItems[index]),
+          onTap: () {
+            debugPrint('${listItems[index]} was tapped');
+          },
+        );
+      }
+  );
+
+  return listView;
+}
+
+
+// Normal List View
+/* Widget getListView() {
+  var listView = ListView(
+    children: <Widget>[
+
+      ListTile(
+        leading: Icon(Icons. landscape),
+        title: Text("Group Name #1"),
+        subtitle: Text("Text goes into here"),
+        trailing: Icon(Icons.wb_sunny),
+        // onTap: (),
+      ),
+
+      ListTile(
+        leading: Icon(Icons. laptop_chromebook),
+        title: Text("Windows"),
+      ),
+
+      ListTile(
+        leading: Icon(Icons. phone),
+        title: Text("Phone"),
+      )
+    ],
+  );
+
+  return listView;
+  */
