@@ -5,32 +5,22 @@ import 'package:groupleh/app/app_state.dart';
 
 class Groups extends StatefulWidget {
   final AppState state;
+  final PageController pageController;
 
-  Groups(this.state);
+  Groups(this.pageController, this.state);
 
   @override
-  State<StatefulWidget> createState() => _Groups(state);
+  State<StatefulWidget> createState() => _Groups(pageController, state);
 }
 
 class _Groups extends State<Groups> {
   final AppState state;
+  final PageController pageController;
 
   List<Group> groups = [
-    Group(
-        1,
-        "https://res.cloudinary.com/teepublic/image/private/s--gfsWHvaH--/t_Preview/b_rgb:262c3a,c_limit,f_jpg,h_630,q_90,w_630/v1493209189/production/designs/1524888_1.jpg",
-        "Pink Fluffy Unicorns", []),
-    Group(
-        2,
-        "https://res.cloudinary.com/teepublic/image/private/s--gfsWHvaH--/t_Preview/b_rgb:262c3a,c_limit,f_jpg,h_630,q_90,w_630/v1493209189/production/designs/1524888_1.jpg",
-        "Pink Fluffy Unicorns", []),
-    Group(
-        3,
-        "https://res.cloudinary.com/teepublic/image/private/s--gfsWHvaH--/t_Preview/b_rgb:262c3a,c_limit,f_jpg,h_630,q_90,w_630/v1493209189/production/designs/1524888_1.jpg",
-        "Pink Fluffy Unicorns", [])
   ];
 
-  _Groups(this.state);
+  _Groups(this.pageController, this.state);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +36,9 @@ class _Groups extends State<Groups> {
                       Text("You do not have any groups yet."),
                       Divider(),
                       RaisedButton(
-                        onPressed: () {},
+                        onPressed: () => pageController.animateToPage(2,
+                            duration: const Duration(milliseconds: 250),
+                            curve: Curves.easeInOut),
                         child: Text('Find groups!'),
                       )
                     ]),

@@ -14,14 +14,14 @@ class App extends StatefulWidget {
 
 class _App extends State<App> with WidgetsBindingObserver {
   final AppState state;
-  PageController _pageController;
+  PageController pageController;
   int _pageIndex = 0;
 
   _App(this.state);
 
   @override
   void initState() {
-    _pageController = PageController(initialPage: _pageIndex);
+    pageController = PageController(initialPage: _pageIndex);
     WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
@@ -41,7 +41,7 @@ class _App extends State<App> with WidgetsBindingObserver {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _pageIndex,
           onTap: (page) {
-            _pageController.animateToPage(page,
+            pageController.animateToPage(page,
                 duration: const Duration(milliseconds: 250),
                 curve: Curves.easeInOut);
           },
@@ -54,13 +54,13 @@ class _App extends State<App> with WidgetsBindingObserver {
         ),
         body: PageView(
           physics: NeverScrollableScrollPhysics(),
-          controller: _pageController,
+          controller: pageController,
           onPageChanged: (index) {
             setState(() {
               this._pageIndex = index;
             });
           },
-          children: [Groups(state), Matchmaking(state)],
+          children: [Groups(pageController, state), Matchmaking(state)],
         ));
   }
 }
