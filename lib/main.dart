@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:groupleh/app/app.dart';
 import 'package:groupleh/app/auth/login.dart';
 
 void main() => runApp(new MyApp());
