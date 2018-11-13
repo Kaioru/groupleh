@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:groupleh/app/app.dart';
 import 'package:groupleh/app/auth/register.dart';
+import 'package:groupleh/app/app_state.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -73,7 +73,7 @@ class _Login extends State<Login> {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => App()));
+                                      builder: (context) => App(AppState(user))));
                             }).catchError((e) => _scaffoldKey.currentState
                                 .showSnackBar(SnackBar(
                                     content: Text("Failed to login!"))));

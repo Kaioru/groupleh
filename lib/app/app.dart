@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/tab/groups.dart';
+import 'package:groupleh/app/app_state.dart';
 
 class App extends StatefulWidget {
-  App();
+  final AppState state;
+
+  App(this.state);
 
   @override
-  State<StatefulWidget> createState() => _App();
+  State<StatefulWidget> createState() => _App(state);
 }
 
 class _App extends State<App> with WidgetsBindingObserver {
-  int _pageIndex = 0;
+  final AppState state;
   PageController _pageController;
+  int _pageIndex = 0;
 
-  _App();
+  _App(this.state);
 
   @override
   void initState() {
@@ -41,8 +45,10 @@ class _App extends State<App> with WidgetsBindingObserver {
                 curve: Curves.easeInOut);
           },
           items: [
-            BottomNavigationBarItem(title: Text("Groups"), icon: Icon(Icons.people)),
-            BottomNavigationBarItem(title: Text("Groups"), icon: Icon(Icons.people)),
+            BottomNavigationBarItem(
+                title: Text("Groups"), icon: Icon(Icons.people)),
+            BottomNavigationBarItem(
+                title: Text("Groups"), icon: Icon(Icons.people)),
           ],
         ),
         body: PageView(
