@@ -1,22 +1,11 @@
 import 'package:flutter/material.dart';
 
-class RegistrationPage extends StatelessWidget {
+class Register extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      theme: ThemeData(fontFamily:'quicksand'),
-      title: 'Registration Page',
-      home: new FormPage(),
-    );
-  }
+  _Register createState() => new _Register();
 }
 
-class FormPage extends StatefulWidget{
-  @override
-  _FormPageState createState() => new _FormPageState();
-}
-
-class _FormPageState extends State<FormPage> {
+class _Register extends State<Register> {
   final scaffoldKey = new GlobalKey<ScaffoldState>();
   final formKey = new GlobalKey<FormState>();
 
@@ -48,7 +37,8 @@ class _FormPageState extends State<FormPage> {
 
   void performLogin() {
     final snackbar = new SnackBar(
-      content: new Text("Name : $_name, Email : $_email, password : $_password"),
+      content:
+          new Text("Name : $_name, Email : $_email, password : $_password"),
     );
     scaffoldKey.currentState.showSnackBar(snackbar);
   }
@@ -69,25 +59,25 @@ class _FormPageState extends State<FormPage> {
                 new TextFormField(
                   decoration: new InputDecoration(labelText: "Name"),
                   onSaved: (val) => _name = val,
-
                 ),
                 new TextFormField(
                   decoration: new InputDecoration(labelText: "Email"),
                   validator: (val) =>
-                  !val.contains('@') ? 'Invalid Email' : null,
+                      !val.contains('@') ? 'Invalid Email' : null,
                   onSaved: (val) => _email = val,
                 ),
                 new TextFormField(
                   decoration: new InputDecoration(labelText: "Password"),
                   validator: (val) =>
-                  val.length < 6 ? 'Password too short' : null,
+                      val.length < 6 ? 'Password too short' : null,
                   onSaved: (val) => _password = val,
                   obscureText: true,
                 ),
                 new TextFormField(
-                  decoration: new InputDecoration(labelText: "Comfirm Password"),
+                  decoration:
+                      new InputDecoration(labelText: "Comfirm Password"),
                   validator: (val) =>
-                  val.length < 6 ? 'Password too short' : null,
+                      val.length < 6 ? 'Password too short' : null,
                   obscureText: true,
                 ),
                 new Padding(
@@ -99,14 +89,13 @@ class _FormPageState extends State<FormPage> {
                     style: new TextStyle(color: Colors.white),
                   ),
                   color: Colors.blue,
-                  onPressed: (){
+                  onPressed: () {
                     Navigator.pushNamed(context, '/login');
                   },
                 )
               ],
             ),
           ),
-        )
-    );
+        ));
   }
 }
