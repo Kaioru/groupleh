@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/core/group.dart';
 
@@ -35,6 +36,57 @@ class _GroupsChat extends State<GroupsChat> {
           ],
         ),
       )),
+      body: Column(
+        children: <Widget>[
+          Flexible(child: ListView()),
+          Divider(height: 1.0),
+          SafeArea(
+            child: Container(
+              decoration: BoxDecoration(color: Theme.of(context).cardColor),
+              child: IconTheme(
+                  data: IconThemeData(
+                      /*color: _isComposingMessage
+                      ? Theme.of(context).accentColor
+                      : Theme.of(context).disabledColor,
+                  */
+                      color: Theme.of(context).disabledColor),
+                  child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                              margin: new EdgeInsets.symmetric(horizontal: 4.0),
+                              child: IconButton(
+                                  icon: Icon(
+                                    Icons.photo_camera,
+                                    color: Theme.of(context).accentColor,
+                                  ),
+                                  onPressed: () {})),
+                          Flexible(
+                            child: TextField(
+                              decoration: InputDecoration.collapsed(
+                                  hintText: "Send a message"),
+                            ),
+                          ),
+                          Container(
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 4.0),
+                              child: Theme.of(context).platform ==
+                                      TargetPlatform.iOS
+                                  ? CupertinoButton(
+                                      child: Text("Send"),
+                                      onPressed: () {},
+                                    )
+                                  : IconButton(
+                                      icon: Icon(Icons.send),
+                                      onPressed: () {},
+                                    ))
+                        ],
+                      ))),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
