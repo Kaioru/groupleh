@@ -66,7 +66,6 @@ class _GroupsChat extends State<GroupsChat> {
           Flexible(
               child: FirestoreAnimatedList(
             query: snapshots,
-            reverse: true,
             itemBuilder: (
               BuildContext context,
               DocumentSnapshot snapshot,
