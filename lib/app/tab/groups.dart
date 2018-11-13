@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/core/group.dart';
 import 'package:groupleh/app/tab/groups_chat.dart';
+import 'package:groupleh/app/app_state.dart';
 
 class Groups extends StatefulWidget {
-  Groups();
+  final AppState state;
+
+  Groups(this.state);
 
   @override
-  State<StatefulWidget> createState() => _Groups();
+  State<StatefulWidget> createState() => _Groups(state);
 }
 
 class _Groups extends State<Groups> {
+  final AppState state;
+
   List<Group> groups = [
     Group(
         1,
@@ -24,6 +29,8 @@ class _Groups extends State<Groups> {
         "https://res.cloudinary.com/teepublic/image/private/s--gfsWHvaH--/t_Preview/b_rgb:262c3a,c_limit,f_jpg,h_630,q_90,w_630/v1493209189/production/designs/1524888_1.jpg",
         "Pink Fluffy Unicorns", [])
   ];
+
+  _Groups(this.state);
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +67,7 @@ class _Groups extends State<Groups> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              GroupsChat(groups[i]))),
+                                              GroupsChat(state, groups[i]))),
                                   leading: CircleAvatar(
                                     foregroundColor:
                                         Theme.of(context).primaryColor,

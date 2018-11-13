@@ -3,23 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firestore_ui/animated_firestore_list.dart';
 import 'package:groupleh/app/core/group.dart';
+import 'package:groupleh/app/app_state.dart';
 
 class GroupsChat extends StatefulWidget {
+  final AppState state;
   final Group group;
 
-  GroupsChat(this.group);
+  GroupsChat(this.state, this.group);
 
   @override
-  State<StatefulWidget> createState() => _GroupsChat(group);
+  State<StatefulWidget> createState() => _GroupsChat(state, group);
 }
 
 class _GroupsChat extends State<GroupsChat> {
+  final AppState state;
   final TextEditingController _textController = TextEditingController();
   final Group group;
   CollectionReference reference;
   Stream<QuerySnapshot> snapshots;
 
-  _GroupsChat(this.group) {
+  _GroupsChat(this.state, this.group) {
     reference = Firestore.instance.collection('messages').reference();
     snapshots = reference.where("group", isEqualTo: group.id).snapshots();
   }
@@ -28,9 +31,12 @@ class _GroupsChat extends State<GroupsChat> {
     reference.document().setData(<String, dynamic>{
       "group": group.id,
       "text": text,
-      "sender": "random sender",
-      "senderImage":
-          "http://bp2.blogger.com/_w1__C0VO_Os/R8mib3DUW5I/AAAAAAAAAGg/HYTOCZjg4ow/s400/1078_i3_3.jpg"
+      "sender": state.user.displayName == null
+          ? state.user.email
+          : state.user.displayName,
+      "senderImage": state.user.photoUrl == null
+          ? "http://bp2.blogger.com/_w1__C0VO_Os/R8mib3DUW5I/AAAAAAAAAGg/HYTOCZjg4ow/s400/1078_i3_3.jpg"
+          : state.user.photoUrl
     });
   }
 

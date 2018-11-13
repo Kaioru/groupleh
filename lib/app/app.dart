@@ -59,7 +59,7 @@ class _App extends State<App> with WidgetsBindingObserver {
               this._pageIndex = index;
             });
           },
-          children: [Groups(), Groups()],
+          children: [Groups(state), Groups(state)],
         ));
   }
 }
