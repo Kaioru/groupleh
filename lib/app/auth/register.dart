@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/auth/login.dart';
+import 'package:groupleh/app/app.dart';
+import 'package:groupleh/app/app_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Register extends StatefulWidget {
@@ -8,7 +10,7 @@ class Register extends StatefulWidget {
 }
 
 class _Register extends State<Register> {
-  final _formKey = GlobalKey<_Register>();
+  final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _auth = FirebaseAuth.instance;
   final _emailController = TextEditingController();
@@ -78,7 +80,18 @@ class _Register extends State<Register> {
                         child: Text('Cancel'),
                       ),
                       RaisedButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          if (_formKey.currentState.validate()) {
+                            await _handleCreateUser().then((user) {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => App(AppState(user))));
+                            }).catchError((e) => _scaffoldKey.currentState
+                                .showSnackBar(SnackBar(
+                                    content: Text("Failed to register!"))));
+                          }
+                        },
                         child: Text('Register'),
                       )
                     ])
