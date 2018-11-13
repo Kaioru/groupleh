@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/core/group.dart';
+import 'package:groupleh/app/tab/groups_chat.dart';
 
 class Groups extends StatefulWidget {
   Groups();
@@ -10,9 +11,18 @@ class Groups extends StatefulWidget {
 
 class _Groups extends State<Groups> {
   List<Group> groups = [
-    Group(1, "https://res.cloudinary.com/teepublic/image/private/s--gfsWHvaH--/t_Preview/b_rgb:262c3a,c_limit,f_jpg,h_630,q_90,w_630/v1493209189/production/designs/1524888_1.jpg", "Pink Fluffy Unicorns", []),
-    Group(2, "https://res.cloudinary.com/teepublic/image/private/s--gfsWHvaH--/t_Preview/b_rgb:262c3a,c_limit,f_jpg,h_630,q_90,w_630/v1493209189/production/designs/1524888_1.jpg", "Pink Fluffy Unicorns", []),
-    Group(3, "https://res.cloudinary.com/teepublic/image/private/s--gfsWHvaH--/t_Preview/b_rgb:262c3a,c_limit,f_jpg,h_630,q_90,w_630/v1493209189/production/designs/1524888_1.jpg", "Pink Fluffy Unicorns", [])
+    Group(
+        1,
+        "https://res.cloudinary.com/teepublic/image/private/s--gfsWHvaH--/t_Preview/b_rgb:262c3a,c_limit,f_jpg,h_630,q_90,w_630/v1493209189/production/designs/1524888_1.jpg",
+        "Pink Fluffy Unicorns", []),
+    Group(
+        2,
+        "https://res.cloudinary.com/teepublic/image/private/s--gfsWHvaH--/t_Preview/b_rgb:262c3a,c_limit,f_jpg,h_630,q_90,w_630/v1493209189/production/designs/1524888_1.jpg",
+        "Pink Fluffy Unicorns", []),
+    Group(
+        3,
+        "https://res.cloudinary.com/teepublic/image/private/s--gfsWHvaH--/t_Preview/b_rgb:262c3a,c_limit,f_jpg,h_630,q_90,w_630/v1493209189/production/designs/1524888_1.jpg",
+        "Pink Fluffy Unicorns", [])
   ];
 
   @override
@@ -46,29 +56,34 @@ class _Groups extends State<Groups> {
                         child: ListView.builder(
                             itemCount: groups.length,
                             itemBuilder: (context, i) => ListTile(
-                                  leading: new CircleAvatar(
+                                  onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              GroupsChat(groups[i]))),
+                                  leading: CircleAvatar(
                                     foregroundColor:
                                         Theme.of(context).primaryColor,
                                     backgroundColor: Colors.grey,
                                     backgroundImage:
-                                        new NetworkImage(groups[i].image),
+                                        NetworkImage(groups[i].image),
                                   ),
-                                  title: new Row(
+                                  title: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
-                                      new Text(
+                                      Text(
                                         groups[i].name,
-                                        style: new TextStyle(
+                                        style: TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ],
                                   ),
-                                  subtitle: new Container(
+                                  subtitle: Container(
                                     padding: const EdgeInsets.only(top: 5.0),
-                                    child: new Text(
+                                    child: Text(
                                       groups[i].name,
-                                      style: new TextStyle(
+                                      style: TextStyle(
                                           color: Colors.grey, fontSize: 15.0),
                                     ),
                                   ),
