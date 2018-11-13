@@ -1,67 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:groupleh/app/auth/register.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
+  @override
+  _Login createState() => new _Login();
+}
+
+class _Login extends State<Login> {
+  final _formKey = GlobalKey<_Login>();
+
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Login Page',
-      home: new Scaffold(
-        backgroundColor: Colors.white,
-        resizeToAvoidBottomPadding: false,
-        body: new Container(
-          padding: EdgeInsets.only(top: 48.0, left: 24.0, right: 24.0),
-          child: new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new FlutterLogo(
-                size: 80.0,
-              ),
-              new Container(
-                  padding: const EdgeInsets.all(40.0),
-                  child: new Form(
-                    autovalidate: true,
-                    child: new Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        new TextFormField(
-                          decoration: new InputDecoration(
-                              labelText: "Enter Email",
-                              fillColor: Colors.white),
-                          keyboardType: TextInputType.emailAddress,
+    return Scaffold(
+        body: Form(
+            key: _formKey,
+            child: Container(
+                padding: EdgeInsets.only(left: 24.0, right: 24.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    FlutterLogo(size: 120.0),
+                    TextFormField(
+                        decoration: new InputDecoration(
+                          labelText: "Email",
                         ),
-                        new TextFormField(
-                          decoration: new InputDecoration(
-                            labelText: "Enter Password",
-                          ),
-                          obscureText: true,
-                          keyboardType: TextInputType.text,
+                        keyboardType: TextInputType.emailAddress),
+                    TextFormField(
+                        decoration: new InputDecoration(
+                          labelText: "Password",
                         ),
-                        new Padding(
-                          padding: const EdgeInsets.only(top: 60.0),
-                        ),
-                        new RaisedButton(
-                            color: Colors.green,
-                            splashColor: Colors.teal,
-                            textColor: Colors.white,
-                            child: new Text('Login'),
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/');
-                            }),
-                        new RaisedButton(
-                            color: Colors.green,
-                            splashColor: Colors.teal,
-                            textColor: Colors.white,
-                            child: new Text('Register'),
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/register');
-                            })
-                      ],
-                    ),
-                  )),
-            ],
-          ),
-        ),
-      ),
-    );
+                        obscureText: true,
+                        keyboardType: TextInputType.text),
+                    ButtonBar(children: <Widget>[
+                      RaisedButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Register()));
+                        },
+                        child: Text('Register'),
+                      ),
+                      RaisedButton(
+                        onPressed: () {},
+                        child: Text('Login'),
+                      )
+                    ])
+                  ],
+                ))));
   }
 }
