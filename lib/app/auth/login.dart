@@ -10,7 +10,8 @@ class Login extends StatefulWidget {
 }
 
 class _Login extends State<Login> {
-  final _formKey = GlobalKey<_Login>();
+  final _formKey = GlobalKey<FormState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -23,6 +24,7 @@ class _Login extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey,
         body: Form(
             key: _formKey,
             child: Container(
@@ -65,9 +67,18 @@ class _Login extends State<Login> {
                         child: Text('Register'),
                       ),
                       RaisedButton(
-                        onPressed: () async => await _handleSignIn()
-                            .then((user) => print(user))
-                            .catchError((e) => print(e)),
+                        onPressed: () async {
+                          if (_formKey.currentState.validate()) {
+                            await _handleSignIn().then((user) {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => App()));
+                            }).catchError((e) => _scaffoldKey.currentState
+                                .showSnackBar(SnackBar(
+                                    content: Text("Failed to login!"))));
+                          }
+                        },
                         child: Text('Login'),
                       )
                     ])
