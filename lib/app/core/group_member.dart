@@ -1,0 +1,3 @@
+class GroupMember {
+  String name;
+}
