@@ -42,6 +42,13 @@ class _Groups extends State<Groups> {
                         child: ListView.builder(
                             itemCount: groups.length,
                             itemBuilder: (context, i) => ListTile(
+                                  leading: new CircleAvatar(
+                                    foregroundColor:
+                                        Theme.of(context).primaryColor,
+                                    backgroundColor: Colors.grey,
+                                    backgroundImage:
+                                        new NetworkImage(groups[i].image),
+                                  ),
                                   title: new Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
