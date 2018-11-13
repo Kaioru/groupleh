@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -5,9 +8,12 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'chat_message_list.dart';
 import 'package:image_picker/image_picker.dart';
 
+final googleSignIn = new GoogleSignIn();
+final analytics = new FirebaseAnalytics();
 var _scaffoldContext;
 
 class ChatScreen extends StatefulWidget {
@@ -77,8 +83,37 @@ class _ChatScreenState extends State<ChatScreen> {
                   color: Theme.of(context).accentColor,
                 ),
                 onPressed: () async {
-                }
-              )
+                  File imageFile = await ImagePicker.pickImage();
+                  int timestamp = new DateTime.now().millisecondsSinceEpoch;
+                  StorageReference storageReference = FirebaseStorage
+                      .instance
+                      .ref()
+                      .child("img_" + timestamp.toString() + ".jpg");
+                  StorageUploadTask uploadTask = 
+                      storageReference.putFile(imageFile);
+                  Uri downloadUrl = (await uploadTask.onComplete).uploadSessionUri;
+                  _sendMessage(
+                    messageText: null, imageUrl: downloadUrl.toString()
+                  );
+                })
+            ),
+            Flexible(
+              child:TextField(
+                controller: _textEditingController,
+                onChanged: (String messageText){
+                  setState(() {
+                    _isComposingMessage = messageText.length > 0;
+                  });
+                },
+                onSubmitted: _textMessageSubmitted,
+                decoration: InputDecoration.collapsed(hintText: "Send a message"),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 4.0),
+              child: Theme.of(context).platform == TargetPlatform.iOS
+              ? getIOSSendButton()
+              : getDefaultSendButton()
             )
           ],
         )
@@ -86,5 +121,43 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
+  CupertinoButton getIOSSendButton(){
+    return new CupertinoButton(
+      child: Text("Send"),
+      onPressed: _isComposingMessage
+      ? () => _textMessageSubmitted(_textEditingController.text)
+      : null,
+    );
+  }
 
+  IconButton getDefaultSendButton(){
+    return IconButton(
+      icon: Icon(Icons.send),
+      onPressed: _isComposingMessage
+      ? () => _textMessageSubmitted(_textEditingController.text)
+      : null,
+    );
+  }
+
+  void _sendMessage({String messageText, String imageUrl}){
+    reference.push().set({
+      'text': messageText,
+      'email': googleSignIn.currentUser.email,
+      'imageUrl': imageUrl,
+      'senderName': googleSignIn.currentUser.displayName,
+      'senderPhotoUrl': googleSignIn.currentUser.photoUrl,
+    });
+
+    analytics.logEvent(name: 'send_message');
+  }
+
+  Future<Null> _textMessageSubmitted(String text) async{
+    _textEditingController.clear();
+
+    setState(() {
+      _isComposingMessage = false;
+    });
+
+    _sendMessage(messageText: text, imageUrl: null);
+  }  
 }
