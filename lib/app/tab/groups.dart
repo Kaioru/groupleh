@@ -9,7 +9,11 @@ class Groups extends StatefulWidget {
 }
 
 class _Groups extends State<Groups> {
-  List<Group> groups = [];
+  List<Group> groups = [
+    Group(1, "https://res.cloudinary.com/teepublic/image/private/s--gfsWHvaH--/t_Preview/b_rgb:262c3a,c_limit,f_jpg,h_630,q_90,w_630/v1493209189/production/designs/1524888_1.jpg", "Pink Fluffy Unicorns", []),
+    Group(2, "https://res.cloudinary.com/teepublic/image/private/s--gfsWHvaH--/t_Preview/b_rgb:262c3a,c_limit,f_jpg,h_630,q_90,w_630/v1493209189/production/designs/1524888_1.jpg", "Pink Fluffy Unicorns", []),
+    Group(3, "https://res.cloudinary.com/teepublic/image/private/s--gfsWHvaH--/t_Preview/b_rgb:262c3a,c_limit,f_jpg,h_630,q_90,w_630/v1493209189/production/designs/1524888_1.jpg", "Pink Fluffy Unicorns", [])
+  ];
 
   @override
   Widget build(BuildContext context) {
