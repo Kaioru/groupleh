@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages/chat_list.dart';
+import 'pages/chat_message.dart';
 import 'pages/home_screen.dart';
 
 class GroupLehHome extends StatefulWidget {
@@ -44,7 +44,7 @@ class _GroupLehHomeState extends State<GroupLehHome>
         controller: _tabController,
         children: <Widget>[
           new HomeScreen(),
-          new GroupChatList(),
+          new ChatScreen(),
         ],
       ),
     );

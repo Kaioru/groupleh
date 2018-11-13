@@ -141,10 +141,10 @@ class _ChatScreenState extends State<ChatScreen> {
   void _sendMessage({String messageText, String imageUrl}){
     reference.push().set({
       'text': messageText,
-      'email': googleSignIn.currentUser.email,
+      'email': 'testtest@example.com',
       'imageUrl': imageUrl,
-      'senderName': googleSignIn.currentUser.displayName,
-      'senderPhotoUrl': googleSignIn.currentUser.photoUrl,
+      'senderName': 'jon',
+      'senderPhotoUrl': '',
     });
 
     analytics.logEvent(name: 'send_message');

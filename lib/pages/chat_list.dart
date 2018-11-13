@@ -46,7 +46,6 @@ class _GroupChatListState extends State<GroupChatList> {
                   ),
                 ),
                 onTap: (){
-                  ChatScreen();
                 }
               )
             ],
