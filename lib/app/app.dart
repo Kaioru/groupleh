@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/tab/groups.dart';
+import 'package:groupleh/app/tab/matchmaking.dart';
 import 'package:groupleh/app/app_state.dart';
 
 class App extends StatefulWidget {
@@ -48,7 +49,7 @@ class _App extends State<App> with WidgetsBindingObserver {
             BottomNavigationBarItem(
                 title: Text("Groups"), icon: Icon(Icons.people)),
             BottomNavigationBarItem(
-                title: Text("Groups"), icon: Icon(Icons.people)),
+                title: Text("Matchmaking"), icon: Icon(Icons.search)),
           ],
         ),
         body: PageView(
@@ -59,7 +60,7 @@ class _App extends State<App> with WidgetsBindingObserver {
               this._pageIndex = index;
             });
           },
-          children: [Groups(state), Groups(state)],
+          children: [Groups(state), Matchmaking(state)],
         ));
   }
 }
