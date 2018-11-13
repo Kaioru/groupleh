@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../core/Group.dart';
+import 'chat_message.dart';
 import '../core/Chat_Model.dart';
 
 class GroupChatList extends StatefulWidget {
@@ -45,6 +45,9 @@ class _GroupChatListState extends State<GroupChatList> {
                     style: new TextStyle(color: Colors.grey, fontSize: 15.0),
                   ),
                 ),
+                onTap: (){
+                  ChatScreen();
+                }
               )
             ],
           ),

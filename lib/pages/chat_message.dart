@@ -7,14 +7,13 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'chat_message_list.dart';
 import 'package:image_picker/image_picker.dart';
 
 final googleSignIn = new GoogleSignIn();
 final analytics = new FirebaseAnalytics();
-var _scaffoldContext;
+
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -56,7 +55,7 @@ class _ChatScreenState extends State<ChatScreen> {
             child: _buildTextComposer(),
           ),
           Builder(builder: (BuildContext context){
-            _scaffoldContext = context;
+            //_scaffoldContext = context;
             return new Container(width: 0.0, height: 0.0);
           })
         ],)

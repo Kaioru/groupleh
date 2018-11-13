@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pages/chat_list.dart';
 import 'pages/home_screen.dart';
-import 'pages/chat_message.dart';
 
 class GroupLehHome extends StatefulWidget {
   @override
@@ -45,7 +44,7 @@ class _GroupLehHomeState extends State<GroupLehHome>
         controller: _tabController,
         children: <Widget>[
           new HomeScreen(),
-          new ChatScreen(),
+          new GroupChatList(),
         ],
       ),
     );
