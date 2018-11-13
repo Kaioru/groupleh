@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(new MaterialApp(
       title: 'Create GroupLeh Project',
-      home: new LoginPage(),
+      home: new createproject(),
     ));
 
-class LoginPage extends StatefulWidget {
+class createproject extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => new _LoginPageState();
+  State<StatefulWidget> createState() => new _CreateProjectState(new List());
 }
 
-class _LoginData {
+class _Projectdata {
   String projectname = '';
   String projectdetail = '';
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _CreateProjectState extends State<createproject> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  _LoginData _data = new _LoginData();
+  _Projectdata _data = new _Projectdata();
 
   // If empty value, the isEmail function throw a error.
   // So I changed this function with try and catch.
@@ -27,23 +27,26 @@ class _LoginPageState extends State<LoginPage> {
       return 'Details cannot be empty';
     }
     return null;
-  }
-  String _validatename(String value) {
     if (value.length < 1) {
       return 'Name cannot be empty';
     }
     return null;
+  }
+  String _validatename(String value) {
   }
   void submit() {
     // First validate form.
     if (this._formKey.currentState.validate()) {
       _formKey.currentState.save(); // Save our form now.
 
-      print('Printing the login data.');
+      print('Printing the Project.');
       print('Project Name: ${_data.projectname}');
       print('Project Detail: ${_data.projectdetail}');
     }
   }
+  final List<_Projectdata> projectdata;
+
+  _CreateProjectState(@required this.projectdata) : super();
 
   @override
   Widget build(BuildContext context) {
@@ -89,10 +92,52 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.blue,
                   ),
                   margin: new EdgeInsets.only(top: 20.0),
-                )
+                ),
+                ListView.builder(
+                  itemCount: projectdata.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(projectdata[index].projectname),
+                      // When a user taps on the ListTile, navigate to the DetailScreen.
+                      // Notice that we're not only creating a DetailScreen, we're
+                      // also passing the current todo through to it!
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailScreen(todo: projectdata[index]),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
               ],
             ),
           )),
+    );
+  }
+}
+
+
+class DetailScreen extends StatelessWidget {
+  // Declare a field that holds the Todo
+  final _Projectdata todo;
+
+  // In the constructor, require a Todo
+  DetailScreen({Key key, @required this.todo}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // Use the Todo to create our UI
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("${todo.projectname}"),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Text('${todo.projectdetail}'),
+      ),
     );
   }
 }
