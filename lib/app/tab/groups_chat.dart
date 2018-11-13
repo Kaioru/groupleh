@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firestore_ui/animated_firestore_list.dart';
 import 'package:groupleh/app/core/group.dart';
 
 class GroupsChat extends StatefulWidget {
@@ -13,8 +15,14 @@ class GroupsChat extends StatefulWidget {
 
 class _GroupsChat extends State<GroupsChat> {
   final Group group;
+  Stream<QuerySnapshot> snapshots;
 
-  _GroupsChat(this.group);
+  _GroupsChat(this.group) {
+    snapshots = Firestore.instance
+        .collection('messages')
+        .where("group", isEqualTo: group.id)
+        .snapshots();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +46,25 @@ class _GroupsChat extends State<GroupsChat> {
       )),
       body: Column(
         children: <Widget>[
-          Flexible(child: ListView()),
-          Divider(height: 1.0),
+          Flexible(
+              child: FirestoreAnimatedList(
+            query: snapshots,
+            reverse: true,
+            itemBuilder: (
+              BuildContext context,
+              DocumentSnapshot snapshot,
+              Animation<double> animation,
+              int index,
+            ) {
+              return ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage(snapshot.data["senderImage"]),
+                ),
+                title: Text(snapshot.data["sender"]),
+                subtitle: Text(snapshot.data["text"]),
+              );
+            },
+          )),
           SafeArea(
             child: Container(
               decoration: BoxDecoration(color: Theme.of(context).cardColor),
