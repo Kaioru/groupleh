@@ -1,0 +1,98 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(new MaterialApp(
+      title: 'Create GroupLeh Project',
+      home: new LoginPage(),
+    ));
+
+class LoginPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => new _LoginPageState();
+}
+
+class _LoginData {
+  String projectname = '';
+  String projectdetail = '';
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  _LoginData _data = new _LoginData();
+
+  // If empty value, the isEmail function throw a error.
+  // So I changed this function with try and catch.
+
+  String _validatedetails(String value) {
+    if (value.length < 1) {
+      return 'Details cannot be empty';
+    }
+    return null;
+  }
+  String _validatename(String value) {
+    if (value.length < 1) {
+      return 'Name cannot be empty';
+    }
+    return null;
+  }
+  void submit() {
+    // First validate form.
+    if (this._formKey.currentState.validate()) {
+      _formKey.currentState.save(); // Save our form now.
+
+      print('Printing the login data.');
+      print('Project Name: ${_data.projectname}');
+      print('Project Detail: ${_data.projectdetail}');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
+
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('Create Project'),
+      ),
+      body: new Container(
+          padding: new EdgeInsets.all(20.0),
+          child: new Form(
+            key: this._formKey,
+            child: new ListView(
+              children: <Widget>[
+                new TextFormField(
+                  // Use email input type for emails.
+                  decoration: new InputDecoration(
+                      hintText: 'Project Alpha',
+                      labelText: 'Project Name'),
+                  validator: this._validatename,
+                  onSaved: (String value) {
+                    this._data.projectname = value;
+                  },
+                ),
+                new TextFormField(
+                    // Use secure text for passwords.
+                    decoration: new InputDecoration(
+                        hintText: 'This project is about....',
+                        labelText: 'Project Details'),
+                    validator: this._validatedetails,
+                    onSaved: (String value) {
+                      this._data.projectdetail = value;
+                    }),
+                new Container(
+                  width: screenSize.width,
+                  child: new RaisedButton(
+                    child: new Text(
+                      'Create',
+                      style: new TextStyle(color: Colors.white),
+                    ),
+                    onPressed: this.submit,
+                    color: Colors.blue,
+                  ),
+                  margin: new EdgeInsets.only(top: 20.0),
+                )
+              ],
+            ),
+          )),
+    );
+  }
+}
