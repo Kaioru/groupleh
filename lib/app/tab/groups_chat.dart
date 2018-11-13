@@ -14,14 +14,31 @@ class GroupsChat extends StatefulWidget {
 }
 
 class _GroupsChat extends State<GroupsChat> {
+  final TextEditingController _textController = TextEditingController();
   final Group group;
+  CollectionReference reference;
   Stream<QuerySnapshot> snapshots;
 
   _GroupsChat(this.group) {
-    snapshots = Firestore.instance
-        .collection('messages')
-        .where("group", isEqualTo: group.id)
-        .snapshots();
+    reference = Firestore.instance.collection('messages').reference();
+    snapshots = reference.where("group", isEqualTo: group.id).snapshots();
+  }
+
+  void _sendMessage(String text) {
+    reference.document().setData(<String, dynamic>{
+      "group": group.id,
+      "text": text,
+      "sender": "random sender",
+      "senderImage":
+          "http://bp2.blogger.com/_w1__C0VO_Os/R8mib3DUW5I/AAAAAAAAAGg/HYTOCZjg4ow/s400/1078_i3_3.jpg"
+    });
+  }
+
+  void _textMessageSubmitted() {
+    var text = _textController.text;
+    if (text.isEmpty) return;
+    _sendMessage(text);
+    _textController.clear();
   }
 
   @override
@@ -89,6 +106,7 @@ class _GroupsChat extends State<GroupsChat> {
                                   onPressed: () {})),
                           Flexible(
                             child: TextField(
+                              controller: _textController,
                               decoration: InputDecoration.collapsed(
                                   hintText: "Send a message"),
                             ),
@@ -100,11 +118,11 @@ class _GroupsChat extends State<GroupsChat> {
                                       TargetPlatform.iOS
                                   ? CupertinoButton(
                                       child: Text("Send"),
-                                      onPressed: () {},
+                                      onPressed: () => _textMessageSubmitted(),
                                     )
                                   : IconButton(
                                       icon: Icon(Icons.send),
-                                      onPressed: () {},
+                                      onPressed: () => _textMessageSubmitted(),
                                     ))
                         ],
                       ))),
