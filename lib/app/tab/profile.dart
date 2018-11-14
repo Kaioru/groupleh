@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:groupleh/app/app_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Matchmaking extends StatefulWidget {
+class Profile extends StatefulWidget {
   final AppState state;
 
-  Matchmaking(this.state);
+  Profile(this.state);
 
   @override
-  State<StatefulWidget> createState() => _Matchmaking(state);
+  State<StatefulWidget> createState() => _Profile(state);
 }
 
-class _Matchmaking extends State<Matchmaking> {
+class _Profile extends State<Profile> {
   final AppState state;
   CollectionReference reference;
   Stream<QuerySnapshot> snapshots;
 
-  _Matchmaking(this.state);
+  _Profile(this.state);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class _Matchmaking extends State<Matchmaking> {
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("Matchmaking",
+                Text("Profile",
                     style:
                         TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold))
               ])),
