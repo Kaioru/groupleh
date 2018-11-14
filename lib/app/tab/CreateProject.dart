@@ -108,3 +108,21 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  Widget buildItem(LeaveBehindItem item) {
+    final ThemeData theme = Theme.of(context);
+    return new Dismissible(
+        key: new ObjectKey(item),
+    direction: _dismissDirection,
+    onDismissed: (DismissDirection direction) {
+    setState(() {
+    leaveBehindItems.remove(item);
+    });
+    final String action = (direction == DismissDirection.endToStart) ? 'archived' : 'deleted';
+    _scaffoldKey.currentState.showSnackBar(new SnackBar(
+    content: new Text('You $action item ${item.index}'),
+    action: new SnackBarAction(
+    label: 'UNDO',
+    onPressed: () { handleUndo(item); }
+    )
+    ));
+    },
