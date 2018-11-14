@@ -132,3 +132,10 @@ class _MyHomePageState extends State<MyHomePage> {
     leading: const Icon(Icons.done, color: Colors.white, size: 36.0)
     )
     ),
+    secondaryBackground: new Container(
+    color: Colors.orange,
+    child: const ListTile(
+    trailing: const Icon(Icons.query_builder, color: Colors.white, size: 36.0)
+    )
+    ),
+    
