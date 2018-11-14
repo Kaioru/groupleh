@@ -15,13 +15,17 @@ class _MatchmakingData{
   // these are the matchmaking values
   String numberOfPeople;
   String timeOfDay;
+  String preferredLearningStyle;
+  String gender;
+
+  _MatchmakingData(this.numberOfPeople, this.timeOfDay, this.preferredLearningStyle, this.gender)
 }
 
 class _Matchmaking extends State<Matchmaking> {
   final AppState state;
   CollectionReference reference;
   Stream<QuerySnapshot> snapshots;
-  _MatchmakingData mData = new _MatchmakingData();
+  _MatchmakingData mData = new _MatchmakingData("3-4", "Morning", "Focused", "M");
 
   _Matchmaking(this.state);
 
@@ -40,7 +44,7 @@ class _Matchmaking extends State<Matchmaking> {
                 leading: const Icon(Icons.group_work),
                 title: Text("Preferred number of people"),
                 trailing: DropdownButton<String>(
-
+                  value: mData.numberOfPeople,
                   onChanged: (String newValue){
                     setState(() {
                       mData.numberOfPeople = newValue;
@@ -58,12 +62,49 @@ class _Matchmaking extends State<Matchmaking> {
                 leading: const Icon(Icons.calendar_today),
                 title: const Text("Preferred time of day"),
                 trailing: DropdownButton(
+                  value: mData.timeOfDay,
                   onChanged: (String newValue){
                     setState(() {
                       mData.timeOfDay = newValue;
                     });
                   },
                   items: <String>["Morning", "Afternoon", "Evening", "Night"].map<DropdownMenuItem<String>>((String value){
+                    return DropdownMenuItem<String>(
+                      value:value,
+                      child: Text(value),
+                    );
+                  }).toList()
+                )
+              ),
+              ListTile(
+                leading: const Icon(Icons.merge_type),
+                title: const Text("Preferred learning style"),
+                trailing: DropdownButton(
+                  value: mData.gender,
+                  onChanged: (String newValue){
+                    setState(() {
+                      mData.gender = newValue;
+                    });
+                  },
+                  items: <String>["Collaborative", "Focused"].map<DropdownMenuItem<String>>((String value){
+                    return DropdownMenuItem<String>(
+                      value:value,
+                      child: Text(value),
+                    );
+                  }).toList()
+                )
+              ),
+              ListTile(
+                leading: const Icon(Icons.person_outline),
+                title: const Text("Gender"),
+                trailing: DropdownButton(
+                  value: mData.gender,
+                  onChanged: (String newValue){
+                    setState(() {
+                      mData.preferredLearningStyle = newValue;
+                    });
+                  },
+                  items: <String>["M", "F"].map<DropdownMenuItem<String>>((String value){
                     return DropdownMenuItem<String>(
                       value:value,
                       child: Text(value),
