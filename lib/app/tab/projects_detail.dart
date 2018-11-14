@@ -17,8 +17,9 @@ class _ProjectsDetail extends State<ProjectsDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Container(
+    return Scaffold(
+        appBar: AppBar(),
+        body: Container(
             padding: EdgeInsets.only(left: 20.0),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -32,10 +33,11 @@ class _ProjectsDetail extends State<ProjectsDetail> {
                           image: DecorationImage(
                             image: NetworkImage(project.image),
                           ))),
-                  Text(
-                      project.name,
+                  Text(project.name,
                       style: TextStyle(
-                          fontSize: 28.0, fontWeight: FontWeight.bold))
+                          fontSize: 28.0, fontWeight: FontWeight.bold)),
+                  Divider(),
+                  Text(project.description, style: TextStyle(fontSize: 18.0))
                 ])));
   }
 }
