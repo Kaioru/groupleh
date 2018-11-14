@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/app_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:groupleh/app/auth/login.dart';
 
 class Profile extends StatefulWidget {
   final AppState state;
@@ -43,6 +44,18 @@ class _Profile extends State<Profile> {
                         : state.user.displayName,
                     style:
                         TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold)),
+                RaisedButton(
+                  child: Text("Update profile"),
+                  onPressed: () {
+                    //
+                  },
+                ),
+                RaisedButton(
+                    child: Text("Log out"),
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Login()));
+                    }),
               ])),
     );
   }
