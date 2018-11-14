@@ -45,15 +45,6 @@ class _Projects extends State<Projects> {
                       int index,
                     ) {
                       return ListTile(
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => GroupsChat(
-                                    state,
-                                    Group(
-                                        snapshot.documentID,
-                                        snapshot.data["image"],
-                                        snapshot.data["name"], [])))),
                         leading: CircleAvatar(
                           foregroundColor: Theme.of(context).primaryColor,
                           backgroundColor: Colors.grey,
