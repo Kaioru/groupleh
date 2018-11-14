@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:groupleh/app/core/group.dart';
-import 'package:groupleh/app/tab/groups_chat.dart';
+import 'package:groupleh/app/core/project.dart';
+import 'package:groupleh/app/tab/projects_detail.dart';
 import 'package:groupleh/app/app_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firestore_ui/animated_firestore_list.dart';
@@ -45,6 +45,13 @@ class _Projects extends State<Projects> {
                       int index,
                     ) {
                       return ListTile(
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProjectsDetail(Project(
+                                    snapshot.data["image"],
+                                    snapshot.data["name"],
+                                    snapshot.data["desc"])))),
                         leading: CircleAvatar(
                           foregroundColor: Theme.of(context).primaryColor,
                           backgroundColor: Colors.grey,

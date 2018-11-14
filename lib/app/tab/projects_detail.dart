@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/core/project.dart';
 
-class Projects extends StatefulWidget {
+class ProjectsDetail extends StatefulWidget {
   final Project project;
 
-  Projects(this.project);
+  ProjectsDetail(this.project);
 
   @override
-  State<StatefulWidget> createState() => _Projects(project);
+  State<StatefulWidget> createState() => _ProjectsDetail(project);
 }
 
-class _Projects extends State<Projects> {
+class _ProjectsDetail extends State<ProjectsDetail> {
   final Project project;
 
-  _Projects(this.project);
+  _ProjectsDetail(this.project);
 
   @override
   Widget build(BuildContext context) {
