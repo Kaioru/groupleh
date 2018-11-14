@@ -1,5 +1,5 @@
 class GroupMember {
-  int id;
+  String id;
   String image;
   String name;
 

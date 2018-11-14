@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/app_state.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firestore_ui/animated_firestore_list.dart';
 
 class Matchmaking extends StatefulWidget {
   final AppState state;
@@ -12,6 +14,8 @@ class Matchmaking extends StatefulWidget {
 
 class _Matchmaking extends State<Matchmaking> {
   final AppState state;
+  CollectionReference reference;
+  Stream<QuerySnapshot> snapshots;
 
   _Matchmaking(this.state);
 
