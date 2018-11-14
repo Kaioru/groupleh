@@ -35,7 +35,50 @@ class _Projects extends State<Projects> {
                   Text("Projects",
                       style: TextStyle(
                           fontSize: 48.0, fontWeight: FontWeight.bold)),
-                  Expanded(child: ListView()),
+                  Expanded(
+                      child: FirestoreAnimatedList(
+                    query: snapshots,
+                    itemBuilder: (
+                      BuildContext context,
+                      DocumentSnapshot snapshot,
+                      Animation<double> animation,
+                      int index,
+                    ) {
+                      return ListTile(
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => GroupsChat(
+                                    state,
+                                    Group(
+                                        snapshot.documentID,
+                                        snapshot.data["image"],
+                                        snapshot.data["name"], [])))),
+                        leading: CircleAvatar(
+                          foregroundColor: Theme.of(context).primaryColor,
+                          backgroundColor: Colors.grey,
+                          backgroundImage: NetworkImage(snapshot.data["image"]),
+                        ),
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              snapshot.data["name"],
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        subtitle: Container(
+                          padding: const EdgeInsets.only(top: 5.0),
+                          child: Text(
+                            snapshot.data["desc"],
+                            style:
+                                TextStyle(color: Colors.grey, fontSize: 15.0),
+                          ),
+                        ),
+                      );
+                    },
+                  )),
                 ])));
   }
 }
