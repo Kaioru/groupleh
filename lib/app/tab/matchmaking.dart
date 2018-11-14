@@ -89,10 +89,10 @@ class _Matchmaking extends State<Matchmaking> {
           child: Text("Let's go!"),
           onPressed: () async {
             Firestore.instance.collection('matchmaking').document().setData({
-              'liniency': 85,
-              'preferredGender': 0,
-              'preferredSize': mData.numberOfPeople == "3-4" ? 0 : 50,
-              'preferredStyle': mData.learningStyle == "Collaborative" ? 0 : 50,
+              'liniency': 85.0,
+              'preferredGender': 0.0,
+              'preferredSize': mData.numberOfPeople == "3-4" ? 0.0 : 50.0,
+              'preferredStyle': mData.learningStyle == "Collaborative" ? 0.0 : 50.0,
               'preferredTime': mData.timeOfDay == "Morning"
                   ? 0.0
                   : mData.timeOfDay == "Afternoon" ? 33.3 : 66.6,
