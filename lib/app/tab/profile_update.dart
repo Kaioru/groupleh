@@ -22,7 +22,8 @@ class _ProfileUpdate extends State<ProfileUpdate> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return Scaffold(
+        body: SafeArea(
       child: Column(
         children: <Widget>[
           Text("Update",
@@ -51,6 +52,6 @@ class _ProfileUpdate extends State<ProfileUpdate> {
           )
         ],
       ),
-    );
+    ));
   }
 }
