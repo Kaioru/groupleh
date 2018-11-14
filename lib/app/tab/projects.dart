@@ -32,7 +32,7 @@ class _Projects extends State<Projects> {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("Groups",
+                  Text("Projects",
                       style: TextStyle(
                           fontSize: 48.0, fontWeight: FontWeight.bold)),
                   Expanded(child: ListView()),
