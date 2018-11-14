@@ -65,3 +65,20 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
+  void initListItems() {
+    leaveBehindItems = new List<LeaveBehindItem>.generate(16, (int index) {
+      return new LeaveBehindItem(
+          index: index,
+          name: 'Item $index Sender',
+          subject: 'Subject: $index',
+          body: "[$index] first line of the message's body..."
+      );
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initListItems();
+  }
+
