@@ -16,13 +16,17 @@ class _MatchmakingData {
   String learningStyle;
   String numberOfPeople;
   String timeOfDay;
+  String preferredLearningStyle;
+  String gender;
+
+  _MatchmakingData(this.numberOfPeople, this.timeOfDay, this.preferredLearningStyle, this.gender);
 }
 
 class _Matchmaking extends State<Matchmaking> {
   final AppState state;
   CollectionReference reference;
   Stream<QuerySnapshot> snapshots;
-  _MatchmakingData mData = new _MatchmakingData();
+  _MatchmakingData mData = new _MatchmakingData("3-4", "Morning", "Focused", "M");
 
   _Matchmaking(this.state);
 
