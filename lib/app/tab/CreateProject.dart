@@ -332,3 +332,24 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.pop(context); // close the drawer
     },
     ),
+    ],
+    )),
+    new Divider(),
+    new ListTile(
+    leading: new Icon(Icons.settings),
+    title: new Text('Settings'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(Icons.help),
+    title: new Text('Help & feedback'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    ],),
+    ),
