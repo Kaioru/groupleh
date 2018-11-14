@@ -13,6 +13,7 @@ class Matchmaking extends StatefulWidget {
 
 class _MatchmakingData{
   // these are the matchmaking values
+  String learningStyle;
   String numberOfPeople;
   String timeOfDay;
 }
@@ -37,6 +38,23 @@ class _Matchmaking extends State<Matchmaking> {
                   style:
                   TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold)),
               ListTile(
+                leading: const Icon(Icons.book),
+                title: Text("Learning Style"),
+                trailing: DropdownButton<String>(
+
+                  onChanged: (String newValue){
+                    setState(() {
+                      mData.learningStyle = newValue;
+                    });
+                  },
+                  items: <String>["Collaborative", "Focused"].map<DropdownMenuItem<String>>((String value){
+                    return DropdownMenuItem<String>(
+                      value:value,
+                      child: Text(value),
+                    );
+                  }).toList()
+                ),
+              ),ListTile(
                 leading: const Icon(Icons.group_work),
                 title: Text("Preferred number of people"),
                 trailing: DropdownButton<String>(
@@ -70,6 +88,10 @@ class _Matchmaking extends State<Matchmaking> {
                     );
                   }).toList()
                 )
+              ), 
+              RaisedButton(
+                child: Text("Let's go!"),
+                onPressed: () {},
               )
             ],
           )
