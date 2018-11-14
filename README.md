@@ -4,3 +4,4 @@
 ## Collaborators
 * Keith Toh ([kaioru](https://github.com/kaioru))
 * John Koh ([bokiex](https://github.com/bokiex))
+* Daniel Dean ([Swazztastic](https://github.com/Swazztastic))
