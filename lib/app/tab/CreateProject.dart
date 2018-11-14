@@ -183,3 +183,21 @@ class _MyHomePageState extends State<MyHomePage> {
     accountName: const Text('Zach Widget'),
     accountEmail: const Text('zach.widget@example.com'),
     ),
+
+    new ListTile(
+    leading: new Icon(Icons.inbox),
+    title: new Text('All inboxes'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new Divider(),
+    new ListTile(
+    leading: new Icon(Icons.inbox, color: Colors.blue),
+    title: new Text('Inbox'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
