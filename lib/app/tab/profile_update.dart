@@ -21,7 +21,12 @@ class _ProfileUpdate extends State<ProfileUpdate> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(),
+      child: Column(
+        children: <Widget>[
+          Text("Update",
+              style: TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold)),
+        ],
+      ),
     );
   }
 }
