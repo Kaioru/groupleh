@@ -6,3 +6,4 @@
 * John Koh ([bokiex](https://github.com/bokiex))
 * Daniel Dean ([Swazztastic](https://github.com/Swazztastic))
 * Jonaisah ([jonaisahhh](https://github.com/jonaisahhh))
+* Marcus Goh ([Klann98](https://github.com/Klann98))
