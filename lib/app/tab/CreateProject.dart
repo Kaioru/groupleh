@@ -138,4 +138,20 @@ class _MyHomePageState extends State<MyHomePage> {
     trailing: const Icon(Icons.query_builder, color: Colors.white, size: 36.0)
     )
     ),
-    
+        child: new Container(
+            decoration: new BoxDecoration(
+                color: theme.canvasColor,
+                border: new Border(bottom: new BorderSide(color: theme.dividerColor))
+            ),
+            child: new ListTile(
+                leading: new CircleAvatar(
+                  child: new Text("M"),
+                  radius: 100.0,
+                ),
+                title: new Text(item.name),
+                subtitle: new Text('${item.subject}\n${item.body}'),
+                isThreeLine: true
+            )
+        )
+    );
+  }
