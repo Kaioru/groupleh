@@ -38,7 +38,9 @@ class _Profile extends State<Profile> {
                           image: NetworkImage(state.user.photoUrl == null
                               ? "http://bp2.blogger.com/_w1__C0VO_Os/R8mib3DUW5I/AAAAAAAAAGg/HYTOCZjg4ow/s400/1078_i3_3.jpg"
                               : state.user.photoUrl),
-                        ))),
+                        )
+                      )
+                    ),
                 Text(
                     state.user.displayName == null
                         ? state.user.email
@@ -58,7 +60,9 @@ class _Profile extends State<Profile> {
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => Login()));
                     }),
-              ])),
+              ]
+            )
+          ),
     );
   }
 }
