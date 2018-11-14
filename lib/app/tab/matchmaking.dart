@@ -54,7 +54,7 @@ class _Matchmaking extends State<Matchmaking> {
         ),
         ListTile(
           leading: const Icon(Icons.group_work),
-          title: Text("Preferred number of people"),
+          title: Text("Preferred size"),
           trailing: DropdownButton<String>(
               onChanged: (String newValue) {
                 setState(() {
@@ -71,7 +71,7 @@ class _Matchmaking extends State<Matchmaking> {
         ),
         ListTile(
             leading: const Icon(Icons.calendar_today),
-            title: const Text("Preferred time of day"),
+            title: const Text("Preferred time"),
             trailing: DropdownButton(
                 onChanged: (String newValue) {
                   setState(() {
