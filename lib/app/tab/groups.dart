@@ -50,7 +50,7 @@ class _Groups extends State<Groups> {
                           Text("You do not have any groups yet."),
                           Divider(),
                           RaisedButton(
-                            onPressed: () => pageController.animateToPage(2,
+                            onPressed: () => pageController.animateToPage(1,
                                 duration: const Duration(milliseconds: 250),
                                 curve: Curves.easeInOut),
                             child: Text('Find groups!'),
