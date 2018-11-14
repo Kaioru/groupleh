@@ -55,7 +55,7 @@ class _Profile extends State<Profile> {
                 RaisedButton(
                     child: Text("Log out"),
                     onPressed: () {
-                      Navigator.push(context,
+                      Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => Login()));
                     }),
               ])),
