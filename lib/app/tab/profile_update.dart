@@ -23,35 +23,37 @@ class _ProfileUpdate extends State<ProfileUpdate> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(),
         body: SafeArea(
-      child: Column(
-        children: <Widget>[
-          Text("Update",
-              style: TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold)),
-          Form(
-            child: Column(
-              children: <Widget>[
-                TextFormField(
-                    controller: _displayNameController,
-                    decoration: new InputDecoration(
-                      labelText: "Display Name",
-                    ),
-                    keyboardType: TextInputType.text),
-                RaisedButton(
-                  child: Text("Update"),
-                  onPressed: () {
-                    var info = UserUpdateInfo();
+          child: Column(
+            children: <Widget>[
+              Text("Update",
+                  style:
+                      TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold)),
+              Form(
+                child: Column(
+                  children: <Widget>[
+                    TextFormField(
+                        controller: _displayNameController,
+                        decoration: new InputDecoration(
+                          labelText: "Display Name",
+                        ),
+                        keyboardType: TextInputType.text),
+                    RaisedButton(
+                      child: Text("Update"),
+                      onPressed: () {
+                        var info = UserUpdateInfo();
 
-                    info.displayName = _displayNameController.text;
-                    state.user.updateProfile(info);
-                    Navigator.pop(context);
-                  },
-                )
-              ],
-            ),
-          )
-        ],
-      ),
-    ));
+                        info.displayName = _displayNameController.text;
+                        state.user.updateProfile(info);
+                        Navigator.pop(context);
+                      },
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ));
   }
 }
