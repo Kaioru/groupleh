@@ -46,6 +46,7 @@ class _ProfileUpdate extends State<ProfileUpdate> {
 
                         info.displayName = _displayNameController.text;
                         state.user.updateProfile(info);
+                        state.user.reload();
                         Navigator.pop(context);
                       },
                     )
