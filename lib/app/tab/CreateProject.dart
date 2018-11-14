@@ -353,3 +353,16 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
     ],),
     ),
+
+
+      body: new ListView(
+          children: leaveBehindItems.map(buildItem).toList()
+      ),
+      floatingActionButton: new FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: new Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
