@@ -82,12 +82,6 @@ class _MyHomePageState extends State<MyHomePage> {
     initListItems();
   }
 
-
-
-
-
-
-
   void _switchView(value) {}
 
 
@@ -107,3 +101,10 @@ class _MyHomePageState extends State<MyHomePage> {
         break;
     }
   }
+  void handleUndo(LeaveBehindItem item) {
+    final int insertionIndex = lowerBound(leaveBehindItems, item);
+    setState(() {
+      leaveBehindItems.insert(insertionIndex, item);
+    });
+  }
+
