@@ -27,7 +27,7 @@ class _Profile extends State<Profile> {
           padding: EdgeInsets.only(left: 20.0),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
                     width: 150.0,
@@ -49,6 +49,7 @@ class _Profile extends State<Profile> {
                         TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold)),
                 RaisedButton(
                   child: Text("Update profile"),
+                  color: Colors.green,
                   onPressed: () {
                     Navigator.push(context,
                           MaterialPageRoute(builder: (context) => ProfileUpdate(state)));
@@ -56,6 +57,7 @@ class _Profile extends State<Profile> {
                 ),
                 RaisedButton(
                     child: Text("Log out"),
+                    color: Colors.red,
                     onPressed: () {
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => Login()));
@@ -66,3 +68,5 @@ class _Profile extends State<Profile> {
     );
   }
 }
+
+
