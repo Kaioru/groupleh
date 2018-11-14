@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:groupleh/app/app_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:groupleh/app/auth/login.dart';
+import 'package:groupleh/app/tab/profile_update.dart';
 
 class Profile extends StatefulWidget {
   final AppState state;
@@ -47,7 +48,8 @@ class _Profile extends State<Profile> {
                 RaisedButton(
                   child: Text("Update profile"),
                   onPressed: () {
-                    //
+                    Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => ProfileUpdate(state)));
                   },
                 ),
                 RaisedButton(
