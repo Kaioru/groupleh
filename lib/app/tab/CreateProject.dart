@@ -201,3 +201,14 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.pop(context); // close the drawer
     },
     ),
+    new ListTile(
+    leading: new Icon(
+    Icons.query_builder,
+    color: Colors.orange,
+    ),
+    title: new Text('Snoozed'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
