@@ -39,10 +39,10 @@ class _ProfileUpdate extends State<ProfileUpdate> {
                 RaisedButton(
                   child: Text("Update"),
                   onPressed: () {
-                    var milkshake = UserUpdateInfo();
+                    var info = UserUpdateInfo();
 
-                    milkshake.displayName = _displayNameController.text;
-                    state.user.updateProfile(milkshake);
+                    info.displayName = _displayNameController.text;
+                    state.user.updateProfile(info);
                     Navigator.pop(context);
                   },
                 )
