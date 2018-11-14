@@ -3,3 +3,4 @@
 
 ## Collaborators
 * Keith Toh ([kaioru](https://github.com/kaioru))
+* John Koh ([bokiex](https://github.com/bokiex))
