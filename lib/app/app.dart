@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/tab/groups.dart';
+import 'package:groupleh/app/tab/matchmaking.dart';
+import 'package:groupleh/app/app_state.dart';
 
 class App extends StatefulWidget {
-  App();
+  final AppState state;
+
+  App(this.state);
 
   @override
-  State<StatefulWidget> createState() => _App();
+  State<StatefulWidget> createState() => _App(state);
 }
 
 class _App extends State<App> with WidgetsBindingObserver {
+  final AppState state;
+  PageController pageController;
   int _pageIndex = 0;
-  PageController _pageController;
 
-  _App();
+  _App(this.state);
 
   @override
   void initState() {
-    _pageController = PageController(initialPage: _pageIndex);
+    pageController = PageController(initialPage: _pageIndex);
     WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
@@ -36,24 +41,26 @@ class _App extends State<App> with WidgetsBindingObserver {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _pageIndex,
           onTap: (page) {
-            _pageController.animateToPage(page,
+            pageController.animateToPage(page,
                 duration: const Duration(milliseconds: 250),
                 curve: Curves.easeInOut);
           },
           items: [
-            BottomNavigationBarItem(title: Text("Groups"), icon: Icon(Icons.people)),
-            BottomNavigationBarItem(title: Text("Groups"), icon: Icon(Icons.people)),
+            BottomNavigationBarItem(
+                title: Text("Groups"), icon: Icon(Icons.people)),
+            BottomNavigationBarItem(
+                title: Text("Matchmaking"), icon: Icon(Icons.search)),
           ],
         ),
         body: PageView(
           physics: NeverScrollableScrollPhysics(),
-          controller: _pageController,
+          controller: pageController,
           onPageChanged: (index) {
             setState(() {
               this._pageIndex = index;
             });
           },
-          children: [Groups(), Groups()],
+          children: [Groups(pageController, state), Matchmaking(state)],
         ));
   }
 }

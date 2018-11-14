@@ -1,0 +1,4 @@
+enum LearningStyle{
+  Collaborative,
+  Focused
+}

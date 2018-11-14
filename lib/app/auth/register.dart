@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:groupleh/app/auth/login.dart';
+import 'package:groupleh/app/app.dart';
+import 'package:groupleh/app/app_state.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -6,96 +10,92 @@ class Register extends StatefulWidget {
 }
 
 class _Register extends State<Register> {
-  final scaffoldKey = new GlobalKey<ScaffoldState>();
-  final formKey = new GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _auth = FirebaseAuth.instance;
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _password2Controller = TextEditingController();
 
-  String _name;
-  String _email;
-  String _password;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
-
-  void _submit() {
-    final form = formKey.currentState;
-
-    if (form.validate()) {
-      form.save();
-
-      performLogin();
-    }
-  }
-
-  void performLogin() {
-    final snackbar = new SnackBar(
-      content:
-          new Text("Name : $_name, Email : $_email, password : $_password"),
-    );
-    scaffoldKey.currentState.showSnackBar(snackbar);
+  Future<FirebaseUser> _handleCreateUser() async {
+    return await _auth.createUserWithEmailAndPassword(
+        email: _emailController.text, password: _passwordController.text);
   }
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        key: scaffoldKey,
-        appBar: new AppBar(
-          title: new Text("Form Page"),
-        ),
-        body: new Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: new Form(
-            key: formKey,
-            child: new Column(
-              children: <Widget>[
-                new TextFormField(
-                  decoration: new InputDecoration(labelText: "Name"),
-                  onSaved: (val) => _name = val,
-                ),
-                new TextFormField(
-                  decoration: new InputDecoration(labelText: "Email"),
-                  validator: (val) =>
-                      !val.contains('@') ? 'Invalid Email' : null,
-                  onSaved: (val) => _email = val,
-                ),
-                new TextFormField(
-                  decoration: new InputDecoration(labelText: "Password"),
-                  validator: (val) =>
-                      val.length < 6 ? 'Password too short' : null,
-                  onSaved: (val) => _password = val,
-                  obscureText: true,
-                ),
-                new TextFormField(
-                  decoration:
-                      new InputDecoration(labelText: "Comfirm Password"),
-                  validator: (val) =>
-                      val.length < 6 ? 'Password too short' : null,
-                  obscureText: true,
-                ),
-                new Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
-                ),
-                new RaisedButton(
-                  child: new Text(
-                    "Register",
-                    style: new TextStyle(color: Colors.white),
-                  ),
-                  color: Colors.blue,
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/login');
-                  },
-                )
-              ],
-            ),
-          ),
-        ));
+    return Scaffold(
+        key: _scaffoldKey,
+        body: Form(
+            key: _formKey,
+            child: Container(
+                padding: EdgeInsets.only(left: 24.0, right: 24.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    FlutterLogo(size: 120.0),
+                    TextFormField(
+                        controller: _emailController,
+                        validator: (val) {
+                          Pattern pattern =
+                              r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                          RegExp regex = new RegExp(pattern);
+                          if (!regex.hasMatch(val))
+                            return 'Please enter a valid email!';
+                          else
+                            return null;
+                        },
+                        decoration: new InputDecoration(
+                          labelText: "Email",
+                        ),
+                        keyboardType: TextInputType.emailAddress),
+                    TextFormField(
+                        controller: _passwordController,
+                        decoration: new InputDecoration(
+                          labelText: "Password",
+                        ),
+                        obscureText: true,
+                        keyboardType: TextInputType.text),
+                    TextFormField(
+                        controller: _password2Controller,
+                        validator: (val) {
+                          if (_passwordController.text !=
+                              _password2Controller.text)
+                            return 'Passwords do not match!';
+                          else
+                            return null;
+                        },
+                        decoration: new InputDecoration(
+                          labelText: "Password again",
+                        ),
+                        obscureText: true,
+                        keyboardType: TextInputType.text),
+                    ButtonBar(children: <Widget>[
+                      RaisedButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) => Login()));
+                        },
+                        child: Text('Cancel'),
+                      ),
+                      RaisedButton(
+                        onPressed: () async {
+                          if (_formKey.currentState.validate()) {
+                            await _handleCreateUser().then((user) {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => App(AppState(user))));
+                            }).catchError((e) => _scaffoldKey.currentState
+                                .showSnackBar(SnackBar(
+                                    content: Text("Failed to register!"))));
+                          }
+                        },
+                        child: Text('Register'),
+                      )
+                    ])
+                  ],
+                ))));
   }
 }
