@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/app_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfileUpdate extends StatefulWidget {
   final AppState state;
@@ -13,6 +14,7 @@ class ProfileUpdate extends StatefulWidget {
 
 class _ProfileUpdate extends State<ProfileUpdate> {
   final AppState state;
+  final _displayNameController = TextEditingController();
   CollectionReference reference;
   Stream<QuerySnapshot> snapshots;
 
@@ -28,9 +30,19 @@ class _ProfileUpdate extends State<ProfileUpdate> {
           Form(
             child: Column(
               children: <Widget>[
+                TextFormField(
+                    controller: _displayNameController,
+                    decoration: new InputDecoration(
+                      labelText: "Display Name",
+                    ),
+                    keyboardType: TextInputType.text),
                 RaisedButton(
                   child: Text("Update"),
                   onPressed: () {
+                    var milkshake = UserUpdateInfo();
+
+                    milkshake.displayName = _displayNameController.text;
+                    state.user.updateProfile(milkshake);
                     Navigator.pop(context);
                   },
                 )
