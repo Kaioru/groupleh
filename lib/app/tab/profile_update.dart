@@ -41,12 +41,12 @@ class _ProfileUpdate extends State<ProfileUpdate> {
                         keyboardType: TextInputType.text),
                     RaisedButton(
                       child: Text("Update"),
-                      onPressed: () {
+                      onPressed: () async {
                         var info = UserUpdateInfo();
 
                         info.displayName = _displayNameController.text;
-                        state.user.updateProfile(info);
-                        state.user.reload();
+                        await state.user.updateProfile(info);
+                        await state.user.reload();
                         Navigator.pop(context);
                       },
                     )
