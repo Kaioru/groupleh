@@ -26,3 +26,17 @@ class LeaveBehindItem implements Comparable<LeaveBehindItem> {
   int compareTo(LeaveBehindItem other) => index.compareTo(other.index);
 }
 
+
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: 'GroupLeh Create Project',
+      theme: new ThemeData(
+          primarySwatch: Colors.blue,
+          accentColor: Colors.red),
+      home: new MyHomePage(title: 'Create Project'),
+    );
+  }
+}
