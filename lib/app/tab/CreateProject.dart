@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart' show lowerBound;
-
 enum LeaveBehindDemoAction {
   reset,
   horizontalSwipe,
   leftSwipe,
   rightSwipe
 }
-
-
 
 void main() {
   runApp(new MyApp());
@@ -30,11 +27,6 @@ class LeaveBehindItem implements Comparable<LeaveBehindItem> {
 }
 
 
-
-
-
-
-
 class MyApp extends StatelessWidget {
 
   @override
@@ -48,7 +40,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
@@ -74,9 +65,6 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-
-
-
   void initListItems() {
     leaveBehindItems = new List<LeaveBehindItem>.generate(16, (int index) {
       return new LeaveBehindItem(
@@ -93,7 +81,6 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     initListItems();
   }
-
 
   void _switchView(value) {}
 
@@ -114,7 +101,6 @@ class _MyHomePageState extends State<MyHomePage> {
         break;
     }
   }
-
   void handleUndo(LeaveBehindItem item) {
     final int insertionIndex = lowerBound(leaveBehindItems, item);
     setState(() {
@@ -126,32 +112,32 @@ class _MyHomePageState extends State<MyHomePage> {
     final ThemeData theme = Theme.of(context);
     return new Dismissible(
         key: new ObjectKey(item),
-        direction: _dismissDirection,
-        onDismissed: (DismissDirection direction) {
-          setState(() {
-            leaveBehindItems.remove(item);
-          });
-          final String action = (direction == DismissDirection.endToStart) ? 'archived' : 'deleted';
-          _scaffoldKey.currentState.showSnackBar(new SnackBar(
-              content: new Text('You $action item ${item.index}'),
-              action: new SnackBarAction(
-                  label: 'UNDO',
-                  onPressed: () { handleUndo(item); }
-              )
-          ));
-        },
-        background: new Container(
-            color: Colors.green,
-            child: const ListTile(
-                leading: const Icon(Icons.done, color: Colors.white, size: 36.0)
-            )
-        ),
-        secondaryBackground: new Container(
-            color: Colors.orange,
-            child: const ListTile(
-                trailing: const Icon(Icons.query_builder, color: Colors.white, size: 36.0)
-            )
-        ),
+    direction: _dismissDirection,
+    onDismissed: (DismissDirection direction) {
+    setState(() {
+    leaveBehindItems.remove(item);
+    });
+    final String action = (direction == DismissDirection.endToStart) ? 'archived' : 'deleted';
+    _scaffoldKey.currentState.showSnackBar(new SnackBar(
+    content: new Text('You $action item ${item.index}'),
+    action: new SnackBarAction(
+    label: 'UNDO',
+    onPressed: () { handleUndo(item); }
+    )
+    ));
+    },
+    background: new Container(
+    color: Colors.green,
+    child: const ListTile(
+    leading: const Icon(Icons.done, color: Colors.white, size: 36.0)
+    )
+    ),
+    secondaryBackground: new Container(
+    color: Colors.orange,
+    child: const ListTile(
+    trailing: const Icon(Icons.query_builder, color: Colors.white, size: 36.0)
+    )
+    ),
         child: new Container(
             decoration: new BoxDecoration(
                 color: theme.canvasColor,
@@ -173,201 +159,202 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
+        appBar: new AppBar(
         title: new Text(widget.title),
-        actions: <Widget>[
-          new Switch(
-            value: false,
-            onChanged: _switchView,
-            inactiveThumbColor: Colors.blue,
-            activeColor: Colors.white,
-            inactiveThumbImage: new AssetImage("assets/unpin.png"),
-            activeThumbImage: new AssetImage("assets/pin.png"),
-          ),
-          new IconButton(
-              icon: new Icon(Icons.search),
-              onPressed: _incrementCounter,
-              color: Colors.white)
-        ],
-      ),
-      drawer: new Drawer(
-        child: new Column(children: <Widget>[new Expanded(child: new ListView(
-          children: <Widget>[
-            new UserAccountsDrawerHeader(
-                accountName: const Text('Zach Widget'),
-                accountEmail: const Text('zach.widget@example.com'),
-            ),
+    actions: <Widget>[
+    new Switch(
+    value: false,
+    onChanged: _switchView,
+    inactiveThumbColor: Colors.blue,
+    activeColor: Colors.white,
+    inactiveThumbImage: new AssetImage("assets/unpin.png"),
+    activeThumbImage: new AssetImage("assets/pin.png"),
+    ),
+    new IconButton(
+    icon: new Icon(Icons.search),
+    onPressed: _incrementCounter,
+    color: Colors.white)
+    ],
+    ),
+    drawer: new Drawer(
+    child: new Column(children: <Widget>[new Expanded(child: new ListView(
+    children: <Widget>[
+    new UserAccountsDrawerHeader(
+    accountName: const Text('Zach Widget'),
+    accountEmail: const Text('zach.widget@example.com'),
+    ),
 
-            new ListTile(
-              leading: new Icon(Icons.inbox),
-              title: new Text('All inboxes'),
-              onTap: () {
-                // change app state...
-                Navigator.pop(context); // close the drawer
-              },
-            ),
-            new Divider(),
-            new ListTile(
-              leading: new Icon(Icons.inbox, color: Colors.blue),
-              title: new Text('Inbox'),
-              onTap: () {
-                // change app state...
-                Navigator.pop(context); // close the drawer
-              },
-            ),
-            new ListTile(
-              leading: new Icon(
-                Icons.query_builder,
-                color: Colors.orange,
-              ),
-              title: new Text('Snoozed'),
-              onTap: () {
-                // change app state...
-                Navigator.pop(context); // close the drawer
-              },
-            ),
-            new ListTile(
-              leading: new Icon(
-                Icons.done,
-                color: Colors.green,
-              ),
-              title: new Text('Done'),
-              onTap: () {
-                // change app state...
-                Navigator.pop(context); // close the drawer
-              },
-            ),
-            new Divider(),
-            new ListTile(
-              leading: new Icon(Icons.drafts),
-              title: new Text('Drafts'),
-              onTap: () {
-                // change app state...
-                Navigator.pop(context); // close the drawer
-              },
-            ),
-            new ListTile(
-              leading: new Icon(Icons.send),
-              title: new Text('Sent'),
-              onTap: () {
-                // change app state...
-                Navigator.pop(context); // close the drawer
-              },
-            ),
-            new ListTile(
-              leading: new Icon(Icons.touch_app),
-              title: new Text('Reminders'),
-              onTap: () {
-                // change app state...
-                Navigator.pop(context); // close the drawer
-              },
-            ),
-            new ListTile(
-              leading: new Icon(Icons.delete),
-              title: new Text('Trash'),
-              onTap: () {
-                // change app state...
-                Navigator.pop(context); // close the drawer
-              },
-            ),
-            new ListTile(
-              leading: new Icon(Icons.warning),
-              title: new Text('Spam'),
-              onTap: () {
-                // change app state...
-                Navigator.pop(context); // close the drawer
-              },
-            ),
-            new Divider(),
-            new ListTile(
-              title: new Text('Bundled in the inbox'),
-            ),
-            new ListTile(
-              leading: new Icon(Icons.flight, color: Colors.purple),
-              title: new Text('Trips'),
-              onTap: () {
-                // change app state...
-                Navigator.pop(context); // close the drawer
-              },
-            ),
-            new ListTile(
-              leading: new Icon(Icons.bookmark, color: Colors.blue),
-              title: new Text('Saved'),
-              onTap: () {
-                // change app state...
-                Navigator.pop(context); // close the drawer
-              },
-            ),
-            new ListTile(
-              leading: new Icon(Icons.shopping_cart, color: Colors.brown),
-              title: new Text('Purchases'),
-              onTap: () {
-                // change app state...
-                Navigator.pop(context); // close the drawer
-              },
-            ),
-            new ListTile(
-              leading: new Icon(Icons.show_chart, color: Colors.green),
-              title: new Text('Finance'),
-              onTap: () {
-                // change app state...
-                Navigator.pop(context); // close the drawer
-              },
-            ),
-            new ListTile(
-              leading: new Icon(Icons.group, color: Colors.red),
-              title: new Text('Social'),
-              onTap: () {
-                // change app state...
-                Navigator.pop(context); // close the drawer
-              },
-            ),
-            new ListTile(
-              leading: new Icon(Icons.flag, color: Colors.orange),
-              title: new Text('Updates'),
-              onTap: () {
-                // change app state...
-                Navigator.pop(context); // close the drawer
-              },
-            ),
-            new ListTile(
-              leading: new Icon(Icons.forum, color: Colors.blue),
-              title: new Text('Forums'),
-              onTap: () {
-                // change app state...
-                Navigator.pop(context); // close the drawer
-              },
-            ),
-            new ListTile(
-              leading: new Icon(Icons.bookmark, color: Colors.lightBlue),
-              title: new Text('Promos'),
-              onTap: () {
-                // change app state...
-                Navigator.pop(context); // close the drawer
-              },
-            ),
+    new ListTile(
+    leading: new Icon(Icons.inbox),
+    title: new Text('All inboxes'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new Divider(),
+    new ListTile(
+    leading: new Icon(Icons.inbox, color: Colors.blue),
+    title: new Text('Inbox'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(
+    Icons.query_builder,
+    color: Colors.orange,
+    ),
+    title: new Text('Snoozed'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(
+    Icons.done,
+    color: Colors.green,
+    ),
+    title: new Text('Done'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new Divider(),
+    new ListTile(
+    leading: new Icon(Icons.drafts),
+    title: new Text('Drafts'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(Icons.send),
+    title: new Text('Sent'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(Icons.touch_app),
+    title: new Text('Reminders'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(Icons.delete),
+    title: new Text('Trash'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(Icons.warning),
+    title: new Text('Spam'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new Divider(),
+    new ListTile(
+    title: new Text('Bundled in the inbox'),
+    ),
+    new ListTile(
+    leading: new Icon(Icons.flight, color: Colors.purple),
+    title: new Text('Trips'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(Icons.bookmark, color: Colors.blue),
+    title: new Text('Saved'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(Icons.shopping_cart, color: Colors.brown),
+    title: new Text('Purchases'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(Icons.show_chart, color: Colors.green),
+    title: new Text('Finance'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(Icons.group, color: Colors.red),
+    title: new Text('Social'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(Icons.flag, color: Colors.orange),
+    title: new Text('Updates'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(Icons.forum, color: Colors.blue),
+    title: new Text('Forums'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(Icons.bookmark, color: Colors.lightBlue),
+    title: new Text('Promos'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    ],
+    )),
+    new Divider(),
+    new ListTile(
+    leading: new Icon(Icons.settings),
+    title: new Text('Settings'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(Icons.help),
+    title: new Text('Help & feedback'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    ],),
+    ),
 
-          ],
-        )),
-        new Divider(),
-        new ListTile(
-          leading: new Icon(Icons.settings),
-          title: new Text('Settings'),
-          onTap: () {
-            // change app state...
-            Navigator.pop(context); // close the drawer
-          },
-        ),
-        new ListTile(
-          leading: new Icon(Icons.help),
-          title: new Text('Help & feedback'),
-          onTap: () {
-            // change app state...
-            Navigator.pop(context); // close the drawer
-          },
-        ),
-        ],),
-      ),
+
       body: new ListView(
           children: leaveBehindItems.map(buildItem).toList()
       ),
