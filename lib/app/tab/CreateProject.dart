@@ -82,3 +82,28 @@ class _MyHomePageState extends State<MyHomePage> {
     initListItems();
   }
 
+
+
+
+
+
+
+  void _switchView(value) {}
+
+
+  void handleDemoAction(LeaveBehindDemoAction action) {
+    switch (action) {
+      case LeaveBehindDemoAction.reset:
+        initListItems();
+        break;
+      case LeaveBehindDemoAction.horizontalSwipe:
+        _dismissDirection = DismissDirection.horizontal;
+        break;
+      case LeaveBehindDemoAction.leftSwipe:
+        _dismissDirection = DismissDirection.endToStart;
+        break;
+      case LeaveBehindDemoAction.rightSwipe:
+        _dismissDirection = DismissDirection.startToEnd;
+        break;
+    }
+  }
