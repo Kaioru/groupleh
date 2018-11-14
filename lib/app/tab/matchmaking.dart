@@ -18,7 +18,7 @@ class _MatchmakingData{
   String preferredLearningStyle;
   String gender;
 
-  _MatchmakingData(this.numberOfPeople, this.timeOfDay, this.preferredLearningStyle, this.gender)
+  _MatchmakingData(this.numberOfPeople, this.timeOfDay, this.preferredLearningStyle, this.gender);
 }
 
 class _Matchmaking extends State<Matchmaking> {
@@ -60,30 +60,30 @@ class _Matchmaking extends State<Matchmaking> {
               ),
               ListTile(
                 leading: const Icon(Icons.calendar_today),
-                title: const Text("Preferred time of day"),
-                trailing: DropdownButton(
-                  value: mData.timeOfDay,
-                  onChanged: (String newValue){
-                    setState(() {
-                      mData.timeOfDay = newValue;
-                    });
-                  },
-                  items: <String>["Morning", "Afternoon", "Evening", "Night"].map<DropdownMenuItem<String>>((String value){
-                    return DropdownMenuItem<String>(
-                      value:value,
-                      child: Text(value),
-                    );
-                  }).toList()
-                )
+                title: Text("Preferred number of people"),
+                trailing: DropdownButton<String>(
+                    value: mData.timeOfDay,
+                    onChanged: (String newValue){
+                      setState(() {
+                        mData.timeOfDay = newValue;
+                      });
+                    },
+                    items: <String>["Morning", "Afternoon", "Evening", "Night"].map<DropdownMenuItem<String>>((String value){
+                      return DropdownMenuItem<String>(
+                        value:value,
+                        child: Text(value),
+                      );
+                    }).toList()
+                ),
               ),
               ListTile(
                 leading: const Icon(Icons.merge_type),
-                title: const Text("Preferred learning style"),
-                trailing: DropdownButton(
-                  value: mData.gender,
+                title: Text("Preferred learning style"),
+                trailing: DropdownButton<String>(
+                  value: mData.preferredLearningStyle,
                   onChanged: (String newValue){
                     setState(() {
-                      mData.gender = newValue;
+                      mData.preferredLearningStyle = newValue;
                     });
                   },
                   items: <String>["Collaborative", "Focused"].map<DropdownMenuItem<String>>((String value){
@@ -97,7 +97,7 @@ class _Matchmaking extends State<Matchmaking> {
               ListTile(
                 leading: const Icon(Icons.person_outline),
                 title: const Text("Gender"),
-                trailing: DropdownButton(
+                trailing: DropdownButton<String>(
                   value: mData.gender,
                   onChanged: (String newValue){
                     setState(() {
@@ -110,6 +110,16 @@ class _Matchmaking extends State<Matchmaking> {
                       child: Text(value),
                     );
                   }).toList()
+                )
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                child: RaisedButton(
+                  child: Text(
+                    "Submit",
+                  ),
+                  // submit method here
+                  //onPressed: this.submit
                 )
               )
             ],
