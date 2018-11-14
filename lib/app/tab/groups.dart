@@ -18,6 +18,14 @@ class _Groups extends State<Groups> {
   final PageController pageController;
 
   List<Group> groups = [
+    Group(
+        1,
+        "https://image.freepik.com/free-vector/unicorn-background-design_1324-79.jpg",
+        "Pink Fluffy Unicorns", []),
+    Group(
+        2,
+        "https://image.freepik.com/free-vector/unicorn-background-design_1324-79.jpg",
+        "Pink Fluffy Unicorns II", [])
   ];
 
   _Groups(this.pageController, this.state);
