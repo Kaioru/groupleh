@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/tab/groups.dart';
 import 'package:groupleh/app/tab/matchmaking.dart';
+import 'package:groupleh/app/tab/projects.dart';
 import 'package:groupleh/app/tab/profile.dart';
 import 'package:groupleh/app/app_state.dart';
 
@@ -52,6 +53,8 @@ class _App extends State<App> with WidgetsBindingObserver {
             BottomNavigationBarItem(
                 title: Text("Matchmaking"), icon: Icon(Icons.search)),
             BottomNavigationBarItem(
+                title: Text("Projects"), icon: Icon(Icons.book)),
+            BottomNavigationBarItem(
                 title: Text("Profile"), icon: Icon(Icons.person)),
           ],
         ),
@@ -63,7 +66,7 @@ class _App extends State<App> with WidgetsBindingObserver {
               this._pageIndex = index;
             });
           },
-          children: [Groups(pageController, state), Matchmaking(state), Profile(state)],
+          children: [Groups(pageController, state), Matchmaking(state), Project(state), Profile(state)],
         ));
   }
 }
