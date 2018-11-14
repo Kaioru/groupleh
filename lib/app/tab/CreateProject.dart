@@ -155,3 +155,18 @@ class _MyHomePageState extends State<MyHomePage> {
         )
     );
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+        appBar: new AppBar(
+        title: new Text(widget.title),
+    actions: <Widget>[
+    new Switch(
+    value: false,
+    onChanged: _switchView,
+    inactiveThumbColor: Colors.blue,
+    activeColor: Colors.white,
+    inactiveThumbImage: new AssetImage("assets/unpin.png"),
+    activeThumbImage: new AssetImage("assets/pin.png"),
+    ),
