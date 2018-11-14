@@ -15,6 +15,7 @@ class ProfileUpdate extends StatefulWidget {
 class _ProfileUpdate extends State<ProfileUpdate> {
   final AppState state;
   final _displayNameController = TextEditingController();
+  final _auth = FirebaseAuth.instance;
   CollectionReference reference;
   Stream<QuerySnapshot> snapshots;
 
@@ -46,7 +47,7 @@ class _ProfileUpdate extends State<ProfileUpdate> {
 
                         info.displayName = _displayNameController.text;
                         await state.user.updateProfile(info);
-                        await state.user.reload();
+                        state.user = await _auth.currentUser();
                         Navigator.pop(context);
                       },
                     )
