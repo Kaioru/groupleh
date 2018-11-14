@@ -300,3 +300,19 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.pop(context); // close the drawer
     },
     ),
+    new ListTile(
+    leading: new Icon(Icons.group, color: Colors.red),
+    title: new Text('Social'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(Icons.flag, color: Colors.orange),
+    title: new Text('Updates'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
