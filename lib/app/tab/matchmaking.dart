@@ -28,8 +28,18 @@ class _Matchmaking extends State<Matchmaking> {
               children: <Widget>[
                 Text("Matchmaking",
                     style:
-                        TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold))
-              ])),
+                        TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold)),
+                CheckboxListTile(
+                  value:
+                )
+              ]
+          ),
+
+      ),
     );
+  }
+
+  void _changeValue(){
+
   }
 }

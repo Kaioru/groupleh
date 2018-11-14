@@ -1,13 +1,14 @@
-import 'LearningStyle.dart';
+
 import 'Group.dart';
 class User{
   final String name;
   final int age;
+  final bool gender;
   final List<Group> groups;
   final LearningStyle preferredLearningStyle;
   final String avatarUrl;
 
-  User({this.name, this.age, this.groups, this.preferredLearningStyle, this.avatarUrl});
+  User({this.name, this.age, this.gender, this.groups, this.preferredLearningStyle, this.avatarUrl});
 
 // Display all groups that user is a part of. Need to learn firebase code
 //  User listGroup(){}
@@ -16,14 +17,14 @@ class User{
 //  User editGroup(){}
 }
 
-List<User> dummyUsers = [
+/*List<User> dummyUsers = [
   new User (
     name: "Daniel",
     age: 18,
     groups: [dummyGroups[0], dummyGroups[1]],
     preferredLearningStyle: LearningStyle.Collaborative,
     avatarUrl:
-      "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb",
+    "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb",
   ),
 
   new User (
@@ -32,29 +33,30 @@ List<User> dummyUsers = [
     groups: [dummyGroups[0], dummyGroups[1]],
     preferredLearningStyle: LearningStyle.Collaborative,
     avatarUrl:
-      "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb",
+    "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb",
   ),
-  
+
   new User (
     name: "John",
     age: 18,
     groups: [dummyGroups[0], dummyGroups[1]],
     preferredLearningStyle: LearningStyle.Focused,
     avatarUrl:
-      "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb",
+    "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb",
   ),
-  
+
   new User (
-    name: "Marcus",
-    age: 21,
-    groups: [dummyGroups[0]],
-    preferredLearningStyle: LearningStyle.Collaborative
+      name: "Marcus",
+      age: 21,
+      groups: [dummyGroups[0]],
+      preferredLearningStyle: LearningStyle.Collaborative
   ),
-  
+
   new User (
-    name: "Jo",
-    age: 18,
-    groups: [dummyGroups[0]],
-    preferredLearningStyle: LearningStyle.Collaborative
+      name: "Jo",
+      age: 18,
+      groups: [dummyGroups[0]],
+      preferredLearningStyle: LearningStyle.Collaborative
   )
 ];
+*/
