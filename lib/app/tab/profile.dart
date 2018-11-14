@@ -24,11 +24,25 @@ class _Profile extends State<Profile> {
       child: Container(
           padding: EdgeInsets.only(left: 20.0),
           child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("Profile",
+                Container(
+                    width: 150.0,
+                    height: 150.0,
+                    decoration: BoxDecoration(
+                        color: Colors.blue,
+                        image: DecorationImage(
+                          image: NetworkImage(state.user.photoUrl == null
+                              ? "http://bp2.blogger.com/_w1__C0VO_Os/R8mib3DUW5I/AAAAAAAAAGg/HYTOCZjg4ow/s400/1078_i3_3.jpg"
+                              : state.user.photoUrl),
+                        ))),
+                Text(
+                    state.user.displayName == null
+                        ? state.user.email
+                        : state.user.displayName,
                     style:
-                        TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold))
+                        TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold)),
               ])),
     );
   }
