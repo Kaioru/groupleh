@@ -25,6 +25,18 @@ class _ProfileUpdate extends State<ProfileUpdate> {
         children: <Widget>[
           Text("Update",
               style: TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold)),
+          Form(
+            child: Column(
+              children: <Widget>[
+                RaisedButton(
+                  child: Text("Update"),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                )
+              ],
+            ),
+          )
         ],
       ),
     );
