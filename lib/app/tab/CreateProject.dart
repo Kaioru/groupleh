@@ -268,3 +268,19 @@ class _MyHomePageState extends State<MyHomePage> {
     new ListTile(
     title: new Text('Bundled in the inbox'),
     ),
+    new ListTile(
+    leading: new Icon(Icons.flight, color: Colors.purple),
+    title: new Text('Trips'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(Icons.bookmark, color: Colors.blue),
+    title: new Text('Saved'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
