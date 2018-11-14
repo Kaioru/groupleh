@@ -284,3 +284,19 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.pop(context); // close the drawer
     },
     ),
+    new ListTile(
+    leading: new Icon(Icons.shopping_cart, color: Colors.brown),
+    title: new Text('Purchases'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(Icons.show_chart, color: Colors.green),
+    title: new Text('Finance'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
