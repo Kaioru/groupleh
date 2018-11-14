@@ -256,3 +256,15 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.pop(context); // close the drawer
     },
     ),
+    new ListTile(
+    leading: new Icon(Icons.warning),
+    title: new Text('Spam'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new Divider(),
+    new ListTile(
+    title: new Text('Bundled in the inbox'),
+    ),
