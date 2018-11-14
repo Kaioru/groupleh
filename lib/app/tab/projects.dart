@@ -7,21 +7,19 @@ import 'package:firestore_ui/animated_firestore_list.dart';
 
 class Projects extends StatefulWidget {
   final AppState state;
-  final PageController pageController;
 
-  Projects(this.pageController, this.state);
+  Projects(this.state);
 
   @override
-  State<StatefulWidget> createState() => _Projects(pageController, state);
+  State<StatefulWidget> createState() => _Projects(state);
 }
 
 class _Projects extends State<Projects> {
   final AppState state;
-  final PageController pageController;
   CollectionReference reference;
   Stream<QuerySnapshot> snapshots;
 
-  _Projects(this.pageController, this.state) {
+  _Projects(this.state) {
     reference = Firestore.instance.collection('projects').reference();
     snapshots = reference.snapshots();
   }
