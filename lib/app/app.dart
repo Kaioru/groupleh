@@ -66,7 +66,7 @@ class _App extends State<App> with WidgetsBindingObserver {
               this._pageIndex = index;
             });
           },
-          children: [Groups(pageController, state), Matchmaking(state), Project(state), Profile(state)],
+          children: [Groups(pageController, state), Matchmaking(state), Projects(state), Profile(state)],
         ));
   }
 }
