@@ -316,3 +316,19 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.pop(context); // close the drawer
     },
     ),
+    new ListTile(
+    leading: new Icon(Icons.forum, color: Colors.blue),
+    title: new Text('Forums'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(Icons.bookmark, color: Colors.lightBlue),
+    title: new Text('Promos'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
