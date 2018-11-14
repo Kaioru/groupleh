@@ -1,7 +1,7 @@
 import 'package:groupleh/app/core/group_member.dart';
 
 class Group {
-  int id;
+  String id;
   String image;
   String name;
   List<GroupMember> members;
