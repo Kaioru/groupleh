@@ -223,3 +223,20 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.pop(context); // close the drawer
     },
     ),
+    new Divider(),
+    new ListTile(
+    leading: new Icon(Icons.drafts),
+    title: new Text('Drafts'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
+    new ListTile(
+    leading: new Icon(Icons.send),
+    title: new Text('Sent'),
+    onTap: () {
+    // change app state...
+    Navigator.pop(context); // close the drawer
+    },
+    ),
