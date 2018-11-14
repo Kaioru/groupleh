@@ -1,3 +1,4 @@
+import 'learning_style.dart';
 class GroupMember {
   String id;
   String image;

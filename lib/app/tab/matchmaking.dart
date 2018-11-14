@@ -28,18 +28,23 @@ class _Matchmaking extends State<Matchmaking> {
               children: <Widget>[
                 Text("Matchmaking",
                     style:
-                        TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold)),
-                CheckboxListTile(
-                  value:
+                    TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold)),
+                DropdownButton<String>(
+                  items: <String> ['1','2','3'].map((String value){
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (val) {},
                 )
               ]
-          ),
-
+          )
       ),
     );
   }
 
-  void _changeValue(){
+  void _changeValue() {
 
   }
 }
