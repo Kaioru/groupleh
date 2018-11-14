@@ -170,3 +170,16 @@ class _MyHomePageState extends State<MyHomePage> {
     inactiveThumbImage: new AssetImage("assets/unpin.png"),
     activeThumbImage: new AssetImage("assets/pin.png"),
     ),
+    new IconButton(
+    icon: new Icon(Icons.search),
+    onPressed: _incrementCounter,
+    color: Colors.white)
+    ],
+    ),
+    drawer: new Drawer(
+    child: new Column(children: <Widget>[new Expanded(child: new ListView(
+    children: <Widget>[
+    new UserAccountsDrawerHeader(
+    accountName: const Text('Zach Widget'),
+    accountEmail: const Text('zach.widget@example.com'),
+    ),
