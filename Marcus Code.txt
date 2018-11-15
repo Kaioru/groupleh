@@ -12,7 +12,7 @@ class createproject extends StatefulWidget {
 
 class _Projectdata {
   String projectname = '';
-  String projectdetail = '
+  String projectdetail =
 }
 
 class _CreateProjectState extends State<createproject> {
