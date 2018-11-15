@@ -27,7 +27,7 @@ class _Profile extends State<Profile> {
           padding: EdgeInsets.only(left: 20.0),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
                     width: 150.0,
@@ -38,7 +38,11 @@ class _Profile extends State<Profile> {
                           image: NetworkImage(state.user.photoUrl == null
                               ? "http://bp2.blogger.com/_w1__C0VO_Os/R8mib3DUW5I/AAAAAAAAAGg/HYTOCZjg4ow/s400/1078_i3_3.jpg"
                               : state.user.photoUrl),
-                        ))),
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(75.0)),
+                        boxShadow: [
+                          BoxShadow(blurRadius: 7.0, color: Colors.black)
+                        ])),
                 Text(
                     state.user.displayName == null
                         ? state.user.email
@@ -47,6 +51,7 @@ class _Profile extends State<Profile> {
                         TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold)),
                 RaisedButton(
                   child: Text("Update profile"),
+                  color: Colors.blue,
                   onPressed: () {
                     Navigator.push(context,
                           MaterialPageRoute(builder: (context) => ProfileUpdate(state)));
@@ -54,6 +59,7 @@ class _Profile extends State<Profile> {
                 ),
                 RaisedButton(
                     child: Text("Log out"),
+                    color: Colors.red,
                     onPressed: () {
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => Login()));

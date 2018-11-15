@@ -44,6 +44,7 @@ class _ProfileUpdate extends State<ProfileUpdate> {
                         keyboardType: TextInputType.text),
                     RaisedButton(
                       child: Text("Upload image"),
+                      color: Colors.green[900],
                       onPressed: () async {
                         var file = await ImagePicker.pickImage(
                             source: ImageSource.gallery);
@@ -64,6 +65,7 @@ class _ProfileUpdate extends State<ProfileUpdate> {
                     ),
                     RaisedButton(
                       child: Text("Update"),
+                      color: Colors.green[900],
                       onPressed: () async {
                         var info = UserUpdateInfo();
 
