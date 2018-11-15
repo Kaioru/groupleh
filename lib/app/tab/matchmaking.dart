@@ -57,6 +57,7 @@ class _Matchmaking extends State<Matchmaking> {
               }).toList()),
         ),
         ListTile(
+          contentPadding: EdgeInsets.all(8.0),
           leading: const Icon(Icons.group_work),
           title: Text("Preferred size"),
           trailing: DropdownButton<String>(
