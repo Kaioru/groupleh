@@ -10,7 +10,7 @@ class createproject extends StatefulWidget {
   State<StatefulWidget> createState() => new _CreateProjectState(new List());
 }
 
-class _Projectdata {
+class _Projectdata 
   String projectnam
   String projectdet
 
