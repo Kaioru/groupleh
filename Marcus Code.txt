@@ -12,7 +12,7 @@ class createproject extends StatefulWidget {
 
 class _Projectdat
   String projectna
-  String projectdet
+  String 
 
 
 class _CreateProjectState extends State<createproject> {
