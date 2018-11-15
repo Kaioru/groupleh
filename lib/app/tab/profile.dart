@@ -41,8 +41,15 @@ class _Profile extends State<Profile> {
                         ),
                         borderRadius: BorderRadius.all(Radius.circular(75.0)),
                         boxShadow: [
+<<<<<<< HEAD
                           BoxShadow(blurRadius: 7.0, color: Colors.black)
                         ])),
+=======
+                              BoxShadow(blurRadius: 7.0, color: Colors.black)
+                        ]
+                      )
+                    ),
+>>>>>>> dev-ui
                 Text(
                     state.user.displayName == null
                         ? state.user.email
@@ -51,7 +58,11 @@ class _Profile extends State<Profile> {
                         TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold)),
                 RaisedButton(
                   child: Text("Update profile"),
+<<<<<<< HEAD
                   color: Colors.blue[900],
+=======
+                  color: Colors.green,
+>>>>>>> dev-ui
                   onPressed: () {
                     Navigator.push(context,
                           MaterialPageRoute(builder: (context) => ProfileUpdate(state)));
@@ -64,7 +75,10 @@ class _Profile extends State<Profile> {
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => Login()));
                     }),
-              ])),
+              ]
+            )
+          ),
     );
   }
 }
+
