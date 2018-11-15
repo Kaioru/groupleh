@@ -34,7 +34,9 @@ class _Register extends State<Register> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    FlutterLogo(size: 120.0),
+                    Text("GroupLeh",
+                        style: TextStyle(
+                            fontSize: 48.0, fontWeight: FontWeight.bold)),
                     TextFormField(
                         controller: _emailController,
                         validator: (val) {
@@ -86,7 +88,8 @@ class _Register extends State<Register> {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => App(AppState(user))));
+                                      builder: (context) =>
+                                          App(AppState(user))));
                             }).catchError((e) => _scaffoldKey.currentState
                                 .showSnackBar(SnackBar(
                                     content: Text("Failed to register!"))));

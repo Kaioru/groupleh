@@ -33,7 +33,9 @@ class _Login extends State<Login> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    FlutterLogo(size: 120.0),
+                    Text("GroupLeh",
+                    style:
+                        TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold)),
                     TextFormField(
                         controller: _emailController,
                         validator: (val) {
