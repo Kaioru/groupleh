@@ -11,7 +11,7 @@ class createproject extends StatefulWidget {
 }
 
 class _Projectdata {
-  String projectname =
+  String projectname 
   String projectdetai
 }
 
