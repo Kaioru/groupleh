@@ -28,6 +28,8 @@ class _ProfileUpdate extends State<ProfileUpdate> {
     return Scaffold(
         appBar: AppBar(),
         body: SafeArea(
+            child: Container(
+              padding: EdgeInsets.all(20.0),
           child: Column(
             children: <Widget>[
               Text("Update",
@@ -80,6 +82,6 @@ class _ProfileUpdate extends State<ProfileUpdate> {
               )
             ],
           ),
-        ));
+        )));
   }
 }

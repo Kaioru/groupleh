@@ -51,7 +51,7 @@ class _Profile extends State<Profile> {
                         TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold)),
                 RaisedButton(
                   child: Text("Update profile"),
-                  color: Colors.blue,
+                  color: Colors.blue[900],
                   onPressed: () {
                     Navigator.push(context,
                           MaterialPageRoute(builder: (context) => ProfileUpdate(state)));
