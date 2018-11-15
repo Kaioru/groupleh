@@ -10,11 +10,9 @@ class createproject extends StatefulWidget {
   State<StatefulWidget> createState() => new _CreateProjectState(new List());
 }
 
-class _Projectdata {
-  String projectname = '';
-  String projectdetail = '';
-}
-
+class _Projectdat
+  String project
+  Stri
 class _CreateProjectState extends State<createproject> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   _Projectdata _data = new _Projectdata();
