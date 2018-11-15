@@ -38,7 +38,11 @@ class _Profile extends State<Profile> {
                           image: NetworkImage(state.user.photoUrl == null
                               ? "http://bp2.blogger.com/_w1__C0VO_Os/R8mib3DUW5I/AAAAAAAAAGg/HYTOCZjg4ow/s400/1078_i3_3.jpg"
                               : state.user.photoUrl),
-                        )
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(75.0)),
+                        boxShadow: [
+                              BoxShadow(blurRadius: 7.0, color: Colors.black)
+                        ]
                       )
                     ),
                 Text(
@@ -68,5 +72,4 @@ class _Profile extends State<Profile> {
     );
   }
 }
-
 
