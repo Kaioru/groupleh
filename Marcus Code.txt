@@ -11,7 +11,7 @@ class createproject extends StatefulWidget {
 }
 
 class _Projectdat
-  String projectn
+  String project
   Stri
 class _CreateProjectState extends State<createproject> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
