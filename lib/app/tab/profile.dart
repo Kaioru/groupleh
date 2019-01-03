@@ -30,16 +30,17 @@ class _Profile extends State<Profile> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
-                    width: 150.0,
-                    height: 150.0,
+                    width: 220.0,
+                    height: 220.0,
                     decoration: BoxDecoration(
                         color: Colors.blue,
                         image: DecorationImage(
                           image: NetworkImage(state.user.photoUrl == null
                               ? "http://bp2.blogger.com/_w1__C0VO_Os/R8mib3DUW5I/AAAAAAAAAGg/HYTOCZjg4ow/s400/1078_i3_3.jpg"
                               : state.user.photoUrl),
+                          fit: BoxFit.cover
                         ),
-                        borderRadius: BorderRadius.all(Radius.circular(75.0)),
+                        borderRadius: BorderRadius.all(Radius.circular(110.0)),
                         boxShadow: [
                               BoxShadow(blurRadius: 7.0, color: Colors.black)
                         ]
