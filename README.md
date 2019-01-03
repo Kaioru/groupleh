@@ -7,3 +7,5 @@
 * Daniel Dean ([Swazztastic](https://github.com/Swazztastic))
 * Jonaisah ([jonaisahhh](https://github.com/jonaisahhh))
 * Marcus Goh ([Klann98](https://github.com/Klann98))
+Basically, I feel that this project can help make it easier to find people to study with and to stay focused when doing the study tings
+
