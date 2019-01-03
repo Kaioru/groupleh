@@ -2,6 +2,13 @@ class Project {
   String image;
   String name;
   String description;
+  CompletionRate completionRate
+  Project(this.image, this.name, this.description, this.completionRate);
+}
 
-  Project(this.image, this.name, this.description);
+enum CompletionRate{
+  notstarted,
+  ongoing,
+  ditched,
+  completed,
 }
