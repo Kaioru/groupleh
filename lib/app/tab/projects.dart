@@ -51,7 +51,8 @@ class _Projects extends State<Projects> {
                                 builder: (context) => ProjectsDetail(Project(
                                     snapshot.data["image"],
                                     snapshot.data["name"],
-                                    snapshot.data["desc"])))),
+                                    snapshot.data["desc"],
+                                    snapshot.data["completionrate"])))),
                         leading: CircleAvatar(
                           foregroundColor: Theme.of(context).primaryColor,
                           backgroundColor: Colors.grey,

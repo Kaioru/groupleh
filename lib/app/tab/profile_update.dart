@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:groupleh/app/app_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileUpdate extends StatefulWidget {
   final AppState state;
@@ -40,6 +42,26 @@ class _ProfileUpdate extends State<ProfileUpdate> {
                           labelText: "Display Name",
                         ),
                         keyboardType: TextInputType.text),
+                    RaisedButton(
+                      child: Text("Upload image"),
+                      onPressed: () async {
+                        var file = await ImagePicker.pickImage(
+                            source: ImageSource.gallery);
+                        StorageReference ref = FirebaseStorage.instance
+                            .ref()
+                            .child(state.user.uid)
+                            .child("image.jpg");
+                        StorageUploadTask uploadTask = ref.putFile(file);
+                        var info = UserUpdateInfo();
+
+                        info.photoUrl = await (await uploadTask.onComplete)
+                            .ref
+                            .getDownloadURL();
+                        await state.user.updateProfile(info);
+                        state.user = await _auth.currentUser();
+                        Navigator.pop(context);
+                      },
+                    ),
                     RaisedButton(
                       child: Text("Update"),
                       onPressed: () async {
