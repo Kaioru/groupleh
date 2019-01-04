@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/app_state.dart';
-const String kTitle = 'Loop Wheel Demo';
+
+const List<String> learningStyle = ["Collaborative", "Focused"];
 
 class LoopWheel extends StatefulWidget {
   final AppState state;
@@ -10,33 +11,58 @@ class LoopWheel extends StatefulWidget {
   State<StatefulWidget> createState() => _LoopWheel(state);
 }
 
+
 class _LoopWheel extends State<LoopWheel> {
   final AppState state;
   _LoopWheel(this.state);
+
   @override
   Widget build(BuildContext context) {
     final _style = Theme.of(context).textTheme.display2;
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(kTitle),
-      ),
-      body: new Center(
-        child: new ConstrainedBox(
-          constraints: BoxConstraints(
-            // Set height to one line, otherwise the whole vertical space is occupied.
-            maxHeight: _style.fontSize,
-          ),
-          child: new ListWheelScrollView.useDelegate(
-            itemExtent: _style.fontSize,
-            childDelegate: ListWheelChildLoopingListDelegate(
-              children: const <Widget>[
-                Text("Collaborative", style: Theme.of(context).textTheme.display2),
-                Text("Focused", style: TextStyle(fontWeight: FontWeight.bold)),
-              ]
+      body: Container(
+        child:new Center(
+          child: new ConstrainedBox(
+            constraints: BoxConstraints(
+              // Set height to one line, otherwise the whole vertical space is occupied.
+              maxHeight: _style.fontSize,
+            ),
+            child: new ListWheelScrollView.useDelegate(
+              itemExtent: _style.fontSize,
+              childDelegate: ListWheelChildLoopingListDelegate(
+                children: List<Widget>.generate(
+                10, (index) => Text('${index + 1}', style: _style),
+                ),
+              ),
             ),
           ),
         ),
-      ),
+      )
     );
+
   }
+
+//  Widget ListBuildLS(){
+//    final _style = Theme
+//        .of(context)
+//        .textTheme
+//        .display2;
+//    new Center(
+//      child: new ConstrainedBox(
+//        constraints: BoxConstraints(
+//          // Set height to one line, otherwise the whole vertical space is occupied.
+//          maxHeight: _style.fontSize,
+//        ),
+//        child: new ListWheelScrollView.useDelegate(
+//          itemExtent: _style.fontSize,
+//          childDelegate: ListWheelChildLoopingListDelegate(
+//            children: <Widget>[
+//              Text("Collaborative", style:TextStyle(fontWeight: FontWeight.bold)),
+//              Text("Focused", style:TextStyle(fontWeight: FontWeight.bold)),
+//            ],
+//          ),
+//        ),
+//      ),
+//    );
+//  }
 }
