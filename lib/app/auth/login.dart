@@ -10,17 +10,24 @@ class Login extends StatefulWidget {
 }
 
 class _Login extends State<Login> {
-  final _formKey = GlobalKey<FormState>();
+  final _formKeyLogin = GlobalKey<FormState>();
+  final _formKeyRegister = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  // Register
+  final _emailControllerRegister = TextEditingController();
+  final _passwordControllerRegister = TextEditingController();
+  final _password2Controller = TextEditingController();
+  // Login
   final _auth = FirebaseAuth.instance;
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _emailControllerLogin = TextEditingController();
+  final _passwordControllerLogin = TextEditingController();
+  
   final _pageController = PageController(initialPage: 1, viewportFraction: 1.0);
 
 
   Future<FirebaseUser> _handleSignIn() async {
     return await _auth.signInWithEmailAndPassword(
-        email: _emailController.text, password: _passwordController.text);
+        email: _emailControllerLogin.text, password: _passwordControllerLogin.text);
   }
 
   Widget homePage() {
@@ -153,7 +160,7 @@ class _Login extends State<Login> {
   return new Scaffold(
     resizeToAvoidBottomPadding: false,
     body: Form(
-      key: _formKey,
+      key: _formKeyLogin,
       child: Container(
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
@@ -213,7 +220,7 @@ class _Login extends State<Login> {
                 children: <Widget>[
                   new Expanded(
                     child: TextFormField(
-                      controller: _emailController,
+                      controller: _emailControllerLogin,
                       validator: (val) {
                         Pattern pattern =
                             r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -283,7 +290,7 @@ class _Login extends State<Login> {
                 children: <Widget>[
                   new Expanded(
                     child: TextFormField(
-                      controller: _passwordController,
+                      controller: _passwordControllerLogin,
                       decoration: new InputDecoration(
                         border:InputBorder.none,
                         hintText: 'hunter2',
@@ -341,7 +348,7 @@ class _Login extends State<Login> {
                       ),
                       color: Colors.redAccent,
                       onPressed: () async {
-                        if (_formKey.currentState.validate()) {
+                        if (_formKeyLogin.currentState.validate()) {
                           await _handleSignIn().then((user) {
                             Navigator.pushReplacement(
                                 context,
