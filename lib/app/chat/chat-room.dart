@@ -1,37 +1,38 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firestore_ui/firestore_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firestore_ui/animated_firestore_list.dart';
-import 'package:groupleh/app/core/group.dart';
+import 'package:groupleh/core/group.dart';
 import 'package:groupleh/app/app_state.dart';
 
-class GroupsChat extends StatefulWidget {
+class ChatRoom extends StatefulWidget {
   final AppState state;
   final Group group;
 
-  GroupsChat(this.state, this.group);
+  ChatRoom(this.state, this.group);
 
   @override
-  State<StatefulWidget> createState() => _GroupsChat(state, group);
+  State<StatefulWidget> createState() => _ChatRoom(state, group);
 }
 
-class _GroupsChat extends State<GroupsChat> {
+class _ChatRoom extends State<ChatRoom> {
   final AppState state;
-  final TextEditingController _textController = TextEditingController();
   final Group group;
+
+  final TextEditingController _textController = TextEditingController();
+
   CollectionReference reference;
   Stream<QuerySnapshot> snapshots;
 
-  _GroupsChat(this.state, this.group) {
+  _ChatRoom(this.state, this.group) {
     reference = Firestore.instance.collection('messages').reference();
     snapshots = reference.where("group", isEqualTo: group.id).snapshots();
   }
-
   void _sendMessage(String text) {
     reference.document().setData(<String, dynamic>{
       "group": group.id,
       "text": text,
-      "sender": state.user.displayName == null
+      "senderName": state.user.displayName == null
           ? state.user.email
           : state.user.displayName,
       "senderImage": state.user.photoUrl == null
@@ -52,11 +53,6 @@ class _GroupsChat extends State<GroupsChat> {
     return Scaffold(
       appBar: AppBar(
           title: ListTile(
-        leading: CircleAvatar(
-          foregroundColor: Theme.of(context).primaryColor,
-          backgroundColor: Colors.grey,
-          backgroundImage: NetworkImage(group.image),
-        ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -82,7 +78,7 @@ class _GroupsChat extends State<GroupsChat> {
                 leading: CircleAvatar(
                   backgroundImage: NetworkImage(snapshot.data["senderImage"]),
                 ),
-                title: Text(snapshot.data["sender"]),
+                title: Text(snapshot.data["senderName"]),
                 subtitle: Text(snapshot.data["text"]),
               );
             },

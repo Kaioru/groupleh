@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:groupleh/app/tab/groups.dart';
-import 'package:groupleh/app/tab/matchmaking.dart';
-import 'package:groupleh/app/tab/projects.dart';
-import 'package:groupleh/app/tab/profile.dart';
 import 'package:groupleh/app/app_state.dart';
+import 'package:groupleh/app/chat/chat.dart';
+import 'package:groupleh/app/project/project.dart';
 
 class App extends StatefulWidget {
-  final AppState state;
+  final AppState appState;
 
-  App(this.state);
+  App(this.appState);
 
   @override
-  State<StatefulWidget> createState() => _App(state);
+  State<StatefulWidget> createState() => _App(appState);
 }
 
 class _App extends State<App> with WidgetsBindingObserver {
-  final AppState state;
   PageController pageController;
   int _pageIndex = 0;
 
-  _App(this.state);
+  final AppState appState;
+
+  _App(this.appState);
 
   @override
   void initState() {
@@ -40,6 +39,15 @@ class _App extends State<App> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(0xFF00C6FF),
+          title: Text("GroupLeh",
+              style: const TextStyle(
+                  color: Color(0xFFFFFFFF),
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 36.0)),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _pageIndex,
           onTap: (page) {
@@ -49,13 +57,13 @@ class _App extends State<App> with WidgetsBindingObserver {
           },
           items: [
             BottomNavigationBarItem(
-                title: Text("Groups"), icon: Icon(Icons.people)),
+                title: Text("Chat"), icon: Icon(Icons.chat)),
             BottomNavigationBarItem(
-                title: Text("Matchmaking"), icon: Icon(Icons.search)),
-            BottomNavigationBarItem(
-                title: Text("Projects"), icon: Icon(Icons.book)),
+                title: Text("Project"), icon: Icon(Icons.book)),
             BottomNavigationBarItem(
                 title: Text("Profile"), icon: Icon(Icons.person)),
+            BottomNavigationBarItem(
+                title: Text("Settings"), icon: Icon(Icons.settings)),
           ],
         ),
         body: PageView(
@@ -66,12 +74,7 @@ class _App extends State<App> with WidgetsBindingObserver {
               this._pageIndex = index;
             });
           },
-          children: [
-            Groups(pageController, state),
-            Matchmaking(state),
-            Projects(state),
-            Profile(state)
-          ],
+          children: [Chat(appState), Project()],
         ));
   }
 }

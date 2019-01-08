@@ -34,8 +34,8 @@ class _Login extends State<Login> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text("GroupLeh",
-                    style:
-                        TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold)),
+                        style: TextStyle(
+                            fontSize: 48.0, fontWeight: FontWeight.bold)),
                     TextFormField(
                         controller: _emailController,
                         validator: (val) {
@@ -75,7 +75,8 @@ class _Login extends State<Login> {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => App(AppState(user))));
+                                      builder: (context) =>
+                                          App(AppState(user))));
                             }).catchError((e) => _scaffoldKey.currentState
                                 .showSnackBar(SnackBar(
                                     content: Text("Failed to login!"))));
