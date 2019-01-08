@@ -30,6 +30,11 @@ class _Login extends State<Login> {
         email: _emailControllerLogin.text, password: _passwordControllerLogin.text);
   }
 
+  Future<FirebaseUser> _handleCreateUser() async {
+    return await _auth.createUserWithEmailAndPassword(
+        email: _emailControllerRegister.text, password: _passwordControllerRegister.text);
+  }
+
   Widget homePage() {
     return new Container(
       height: MediaQuery.of(context).size.height,
@@ -88,7 +93,7 @@ class _Login extends State<Login> {
                         borderRadius: new BorderRadius.circular(30.0)),
                     color: Colors.redAccent,
                     highlightedBorderColor: Colors.white,
-                    onPressed: () => null,
+                    onPressed: () => gotoSignup(),
                     child: new Container(
                       padding: const EdgeInsets.symmetric(
                         vertical: 20.0,
@@ -155,6 +160,296 @@ class _Login extends State<Login> {
       ),
     );
   }
+
+  Widget signUpPage() {
+  return new Scaffold(
+    resizeToAvoidBottomPadding: false,
+    body: Form(
+      key: _formKeyRegister,
+      child:Container(
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          image: DecorationImage(
+            colorFilter: new ColorFilter.mode(
+                Colors.black.withOpacity(0.05), BlendMode.dstATop),
+            image: AssetImage('assets/images/mountains.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: new Column(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(100.0),
+              child: Center(
+                child: Icon(
+                  Icons.headset_mic,
+                  color: Colors.redAccent,
+                  size: 50.0,
+                ),
+              ),
+            ),
+            new Row(
+              children: <Widget>[
+                new Expanded(
+                  child: new Padding(
+                    padding: const EdgeInsets.only(left: 40.0),
+                    child: new Text(
+                      "EMAIL",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.redAccent,
+                        fontSize: 15.0,
+                      ),
+                    ),
+                  
+                    
+                    /*TextFormField(
+                      controller: _emailControllerRegister,
+                      decoration: new InputDecoration(
+                        border:InputBorder.none,
+                        hintText: 'ayyylmaowegotthis@gmail.com',
+                        hintStyle: TextStyle(color: Colors.grey),
+                      ),
+                      style: TextStyle(color: Colors.black),
+                      keyboardType: TextInputType.text
+                    ),*/
+                  ),
+                ),
+              ],
+            ),
+            new Container(
+              width: MediaQuery.of(context).size.width,
+              margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                      color: Colors.redAccent,
+                      width: 0.5,
+                      style: BorderStyle.solid),
+                ),
+              ),
+              padding: const EdgeInsets.only(left: 0.0, right: 10.0),
+              child: new Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  new Expanded(
+                    child: TextFormField(
+                      controller: _emailControllerRegister,
+                      validator: (val) {
+                        Pattern pattern =
+                            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                        RegExp regex = new RegExp(pattern);
+                        if (!regex.hasMatch(val))
+                          return 'Please enter a valid email!';
+                        else
+                          return null;
+                      },
+                      decoration: new InputDecoration(
+                        border:InputBorder.none,
+                        hintText: 'ayylmaowegotthisboys@gmail.com',
+                        hintStyle: TextStyle(color: Colors.grey),
+                      ),
+                      style: TextStyle(color: Colors.black),
+                      keyboardType: TextInputType.text
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Divider(
+              height: 24.0,
+            ),
+            new Row(
+              children: <Widget>[
+                new Expanded(
+                  child: new Padding(
+                    padding: const EdgeInsets.only(left: 40.0),
+                    child: new Text(
+                      "PASSWORD",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.redAccent,
+                        fontSize: 15.0,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            new Container(
+              width: MediaQuery.of(context).size.width,
+              margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                      color: Colors.redAccent,
+                      width: 0.5,
+                      style: BorderStyle.solid),
+                ),
+              ),
+              padding: const EdgeInsets.only(left: 0.0, right: 10.0),
+              child: new Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  new Expanded(
+                    child: TextFormField(
+                      controller: _passwordControllerRegister,
+                      decoration: new InputDecoration(
+                        border:InputBorder.none,
+                        hintText: 'hunter2',
+                        hintStyle: TextStyle(color: Colors.grey),
+                      ),
+                      obscureText: true,
+                      style: TextStyle(color: Colors.black),
+                      keyboardType: TextInputType.text
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Divider(
+              height: 24.0,
+            ),
+            new Row(
+              children: <Widget>[
+                new Expanded(
+                  child: new Padding(
+                    padding: const EdgeInsets.only(left: 40.0),
+                    child: new Text(
+                      "CONFIRM PASSWORD",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.redAccent,
+                        fontSize: 15.0,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            new Container(
+              width: MediaQuery.of(context).size.width,
+              margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                      color: Colors.redAccent,
+                      width: 0.5,
+                      style: BorderStyle.solid),
+                ),
+              ),
+              padding: const EdgeInsets.only(left: 0.0, right: 10.0),
+              child: new Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  new Expanded(
+                    child: TextFormField(
+                      validator: (val) {
+                        if (_passwordControllerRegister.text !=
+                            _password2Controller.text)
+                          return 'Passwords do not match!';
+                        else
+                          return null;
+                      },
+                      controller: _password2Controller,
+                      decoration: new InputDecoration(
+                        border:InputBorder.none,
+                        hintText: 'hunter2',
+                        hintStyle: TextStyle(color: Colors.grey),
+                      ),
+                      obscureText: true,
+                      style: TextStyle(color: Colors.black),
+                      keyboardType: TextInputType.text
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Divider(
+              height: 24.0,
+            ),
+            new Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: new FlatButton(
+                    child: new Text(
+                      "Already have an account?",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.redAccent,
+                        fontSize: 15.0,
+                      ),
+                      textAlign: TextAlign.end,
+                    ),
+                    onPressed: () => {},
+                  ),
+                ),
+              ],
+            ),
+            new Container(
+              width: MediaQuery.of(context).size.width,
+              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 50.0),
+              alignment: Alignment.center,
+              child: new Row(
+                children: <Widget>[
+                  new Expanded(
+                    child: new FlatButton(
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0),
+                      ),
+                      color: Colors.redAccent,
+                      onPressed: () async {
+                        if (_formKeyRegister.currentState.validate()) {
+                          await _handleCreateUser().then((user) {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => App(AppState(user))));
+                          }).catchError((e) => _scaffoldKey.currentState
+                              .showSnackBar(SnackBar(
+                                  content: Text("Failed to register!"))));
+                        }
+                      },
+                      child: new Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 20.0,
+                          horizontal: 20.0,
+                        ),
+                        child: new Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            new Expanded(
+                              child: Text(
+                                "SIGN UP",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
 
   Widget loginPage() {
   return new Scaffold(
@@ -547,6 +842,15 @@ class _Login extends State<Login> {
     );
   }
 
+    gotoSignup() {
+    //controller_minus1To0.reverse(from: 0.0);
+    _pageController.animateToPage(
+      2,
+      duration: Duration(milliseconds: 800),
+      curve: Curves.bounceOut,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     /*return Scaffold(
@@ -625,6 +929,7 @@ class _Login extends State<Login> {
         children: <Widget>[
           loginPage(),
           homePage(),
+          signUpPage(),
         ],)
     );
   }
