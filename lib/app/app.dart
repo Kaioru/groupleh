@@ -36,6 +36,7 @@ class _App extends State<App> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _pageIndex,
           onTap: (page) {

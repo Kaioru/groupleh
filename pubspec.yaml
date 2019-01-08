@@ -35,7 +35,9 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
+  assets:
+    - assets/images/mountains.jpg
+    - assets/images/mountains.jpeg
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -74,11 +76,11 @@ flutter:
   fonts:
     - family: quicksand
       fonts:
-        - asset: font/Quicksand-Regular.otf
-        - asset: font/Quicksand-Italic.otf
+        - asset: assets/font/Quicksand-Regular.otf
+        - asset: assets/font/Quicksand-Italic.otf
           style: italic
-        - asset: font/Quicksand-Bold.otf
+        - asset: assets/font/Quicksand-Bold.otf
           weight: 700
-        - asset: font/Quicksand-BoldItalic.otf
+        - asset: assets/font/Quicksand-BoldItalic.otf
           style: italic
           weight: 700
