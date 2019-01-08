@@ -9,7 +9,7 @@ class PlanetDao {
       distance: "54.6m Km",
       gravity: "3.711 m/s ",
       description: "Lorem ipsum...",
-      image: "assets/img/mars.png",
+      image: "C:\Users\Daniel Ian Dean\Documents\GitHub\groupleh\lib\profile\assets\mars.jpg",
     ),
     const Planet(
       id: "2",
