@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:groupleh/app/auth/login.dart';
+import 'package:groupleh/profile/lepage.dart';
+import 'package:groupleh/profile/model/Planets.dart';
+import 'package:groupleh/profile/model/Planet.dart';
+
 
 void main() => runApp(new MyApp());
 
@@ -17,7 +20,7 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'GroupLeh',
       theme: theme,
-      home: Login(),
+      home: DetailPage(PlanetDao.planets[0]),
     );
   }
 }

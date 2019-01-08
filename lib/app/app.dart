@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/app_state.dart';
-
+import 'package:groupleh/profile/lepage.dart';
 class App extends StatefulWidget {
   final AppState state;
 
@@ -16,7 +16,6 @@ class _App extends State<App> with WidgetsBindingObserver {
   int _pageIndex = 0;
 
   _App(this.state);
-
   @override
   void initState() {
     pageController = PageController(initialPage: _pageIndex);
