@@ -223,8 +223,11 @@ class _Login extends State<Login> {
                         else
                           return null;
                       },
+                      style: TextStyle(color: Colors.black),
                       decoration: new InputDecoration(
-                        labelText: "Email",
+                        border: InputBorder.none,
+                        hintText: 'allahuakbar@gmail.com',
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
                       keyboardType: TextInputType.emailAddress
                     ),
@@ -283,9 +286,11 @@ class _Login extends State<Login> {
                       controller: _passwordController,
                       decoration: new InputDecoration(
                         border:InputBorder.none,
-                        labelText: "Password",
+                        hintText: 'hunter2',
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
                       obscureText: true,
+                      style: TextStyle(color: Colors.black),
                       keyboardType: TextInputType.text
                     ),
                     /*TextField(
