@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:groupleh/app/tab/groups.dart';
-import 'package:groupleh/app/tab/matchmaking.dart';
-import 'package:groupleh/app/tab/projects.dart';
-import 'package:groupleh/app/tab/profile.dart';
-import 'package:groupleh/app/tab/listviewtest.dart';
 import 'package:groupleh/app/app_state.dart';
 
 class App extends StatefulWidget {
@@ -49,16 +44,6 @@ class _App extends State<App> with WidgetsBindingObserver {
                 curve: Curves.easeInOut);
           },
           items: [
-            BottomNavigationBarItem(
-                title: Text("Groups"), icon: Icon(Icons.people)),
-            BottomNavigationBarItem(
-                title: Text("Matchmaking"), icon: Icon(Icons.search)),
-            BottomNavigationBarItem(
-                title: Text("Projects"), icon: Icon(Icons.book)),
-            BottomNavigationBarItem(
-                title: Text("Profile"), icon: Icon(Icons.person)),
-            BottomNavigationBarItem(
-                title: Text("Test"), icon: Icon(Icons.text_fields)),
           ],
         ),
         body: PageView(
@@ -70,11 +55,6 @@ class _App extends State<App> with WidgetsBindingObserver {
             });
           },
           children: [
-            Groups(pageController, state),
-            Matchmaking(state),
-            Projects(state),
-            Profile(state),
-            LoopWheel(state),
           ],
         ));
   }
