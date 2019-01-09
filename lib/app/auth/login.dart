@@ -177,10 +177,10 @@ class _Login extends State<Login> {
             fit: BoxFit.cover,
           ),
         ),
-        child: new Column(
+        child: Column(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(100.0),
+              padding: EdgeInsets.symmetric(horizontal: 100.0, vertical: 90.0),
               child: Center(
                 child: Icon(
                   Icons.headset_mic,
@@ -334,7 +334,7 @@ class _Login extends State<Login> {
             ),
             new Container(
               width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
+              margin: const EdgeInsets.only(left: 40.0, right: 40.0, top:10.0),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 border: Border(
@@ -390,14 +390,14 @@ class _Login extends State<Login> {
                       ),
                       textAlign: TextAlign.end,
                     ),
-                    onPressed: () => {},
+                    onPressed: () => gotoLogin(),
                   ),
                 ),
               ],
             ),
             new Container(
               width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 50.0),
+              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
               alignment: Alignment.center,
               child: new Row(
                 children: <Widget>[
@@ -446,6 +446,7 @@ class _Login extends State<Login> {
             ),
           ],
         ),
+      
       ),
     ),
   );
@@ -470,7 +471,7 @@ class _Login extends State<Login> {
         child: new Column(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(120.0),
+              padding: EdgeInsets.symmetric(horizontal: 120.0, vertical: 90.0),
               child: Center(
                 child: Icon(
                   Icons.headset_mic,
