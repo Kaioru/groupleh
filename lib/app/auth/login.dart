@@ -54,7 +54,7 @@ class _Login extends State<Login> {
             child: Center(
               child: Icon(
                 Icons.headset_mic,
-                color: Colors.white,
+                color: Color(0xFF00C6FF),
                 size: 40.0,
               ),
             ),
@@ -64,14 +64,16 @@ class _Login extends State<Login> {
             child: new Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(
-                  "GroupLeh",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
+                Material(
+                  type: MaterialType.transparency,
+                    child: Text(
+                    "GroupLeh",
+                    style: TextStyle(
+                      color: Color(0xFF00C6FF),
+                      fontSize: 20.0,
+                    ),
                   ),
                 ),
-                
               ],
             ),
           ),
@@ -396,11 +398,12 @@ class _Login extends State<Login> {
               child: new Row(
                 children: <Widget>[
                   new Expanded(
-                    child: new FlatButton(
+                    child: new OutlineButton(
                       shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0),
                       ),
                       color: Color(0xFF00C6FF),
+                      highlightedBorderColor: Colors.white,
                       onPressed: () async {
                         if (_formKeyRegister.currentState.validate()) {
                           await _handleCreateUser().then((user) {
@@ -454,7 +457,7 @@ class _Login extends State<Login> {
       child: Container(
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Color(0xFF303030),
           image: DecorationImage(
             colorFilter: new ColorFilter.mode(
                 Colors.black.withOpacity(0.05), BlendMode.dstATop),
@@ -469,7 +472,7 @@ class _Login extends State<Login> {
               child: Center(
                 child: Icon(
                   Icons.headset_mic,
-                  color: Color(0xFF303030),
+                  color: Color(0xFF00C6FF),
                   size: 50.0,
                 ),
               ),
@@ -483,7 +486,7 @@ class _Login extends State<Login> {
                       "EMAIL",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF303030),
+                        color: Color(0xFF00C6FF),
                         fontSize: 15.0,
                       ),
                     ),
@@ -498,7 +501,7 @@ class _Login extends State<Login> {
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
-                      color: Color(0xFF303030),
+                      color: Color(0xFF00C6FF),
                       width: 0.5,
                       style: BorderStyle.solid),
                 ),
@@ -520,7 +523,7 @@ class _Login extends State<Login> {
                         else
                           return null;
                       },
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.white),
                       decoration: new InputDecoration(
                         border: InputBorder.none,
                         hintText: 'allahuakbar@gmail.com',
@@ -553,7 +556,7 @@ class _Login extends State<Login> {
                       "PASSWORD",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF303030),
+                        color: Color(0xFF00C6FF),
                         fontSize: 15.0,
                       ),
                     ),
@@ -568,7 +571,7 @@ class _Login extends State<Login> {
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
-                      color: Color(0xFF303030),
+                      color: Color(0xFF00C6FF),
                       width: 0.5,
                       style: BorderStyle.solid),
                 ),
@@ -587,7 +590,7 @@ class _Login extends State<Login> {
                         hintStyle: TextStyle(color: Colors.grey),
                       ),
                       obscureText: true,
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.white),
                       keyboardType: TextInputType.text
                     ),
                     /*TextField(
@@ -928,4 +931,4 @@ class _Login extends State<Login> {
         ],)
     );
   }
-}    
+}
