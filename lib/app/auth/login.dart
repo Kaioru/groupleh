@@ -1,12 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:groupleh/app/app.dart';
 import 'package:groupleh/app/app_state.dart';
+import 'package:groupleh/core/profile.dart';
 
 class Login extends StatefulWidget {
-  
   @override
-  _Login createState() => new _Login();
+  _Login createState() => _Login();
 }
 
 class _Login extends State<Login> {
@@ -21,33 +22,46 @@ class _Login extends State<Login> {
   final _auth = FirebaseAuth.instance;
   final _emailControllerLogin = TextEditingController();
   final _passwordControllerLogin = TextEditingController();
-  
-  final _pageController = PageController(initialPage: 1, viewportFraction: 1.0);
 
+  final _pageController = PageController(initialPage: 1, viewportFraction: 1.0);
 
   Future<FirebaseUser> _handleSignIn() async {
     return await _auth.signInWithEmailAndPassword(
-        email: _emailControllerLogin.text, password: _passwordControllerLogin.text);
+        email: _emailControllerLogin.text,
+        password: _passwordControllerLogin.text);
   }
 
   Future<FirebaseUser> _handleCreateUser() async {
     return await _auth.createUserWithEmailAndPassword(
-        email: _emailControllerRegister.text, password: _passwordControllerRegister.text);
+        email: _emailControllerRegister.text,
+        password: _passwordControllerRegister.text);
+  }
+
+  Future<Profile> _createProfile(FirebaseUser user) async {
+    var document = await Firestore.instance
+        .collection('profiles')
+        .document(user.uid)
+        .get();
+    return Profile(
+        id: document.documentID,
+        name: document.data["name"],
+        desc: document.data["desc"],
+        image: document.data["image"]);
   }
 
   Widget homePage() {
-    return new Container(
+    return Container(
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
         color: Color(0xFF303030),
         image: DecorationImage(
-          colorFilter: new ColorFilter.mode(
+          colorFilter: ColorFilter.mode(
               Colors.black.withOpacity(0.1), BlendMode.dstATop),
           image: AssetImage('assets/images/mountains.jpg'),
           fit: BoxFit.cover,
         ),
       ),
-      child: new Column(
+      child: Column(
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(top: 250.0),
@@ -61,42 +75,36 @@ class _Login extends State<Login> {
           ),
           Container(
             padding: EdgeInsets.only(top: 20.0),
-            child: new Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  "GroupLeh",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                  ),
-                ),
-                
-              ],
+            child: Text(
+              "GroupLeh",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 48.0,
+              ),
             ),
           ),
-          new Container(
+          Container(
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 150.0),
             alignment: Alignment.center,
-            child: new Row(
+            child: Row(
               children: <Widget>[
-                new Expanded(
-                  child: new OutlineButton(
-                    shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0)),
+                Expanded(
+                  child: OutlineButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
                     color: Color(0xFF00C6FF),
                     highlightedBorderColor: Colors.white,
                     onPressed: () => gotoSignup(),
-                    child: new Container(
+                    child: Container(
                       padding: const EdgeInsets.symmetric(
                         vertical: 20.0,
                         horizontal: 20.0,
                       ),
-                      child: new Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          new Expanded(
+                          Expanded(
                             child: Text(
                               "SIGN UP",
                               textAlign: TextAlign.center,
@@ -113,27 +121,27 @@ class _Login extends State<Login> {
               ],
             ),
           ),
-          new Container(
+          Container(
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
             alignment: Alignment.center,
-            child: new Row(
+            child: Row(
               children: <Widget>[
-                new Expanded(
-                  child: new FlatButton(
-                    shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0)),
+                Expanded(
+                  child: FlatButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
                     color: Color(0xFF00C6FF),
                     onPressed: () => gotoLogin(),
-                    child: new Container(
+                    child: Container(
                       padding: const EdgeInsets.symmetric(
                         vertical: 20.0,
                         horizontal: 20.0,
                       ),
-                      child: new Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          new Expanded(
+                          Expanded(
                             child: Text(
                               "LOGIN",
                               textAlign: TextAlign.center,
@@ -156,51 +164,52 @@ class _Login extends State<Login> {
   }
 
   Widget signUpPage() {
-  return new Scaffold(
-    resizeToAvoidBottomPadding: false,
-    body: Form(
-      key: _formKeyRegister,
-      child:Container(
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          color: Color(0xFF303030),
-          image: DecorationImage(
-            colorFilter: new ColorFilter.mode(
-                Colors.black.withOpacity(0.05), BlendMode.dstATop),
-            image: AssetImage('assets/images/mountains.jpg'),
-            fit: BoxFit.cover,
+    return Scaffold(
+      key: _scaffoldKey,
+      resizeToAvoidBottomPadding: false,
+      body: Form(
+        key: _formKeyRegister,
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            color: Color(0xFF303030),
+            image: DecorationImage(
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.05), BlendMode.dstATop),
+              image: AssetImage('assets/images/mountains.jpg'),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: Column(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 100.0, vertical: 90.0),
-              child: Center(
-                child: Icon(
-                  Icons.headset_mic,
-                  color: Color(0xFF00C6FF),
-                  size: 50.0,
+          child: Column(
+            children: <Widget>[
+              Container(
+                padding:
+                    EdgeInsets.symmetric(horizontal: 100.0, vertical: 90.0),
+                child: Center(
+                  child: Icon(
+                    Icons.headset_mic,
+                    color: Color(0xFF00C6FF),
+                    size: 50.0,
+                  ),
                 ),
               ),
-            ),
-            new Row(
-              children: <Widget>[
-                new Expanded(
-                  child: new Padding(
-                    padding: const EdgeInsets.only(left: 40.0),
-                    child: new Text(
-                      "EMAIL",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF00C6FF),
-                        fontSize: 15.0,
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 40.0),
+                      child: Text(
+                        "EMAIL",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF00C6FF),
+                          fontSize: 15.0,
+                        ),
                       ),
-                    ),
-                  
-                    
-                    /*TextFormField(
+
+                      /*TextFormField(
                       controller: _emailControllerRegister,
-                      decoration: new InputDecoration(
+                      decoration: InputDecoration(
                         border:InputBorder.none,
                         hintText: 'ayyylmaowegotthis@gmail.com',
                         hintStyle: TextStyle(color: Colors.grey),
@@ -208,327 +217,340 @@ class _Login extends State<Login> {
                       style: TextStyle(color: Colors.black),
                       keyboardType: TextInputType.text
                     ),*/
-                  ),
-                ),
-              ],
-            ),
-            new Container(
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                      color: Color(0xFF00C6FF),
-                      width: 0.5,
-                      style: BorderStyle.solid),
-                ),
-              ),
-              padding: const EdgeInsets.only(left: 0.0, right: 10.0),
-              child: new Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  new Expanded(
-                    child: TextFormField(
-                      controller: _emailControllerRegister,
-                      validator: (val) {
-                        Pattern pattern =
-                            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                        RegExp regex = new RegExp(pattern);
-                        if (!regex.hasMatch(val))
-                          return 'Please enter a valid email!';
-                        else
-                          return null;
-                      },
-                      decoration: new InputDecoration(
-                        border:InputBorder.none,
-                        hintText: 'ayylmaowegotthisboys@gmail.com',
-                        hintStyle: TextStyle(color: Colors.grey),
-                      ),
-                      style: TextStyle(color: Colors.black),
-                      keyboardType: TextInputType.text
                     ),
                   ),
                 ],
               ),
-            ),
-            Divider(
-              height: 24.0,
-            ),
-            new Row(
-              children: <Widget>[
-                new Expanded(
-                  child: new Padding(
-                    padding: const EdgeInsets.only(left: 40.0),
-                    child: new Text(
-                      "PASSWORD",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin:
+                    const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
                         color: Color(0xFF00C6FF),
-                        fontSize: 15.0,
-                      ),
-                    ),
+                        width: 0.5,
+                        style: BorderStyle.solid),
                   ),
                 ),
-              ],
-            ),
-            new Container(
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                      color: Color(0xFF00C6FF),
-                      width: 0.5,
-                      style: BorderStyle.solid),
+                padding: const EdgeInsets.only(left: 0.0, right: 10.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Expanded(
+                      child: TextFormField(
+                          controller: _emailControllerRegister,
+                          validator: (val) {
+                            Pattern pattern =
+                                r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                            RegExp regex = RegExp(pattern);
+                            if (!regex.hasMatch(val))
+                              return 'Please enter a valid email!';
+                            else
+                              return null;
+                          },
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'ayylmaowegotthisboys@gmail.com',
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                          style: TextStyle(color: Colors.black),
+                          keyboardType: TextInputType.text),
+                    ),
+                  ],
                 ),
               ),
-              padding: const EdgeInsets.only(left: 0.0, right: 10.0),
-              child: new Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
+              Divider(
+                height: 24.0,
+              ),
+              Row(
                 children: <Widget>[
-                  new Expanded(
-                    child: TextFormField(
-                      controller: _passwordControllerRegister,
-                      decoration: new InputDecoration(
-                        border:InputBorder.none,
-                        hintText: 'hunter2',
-                        hintStyle: TextStyle(color: Colors.grey),
-                      ),
-                      obscureText: true,
-                      style: TextStyle(color: Colors.black),
-                      keyboardType: TextInputType.text
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Divider(
-              height: 24.0,
-            ),
-            new Row(
-              children: <Widget>[
-                new Expanded(
-                  child: new Padding(
-                    padding: const EdgeInsets.only(left: 40.0),
-                    child: new Text(
-                      "CONFIRM PASSWORD",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF00C6FF),
-                        fontSize: 15.0,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            new Container(
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.only(left: 40.0, right: 40.0, top:10.0),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                      color: Color(0xFF00C6FF),
-                      width: 0.5,
-                      style: BorderStyle.solid),
-                ),
-              ),
-              padding: const EdgeInsets.only(left: 0.0, right: 10.0),
-              child: new Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  new Expanded(
-                    child: TextFormField(
-                      validator: (val) {
-                        if (_passwordControllerRegister.text !=
-                            _password2Controller.text)
-                          return 'Passwords do not match!';
-                        else
-                          return null;
-                      },
-                      controller: _password2Controller,
-                      decoration: new InputDecoration(
-                        border:InputBorder.none,
-                        hintText: 'hunter2',
-                        hintStyle: TextStyle(color: Colors.grey),
-                      ),
-                      obscureText: true,
-                      style: TextStyle(color: Colors.black),
-                      keyboardType: TextInputType.text
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Divider(
-              height: 24.0,
-            ),
-            new Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(right: 20.0),
-                  child: new FlatButton(
-                    child: new Text(
-                      "Already have an account?",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.redAccent,
-                        fontSize: 15.0,
-                      ),
-                      textAlign: TextAlign.end,
-                    ),
-                    onPressed: () => gotoLogin(),
-                  ),
-                ),
-              ],
-            ),
-            new Container(
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
-              alignment: Alignment.center,
-              child: new Row(
-                children: <Widget>[
-                  new Expanded(
-                    child: new FlatButton(
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0),
-                      ),
-                      color: Color(0xFF00C6FF),
-                      onPressed: () async {
-                        if (_formKeyRegister.currentState.validate()) {
-                          await _handleCreateUser().then((user) {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => App(AppState(user))));
-                          }).catchError((e) => _scaffoldKey.currentState
-                              .showSnackBar(SnackBar(
-                                  content: Text("Failed to register!"))));
-                        }
-                      },
-                      child: new Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 20.0,
-                          horizontal: 20.0,
-                        ),
-                        child: new Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            new Expanded(
-                              child: Text(
-                                "SIGN UP",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ],
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 40.0),
+                      child: Text(
+                        "PASSWORD",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF00C6FF),
+                          fontSize: 15.0,
                         ),
                       ),
                     ),
                   ),
                 ],
               ),
-            ),
-          ],
-        ),
-      
-      ),
-    ),
-  );
-}
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin:
+                    const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                        color: Color(0xFF00C6FF),
+                        width: 0.5,
+                        style: BorderStyle.solid),
+                  ),
+                ),
+                padding: const EdgeInsets.only(left: 0.0, right: 10.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Expanded(
+                      child: TextFormField(
+                          controller: _passwordControllerRegister,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'hunter2',
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                          obscureText: true,
+                          style: TextStyle(color: Colors.black),
+                          keyboardType: TextInputType.text),
+                    ),
+                  ],
+                ),
+              ),
+              Divider(
+                height: 24.0,
+              ),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 40.0),
+                      child: Text(
+                        "CONFIRM PASSWORD",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF00C6FF),
+                          fontSize: 15.0,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin:
+                    const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                        color: Color(0xFF00C6FF),
+                        width: 0.5,
+                        style: BorderStyle.solid),
+                  ),
+                ),
+                padding: const EdgeInsets.only(left: 0.0, right: 10.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Expanded(
+                      child: TextFormField(
+                          validator: (val) {
+                            if (_passwordControllerRegister.text !=
+                                _password2Controller.text)
+                              return 'Passwords do not match!';
+                            else
+                              return null;
+                          },
+                          controller: _password2Controller,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'hunter2',
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                          obscureText: true,
+                          style: TextStyle(color: Colors.black),
+                          keyboardType: TextInputType.text),
+                    ),
+                  ],
+                ),
+              ),
+              Divider(
+                height: 24.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20.0),
+                    child: FlatButton(
+                      child: Text(
+                        "Already have an account?",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.redAccent,
+                          fontSize: 15.0,
+                        ),
+                        textAlign: TextAlign.end,
+                      ),
+                      onPressed: () => gotoLogin(),
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin:
+                    const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+                alignment: Alignment.center,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: FlatButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        color: Color(0xFF00C6FF),
+                        onPressed: () async {
+                          if (_formKeyRegister.currentState.validate()) {
+                            await _handleCreateUser().then((user) async {
+                              Firestore.instance
+                                  .collection('profiles')
+                                  .document(user.uid)
+                                  .setData({
+                                'name': user.email,
+                                'desc': 'about me, myself and i!',
+                                'image': ''
+                              });
 
-  Widget loginPage() {
-  return new Scaffold(
-    resizeToAvoidBottomPadding: false,
-    body: Form(
-      key: _formKeyLogin,
-      child: Container(
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          image: DecorationImage(
-            colorFilter: new ColorFilter.mode(
-                Colors.black.withOpacity(0.05), BlendMode.dstATop),
-            image: AssetImage('assets/images/mountains.jpg'),
-            fit: BoxFit.cover,
+                              var profile = await _createProfile(user);
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          App(AppState(profile))));
+                            }).catchError((e) => _scaffoldKey.currentState
+                                .showSnackBar(SnackBar(
+                                    content: Text("Failed to register!"))));
+                          }
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 20.0,
+                            horizontal: 20.0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Expanded(
+                                child: Text(
+                                  "SIGN UP",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
-        child: new Column(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 120.0, vertical: 90.0),
-              child: Center(
-                child: Icon(
-                  Icons.headset_mic,
-                  color: Color(0xFF303030),
-                  size: 50.0,
+      ),
+    );
+  }
+
+  Widget loginPage() {
+    return Scaffold(
+      key: _scaffoldKey,
+      resizeToAvoidBottomPadding: false,
+      body: Form(
+        key: _formKeyLogin,
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            image: DecorationImage(
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.05), BlendMode.dstATop),
+              image: AssetImage('assets/images/mountains.jpg'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Column(
+            children: <Widget>[
+              Container(
+                padding:
+                    EdgeInsets.symmetric(horizontal: 120.0, vertical: 90.0),
+                child: Center(
+                  child: Icon(
+                    Icons.headset_mic,
+                    color: Color(0xFF303030),
+                    size: 50.0,
+                  ),
                 ),
               ),
-            ),
-            new Row(
-              children: <Widget>[
-                new Expanded(
-                  child: new Padding(
-                    padding: const EdgeInsets.only(left: 40.0),
-                    child: new Text(
-                      "EMAIL",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF303030),
-                        fontSize: 15.0,
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 40.0),
+                      child: Text(
+                        "EMAIL",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF303030),
+                          fontSize: 15.0,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            new Container(
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                      color: Color(0xFF303030),
-                      width: 0.5,
-                      style: BorderStyle.solid),
-                ),
+                ],
               ),
-              padding: const EdgeInsets.only(left: 0.0, right: 10.0),
-              child: new Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  new Expanded(
-                    child: TextFormField(
-                      controller: _emailControllerLogin,
-                      validator: (val) {
-                        Pattern pattern =
-                            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                        RegExp regex = new RegExp(pattern);
-                        if (!regex.hasMatch(val))
-                          return 'Please enter a valid email!';
-                        else
-                          return null;
-                      },
-                      style: TextStyle(color: Colors.black),
-                      decoration: new InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'allahuakbar@gmail.com',
-                        hintStyle: TextStyle(color: Colors.grey),
-                      ),
-                      keyboardType: TextInputType.emailAddress
-                    ),
-                    /*child: TextField(
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin:
+                    const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                        color: Color(0xFF303030),
+                        width: 0.5,
+                        style: BorderStyle.solid),
+                  ),
+                ),
+                padding: const EdgeInsets.only(left: 0.0, right: 10.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Expanded(
+                      child: TextFormField(
+                          controller: _emailControllerLogin,
+                          validator: (val) {
+                            Pattern pattern =
+                                r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                            RegExp regex = RegExp(pattern);
+                            if (!regex.hasMatch(val))
+                              return 'Please enter a valid email!';
+                            else
+                              return null;
+                          },
+                          style: TextStyle(color: Colors.black),
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'allahuakbar@gmail.com',
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                          keyboardType: TextInputType.emailAddress),
+                      /*child: TextField(
                       obscureText: true,
                       textAlign: TextAlign.left,
                       decoration: InputDecoration(
@@ -537,60 +559,60 @@ class _Login extends State<Login> {
                         hintStyle: TextStyle(color: Colors.grey),
                       ),
                     ),*/
+                    ),
+                  ],
+                ),
+              ),
+              Divider(
+                height: 24.0,
+              ),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 40.0),
+                      child: Text(
+                        "PASSWORD",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF303030),
+                          fontSize: 15.0,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
-            ),
-            Divider(
-              height: 24.0,
-            ),
-            new Row(
-              children: <Widget>[
-                new Expanded(
-                  child: new Padding(
-                    padding: const EdgeInsets.only(left: 40.0),
-                    child: new Text(
-                      "PASSWORD",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin:
+                    const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
                         color: Color(0xFF303030),
-                        fontSize: 15.0,
-                      ),
-                    ),
+                        width: 0.5,
+                        style: BorderStyle.solid),
                   ),
                 ),
-              ],
-            ),
-            new Container(
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                      color: Color(0xFF303030),
-                      width: 0.5,
-                      style: BorderStyle.solid),
-                ),
-              ),
-              padding: const EdgeInsets.only(left: 0.0, right: 10.0),
-              child: new Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  new Expanded(
-                    child: TextFormField(
-                      controller: _passwordControllerLogin,
-                      decoration: new InputDecoration(
-                        border:InputBorder.none,
-                        hintText: 'hunter2',
-                        hintStyle: TextStyle(color: Colors.grey),
-                      ),
-                      obscureText: true,
-                      style: TextStyle(color: Colors.black),
-                      keyboardType: TextInputType.text
-                    ),
-                    /*TextField(
+                padding: const EdgeInsets.only(left: 0.0, right: 10.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Expanded(
+                      child: TextFormField(
+                          controller: _passwordControllerLogin,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'hunter2',
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                          obscureText: true,
+                          style: TextStyle(color: Colors.black),
+                          keyboardType: TextInputType.text),
+                      /*TextField(
                       obscureText: true,
                       textAlign: TextAlign.left,
                       decoration: InputDecoration(
@@ -598,20 +620,20 @@ class _Login extends State<Login> {
                         hintText: '*********',
                         hintStyle: TextStyle(color: Colors.grey),
                       ),*/
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Divider(
-              height: 24.0,
-            ),
-            /*new Row(
+              Divider(
+                height: 24.0,
+              ),
+              /*Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(right: 20.0),
-                  child: new FlatButton(
-                    child: new Text(
+                  child: FlatButton(
+                    child: Text(
                       "Forgot Password?",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -625,210 +647,216 @@ class _Login extends State<Login> {
                 ),
               ],
             ),*/
-            new Container(
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
-              alignment: Alignment.center,
-              child: new Row(
-                children: <Widget>[
-                  new Expanded(
-                    child: new FlatButton(
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0),
-                      ),
-                      color: Color(0xFF00C6FF),
-                      onPressed: () async {
-                        if (_formKeyLogin.currentState.validate()) {
-                          await _handleSignIn().then((user) {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => App(AppState(user))));
-                          }).catchError((e) => _scaffoldKey.currentState
-                              .showSnackBar(SnackBar(
-                                  content: Text("Failed to login!"),
-                              ),
-                            ),
-                          );
-                        }
-                      },
-                      child: new Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 20.0,
-                          horizontal: 20.0,
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin:
+                    const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
+                alignment: Alignment.center,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: FlatButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
                         ),
-                        child: new Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        color: Color(0xFF00C6FF),
+                        onPressed: () async {
+                          if (_formKeyLogin.currentState.validate()) {
+                            await _handleSignIn().then((user) async {
+                              var profile = await _createProfile(user);
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          App(AppState(profile))));
+                            });
+                          }
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 20.0,
+                            horizontal: 20.0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Expanded(
+                                child: Text(
+                                  "LOGIN",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin:
+                    const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
+                alignment: Alignment.center,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(
+                        margin: EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                            border: Border.all(width: 0.25),
+                            color: Colors.white),
+                      ),
+                    ),
+                    Text(
+                      "OR CONNECT WITH",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        margin: EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(width: 0.25)),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin:
+                    const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(
+                        margin: EdgeInsets.only(right: 8.0),
+                        alignment: Alignment.center,
+                        child: Row(
                           children: <Widget>[
-                            new Expanded(
-                              child: Text(
-                                "LOGIN",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
+                            Expanded(
+                              child: FlatButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                                color: Color(0Xff3B5998),
+                                onPressed: () => {},
+                                child: Container(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Expanded(
+                                        child: FlatButton(
+                                          onPressed: () => {},
+                                          padding: EdgeInsets.only(
+                                            top: 20.0,
+                                            bottom: 20.0,
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: <Widget>[
+                                              Icon(
+                                                const IconData(0xea90,
+                                                    fontFamily: 'icomoon'),
+                                                color: Colors.white,
+                                                size: 15.0,
+                                              ),
+                                              Text(
+                                                "FACEBOOK",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
                           ],
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            new Container(
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
-              alignment: Alignment.center,
-              child: Row(
-                children: <Widget>[
-                  new Expanded(
-                    child: new Container(
-                      margin: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(border: Border.all(width: 0.25), color:Colors.white),
-                    ),
-                  ),
-                  Text(
-                    "OR CONNECT WITH",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  new Expanded(
-                    child: new Container(
-                      margin: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(color:Colors.white,border: Border.all(width: 0.25)),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            new Container(
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
-              child: new Row(
-                children: <Widget>[
-                  new Expanded(
-                    child: new Container(
-                      margin: EdgeInsets.only(right: 8.0),
-                      alignment: Alignment.center,
-                      child: new Row(
-                        children: <Widget>[
-                          new Expanded(
-                            child: new FlatButton(
-                              shape: new RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(30.0),
-                              ),
-                              color: Color(0Xff3B5998),
-                              onPressed: () => {},
-                              child: new Container(
-                                child: new Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    new Expanded(
-                                      child: new FlatButton(
-                                        onPressed: ()=>{},
-                                        padding: EdgeInsets.only(
-                                          top: 20.0,
-                                          bottom: 20.0,
-                                        ),
-                                        child: new Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: <Widget>[
-                                            Icon(
-                                              const IconData(0xea90,
-                                                  fontFamily: 'icomoon'),
-                                              color: Colors.white,
-                                              size: 15.0,
-                                            ),
-                                            Text(
-                                              "FACEBOOK",
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ],
+                    Expanded(
+                      child: Container(
+                        margin: EdgeInsets.only(left: 8.0),
+                        alignment: Alignment.center,
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: FlatButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                                color: Color(0Xffdb3236),
+                                onPressed: () => {},
+                                child: Container(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Expanded(
+                                        child: FlatButton(
+                                          onPressed: () => {},
+                                          padding: EdgeInsets.only(
+                                            top: 20.0,
+                                            bottom: 20.0,
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: <Widget>[
+                                              Icon(
+                                                const IconData(0xea88,
+                                                    fontFamily: 'icomoon'),
+                                                color: Colors.white,
+                                                size: 15.0,
+                                              ),
+                                              Text(
+                                                "GOOGLE",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  new Expanded(
-                    child: new Container(
-                      margin: EdgeInsets.only(left: 8.0),
-                      alignment: Alignment.center,
-                      child: new Row(
-                        children: <Widget>[
-                          new Expanded(
-                            child: new FlatButton(
-                              shape: new RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(30.0),
-                              ),
-                              color: Color(0Xffdb3236),
-                              onPressed: () => {},
-                              child: new Container(
-                                child: new Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    new Expanded(
-                                      child: new FlatButton(
-                                        onPressed: ()=>{},
-                                        padding: EdgeInsets.only(
-                                          top: 20.0,
-                                          bottom: 20.0,
-                                        ),
-                                        child: new Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: <Widget>[
-                                            Icon(
-                                              const IconData(0xea88,
-                                                  fontFamily: 'icomoon'),
-                                              color: Colors.white,
-                                              size: 15.0,
-                                            ),
-                                            Text(
-                                              "GOOGLE",
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
-    gotoLogin() {
+  gotoLogin() {
     //controller_0To1.forward(from: 0.0);
     _pageController.animateToPage(
       0,
@@ -837,7 +865,7 @@ class _Login extends State<Login> {
     );
   }
 
-    gotoSignup() {
+  gotoSignup() {
     //controller_minus1To0.reverse(from: 0.0);
     _pageController.animateToPage(
       2,
@@ -864,19 +892,19 @@ class _Login extends State<Login> {
                         validator: (val) {
                           Pattern pattern =
                               r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                          RegExp regex = new RegExp(pattern);
+                          RegExp regex = RegExp(pattern);
                           if (!regex.hasMatch(val))
                             return 'Please enter a valid email!';
                           else
                             return null;
                         },
-                        decoration: new InputDecoration(
+                        decoration: InputDecoration(
                           labelText: "Email",
                         ),
                         keyboardType: TextInputType.emailAddress),
                     TextFormField(
                         controller: _passwordController,
-                        decoration: new InputDecoration(
+                        decoration: InputDecoration(
                           labelText: "Password",
                         ),
                         obscureText: true,
@@ -918,14 +946,14 @@ class _Login extends State<Login> {
         );
     */
     return Container(
-      height: MediaQuery.of(context).size.height,
-      child: PageView(
-        controller: _pageController,
-        children: <Widget>[
-          loginPage(),
-          homePage(),
-          signUpPage(),
-        ],)
-    );
+        height: MediaQuery.of(context).size.height,
+        child: PageView(
+          controller: _pageController,
+          children: <Widget>[
+            loginPage(),
+            homePage(),
+            signUpPage(),
+          ],
+        ));
   }
-}    
+}

@@ -24,7 +24,7 @@ class _Chat extends State<Chat> {
   _Chat(this.appState) {
     reference = Firestore.instance.collection('groups').reference();
     snapshots = reference
-        .where("members", arrayContains: appState.user.uid)
+        .where("members", arrayContains: appState.profile.id)
         .snapshots();
   }
 

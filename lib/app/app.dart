@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/app_state.dart';
 import 'package:groupleh/app/chat/chat.dart';
+import 'package:groupleh/app/profile/profile.dart';
 import 'package:groupleh/app/project/project.dart';
 
 class App extends StatefulWidget {
@@ -74,7 +75,7 @@ class _App extends State<App> with WidgetsBindingObserver {
               this._pageIndex = index;
             });
           },
-          children: [Chat(appState), Project()],
+          children: [Chat(appState), Project(), ProfileEX(appState.profile)],
         ));
   }
 }

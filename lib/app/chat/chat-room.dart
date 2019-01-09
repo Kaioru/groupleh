@@ -32,12 +32,8 @@ class _ChatRoom extends State<ChatRoom> {
     reference.document().setData(<String, dynamic>{
       "group": group.id,
       "text": text,
-      "senderName": state.user.displayName == null
-          ? state.user.email
-          : state.user.displayName,
-      "senderImage": state.user.photoUrl == null
-          ? "http://bp2.blogger.com/_w1__C0VO_Os/R8mib3DUW5I/AAAAAAAAAGg/HYTOCZjg4ow/s400/1078_i3_3.jpg"
-          : state.user.photoUrl
+      "senderName": state.profile.name,
+      "senderImage": state.profile.image
     });
   }
 
