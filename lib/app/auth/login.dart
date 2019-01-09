@@ -39,7 +39,7 @@ class _Login extends State<Login> {
     return new Container(
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
-        color: Colors.redAccent,
+        color: Color(0xFF303030),
         image: DecorationImage(
           colorFilter: new ColorFilter.mode(
               Colors.black.withOpacity(0.1), BlendMode.dstATop),
@@ -65,19 +65,13 @@ class _Login extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  "Awesome",
+                  "GroupLeh",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20.0,
                   ),
                 ),
-                Text(
-                  "App",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold),
-                ),
+                
               ],
             ),
           ),
@@ -91,7 +85,7 @@ class _Login extends State<Login> {
                   child: new OutlineButton(
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0)),
-                    color: Colors.redAccent,
+                    color: Color(0xFF00C6FF),
                     highlightedBorderColor: Colors.white,
                     onPressed: () => gotoSignup(),
                     child: new Container(
@@ -129,7 +123,7 @@ class _Login extends State<Login> {
                   child: new FlatButton(
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0)),
-                    color: Colors.white,
+                    color: Color(0xFF00C6FF),
                     onPressed: () => gotoLogin(),
                     child: new Container(
                       padding: const EdgeInsets.symmetric(
@@ -144,7 +138,7 @@ class _Login extends State<Login> {
                               "LOGIN",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  color: Colors.redAccent,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -169,7 +163,7 @@ class _Login extends State<Login> {
       child:Container(
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Color(0xFF303030),
           image: DecorationImage(
             colorFilter: new ColorFilter.mode(
                 Colors.black.withOpacity(0.05), BlendMode.dstATop),
@@ -184,7 +178,7 @@ class _Login extends State<Login> {
               child: Center(
                 child: Icon(
                   Icons.headset_mic,
-                  color: Colors.redAccent,
+                  color: Color(0xFF00C6FF),
                   size: 50.0,
                 ),
               ),
@@ -198,7 +192,7 @@ class _Login extends State<Login> {
                       "EMAIL",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.redAccent,
+                        color: Color(0xFF00C6FF),
                         fontSize: 15.0,
                       ),
                     ),
@@ -225,7 +219,7 @@ class _Login extends State<Login> {
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
-                      color: Colors.redAccent,
+                      color: Color(0xFF00C6FF),
                       width: 0.5,
                       style: BorderStyle.solid),
                 ),
@@ -271,7 +265,7 @@ class _Login extends State<Login> {
                       "PASSWORD",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.redAccent,
+                        color: Color(0xFF00C6FF),
                         fontSize: 15.0,
                       ),
                     ),
@@ -286,7 +280,7 @@ class _Login extends State<Login> {
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
-                      color: Colors.redAccent,
+                      color: Color(0xFF00C6FF),
                       width: 0.5,
                       style: BorderStyle.solid),
                 ),
@@ -324,7 +318,7 @@ class _Login extends State<Login> {
                       "CONFIRM PASSWORD",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.redAccent,
+                        color: Color(0xFF00C6FF),
                         fontSize: 15.0,
                       ),
                     ),
@@ -339,7 +333,7 @@ class _Login extends State<Login> {
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
-                      color: Colors.redAccent,
+                      color: Color(0xFF00C6FF),
                       width: 0.5,
                       style: BorderStyle.solid),
                 ),
@@ -406,7 +400,7 @@ class _Login extends State<Login> {
                       shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0),
                       ),
-                      color: Colors.redAccent,
+                      color: Color(0xFF00C6FF),
                       onPressed: () async {
                         if (_formKeyRegister.currentState.validate()) {
                           await _handleCreateUser().then((user) {
@@ -475,7 +469,7 @@ class _Login extends State<Login> {
               child: Center(
                 child: Icon(
                   Icons.headset_mic,
-                  color: Colors.redAccent,
+                  color: Color(0xFF303030),
                   size: 50.0,
                 ),
               ),
@@ -489,7 +483,7 @@ class _Login extends State<Login> {
                       "EMAIL",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.redAccent,
+                        color: Color(0xFF303030),
                         fontSize: 15.0,
                       ),
                     ),
@@ -504,7 +498,7 @@ class _Login extends State<Login> {
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
-                      color: Colors.redAccent,
+                      color: Color(0xFF303030),
                       width: 0.5,
                       style: BorderStyle.solid),
                 ),
@@ -559,7 +553,7 @@ class _Login extends State<Login> {
                       "PASSWORD",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.redAccent,
+                        color: Color(0xFF303030),
                         fontSize: 15.0,
                       ),
                     ),
@@ -574,7 +568,7 @@ class _Login extends State<Login> {
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
-                      color: Colors.redAccent,
+                      color: Color(0xFF303030),
                       width: 0.5,
                       style: BorderStyle.solid),
                 ),
@@ -611,7 +605,7 @@ class _Login extends State<Login> {
             Divider(
               height: 24.0,
             ),
-            new Row(
+            /*new Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Padding(
@@ -630,7 +624,7 @@ class _Login extends State<Login> {
                   ),
                 ),
               ],
-            ),
+            ),*/
             new Container(
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
@@ -642,7 +636,7 @@ class _Login extends State<Login> {
                       shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0),
                       ),
-                      color: Colors.redAccent,
+                      color: Color(0xFF00C6FF),
                       onPressed: () async {
                         if (_formKeyLogin.currentState.validate()) {
                           await _handleSignIn().then((user) {
@@ -692,7 +686,7 @@ class _Login extends State<Login> {
                   new Expanded(
                     child: new Container(
                       margin: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(border: Border.all(width: 0.25)),
+                      decoration: BoxDecoration(border: Border.all(width: 0.25), color:Colors.white),
                     ),
                   ),
                   Text(
@@ -705,7 +699,7 @@ class _Login extends State<Login> {
                   new Expanded(
                     child: new Container(
                       margin: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(border: Border.all(width: 0.25)),
+                      decoration: BoxDecoration(color:Colors.white,border: Border.all(width: 0.25)),
                     ),
                   ),
                 ],
