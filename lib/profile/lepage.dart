@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:groupleh/profile/model/Planet.dart';
 import 'package:groupleh/profile/model/Planets.dart';
 import 'package:groupleh/app/app_state.dart';
+//import 'package:groupleh/profile/theme.dart';
+import 'package:groupleh/profile/styles.dart';
+import 'package:groupleh/profile/content.dart';
 
 class DetailPage extends StatelessWidget {
   final Planet planet;
@@ -9,17 +12,17 @@ class DetailPage extends StatelessWidget {
   
   Container _getBackground () {
     return new Container(
-            child: new Image.network(planet.image,
+            child: new Image.network("https://pbs.twimg.com/profile_images/815627823868092417/wqacfWN9_400x400.jpg",
               fit: BoxFit.cover,
               height: 300.0,
             ),
-            constraints: new BoxConstraints.expand(height: 300.0),
+            constraints: new BoxConstraints.expand(height: 290.0),
           );
  }
 
   Container _getGradient() {
     return new Container(
-       margin: new EdgeInsets.only(top: 190.0),
+       margin: new EdgeInsets.only(top: 200.0),
        height: 110.0,
        decoration: new BoxDecoration(
          gradient: new LinearGradient(
@@ -35,6 +38,33 @@ class DetailPage extends StatelessWidget {
     );
   }
 
+  Widget _getContent() {
+    final _overviewTitle = "Overview".toUpperCase();
+       return new ListView(
+         padding: new EdgeInsets.fromLTRB(0.0, 72.0, 0.0, 32.0),
+         children: <Widget>[
+           new PlanetSummary(planet,
+             horizontal: false,
+           ),
+           new Container(
+            padding: new EdgeInsets.symmetric(horizontal: 32.0),
+            child: new Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                new Text(_overviewTitle, style: Style.headerTextStyle),
+                //new Separator(),
+                new Text( planet.description , style: Style.commonTextStyle),
+              ],
+            ),
+          ),
+        ],
+
+    );
+  }
+
+  
+
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -45,7 +75,7 @@ class DetailPage extends StatelessWidget {
           children: <Widget>[
             _getBackground(),
             _getGradient(),
-            //_getContent(),
+            _getContent(),
             //_getToolbar(context),
           ],
         ),
@@ -53,3 +83,4 @@ class DetailPage extends StatelessWidget {
     );
   }
 }
+

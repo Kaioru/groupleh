@@ -8,8 +8,8 @@ class PlanetDao {
       location: "Milkyway Galaxy",
       distance: "54.6m Km",
       gravity: "3.711 m/s ",
-      description: "Lorem ipsum...",
-      image: "C:\Users\Daniel Ian Dean\Documents\GitHub\groupleh\lib\profile\assets\mars.jpg",
+      description: "Ayylmaooooooooooooo",
+      image: "assets/img/mars.jpg",
     ),
     const Planet(
       id: "2",
