@@ -206,17 +206,6 @@ class _Login extends State<Login> {
                           fontSize: 15.0,
                         ),
                       ),
-
-                      /*TextFormField(
-                      controller: _emailControllerRegister,
-                      decoration: InputDecoration(
-                        border:InputBorder.none,
-                        hintText: 'ayyylmaowegotthis@gmail.com',
-                        hintStyle: TextStyle(color: Colors.grey),
-                      ),
-                      style: TextStyle(color: Colors.black),
-                      keyboardType: TextInputType.text
-                    ),*/
                     ),
                   ),
                 ],
@@ -550,15 +539,6 @@ class _Login extends State<Login> {
                             hintStyle: TextStyle(color: Colors.grey),
                           ),
                           keyboardType: TextInputType.emailAddress),
-                      /*child: TextField(
-                      obscureText: true,
-                      textAlign: TextAlign.left,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'allahuakbar@gmail.com',
-                        hintStyle: TextStyle(color: Colors.grey),
-                      ),
-                    ),*/
                     ),
                   ],
                 ),
@@ -612,14 +592,6 @@ class _Login extends State<Login> {
                           obscureText: true,
                           style: TextStyle(color: Colors.black),
                           keyboardType: TextInputType.text),
-                      /*TextField(
-                      obscureText: true,
-                      textAlign: TextAlign.left,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: '*********',
-                        hintStyle: TextStyle(color: Colors.grey),
-                      ),*/
                     ),
                   ],
                 ),
@@ -627,26 +599,6 @@ class _Login extends State<Login> {
               Divider(
                 height: 24.0,
               ),
-              /*Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(right: 20.0),
-                  child: FlatButton(
-                    child: Text(
-                      "Forgot Password?",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.redAccent,
-                        fontSize: 15.0,
-                      ),
-                      textAlign: TextAlign.end,
-                    ),
-                    onPressed: () => {},
-                  ),
-                ),
-              ],
-            ),*/
               Container(
                 width: MediaQuery.of(context).size.width,
                 margin:
@@ -876,75 +828,6 @@ class _Login extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    /*return Scaffold(
-        key: _scaffoldKey,
-        body: Form(
-            key: _formKey,
-            child: Container(
-                padding: EdgeInsets.only(left: 24.0, right: 24.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    FlutterLogo(size: 120.0),
-                    TextFormField(
-                        controller: _emailController,
-                        validator: (val) {
-                          Pattern pattern =
-                              r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                          RegExp regex = RegExp(pattern);
-                          if (!regex.hasMatch(val))
-                            return 'Please enter a valid email!';
-                          else
-                            return null;
-                        },
-                        decoration: InputDecoration(
-                          labelText: "Email",
-                        ),
-                        keyboardType: TextInputType.emailAddress),
-                    TextFormField(
-                        controller: _passwordController,
-                        decoration: InputDecoration(
-                          labelText: "Password",
-                        ),
-                        obscureText: true,
-                        keyboardType: TextInputType.text),
-                    ButtonBar(children: <Widget>[
-                      RaisedButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Register()));
-                        },
-                        child: Text('Register'),
-                      ),
-                      RaisedButton(
-                        onPressed: () async {
-                          if (_formKey.currentState.validate()) {
-                            await _handleSignIn().then((user) {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => App(AppState(user))));
-                            }).catchError((e) => _scaffoldKey.currentState
-                                .showSnackBar(SnackBar(
-                                    content: Text("Failed to login!"),
-                                ),
-                              ),
-                            );
-                          }
-                        },
-                        child: Text('Login'),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            )
-          )
-        );
-    */
     return Container(
         height: MediaQuery.of(context).size.height,
         child: PageView(
