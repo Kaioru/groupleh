@@ -69,7 +69,11 @@ class _WardrobeSelect extends State<WardrobeSelect> {
   Widget build(BuildContext context) {
     final textStyle = const TextStyle(fontFamily: 'Poppins');
     final headerTextStyle = textStyle.copyWith(
-        color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w600);
+        color: Colors.white, fontSize: 32.0, fontWeight: FontWeight.w600);
+    final regularTextStyle = textStyle.copyWith(
+        color: Colors.white,
+        fontSize: 18.0,
+        fontWeight: FontWeight.w400);
     return Scaffold(
         appBar: AppBar(
             title: ListTile(
@@ -126,6 +130,7 @@ class _WardrobeSelect extends State<WardrobeSelect> {
                       AsyncSnapshot<List<int>> snapshot) {
                     if (snapshot.hasData) {
                       return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
                               ([
@@ -146,7 +151,7 @@ class _WardrobeSelect extends State<WardrobeSelect> {
                               FlatButton(
                                 onPressed: () => Navigator.pop(context),
                                 color: Colors.red,
-                                child: Text("No ew.", style: headerTextStyle),
+                                child: Text("No ew.", style: regularTextStyle),
                               ),
                               FlatButton(
                                 onPressed: () => this.setState(() {
@@ -154,7 +159,7 @@ class _WardrobeSelect extends State<WardrobeSelect> {
                                       changing = true;
                                     }),
                                 color: Colors.green,
-                                child: Text("Aye sir!", style: headerTextStyle),
+                                child: Text("Aye sir!", style: regularTextStyle),
                               )
                             ],
                           )

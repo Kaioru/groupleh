@@ -3,7 +3,7 @@ class Profile {
 
   final String name;
   final String desc;
-  final int coins;
+  int coins;
   final int achievementCount;
   final int wardrobeCount;
   final int projectCount;
