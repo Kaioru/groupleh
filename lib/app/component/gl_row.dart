@@ -52,6 +52,23 @@ class GLRow extends StatelessWidget {
       );
     }
 
+    final planetCardContenChildren = <Widget>[
+      Container(height: 4.0),
+      Text(title, style: headerTextStyle)
+    ];
+
+    if (desc.isNotEmpty) {
+      planetCardContenChildren.addAll(<Widget>[
+        Container(height: 10.0),
+        Text(desc, style: regularTextStyle),
+        Container(
+            margin: EdgeInsets.symmetric(vertical: 8.0),
+            height: 2.0,
+            width: 18.0,
+            color: Color(0xff00c6ff))
+      ]);
+    }
+
     final planetCardContent = Container(
       margin: EdgeInsets.fromLTRB(
           horizontal ? 76.0 : 16.0, horizontal ? 16.0 : 42.0, 16.0, 16.0),
@@ -59,17 +76,7 @@ class GLRow extends StatelessWidget {
       child: Column(
         crossAxisAlignment:
             horizontal ? CrossAxisAlignment.start : CrossAxisAlignment.center,
-        children: <Widget>[
-          Container(height: 4.0),
-          Text(title, style: headerTextStyle),
-          Container(height: 10.0),
-          Text(desc, style: regularTextStyle),
-          Container(
-              margin: EdgeInsets.symmetric(vertical: 8.0),
-              height: 2.0,
-              width: 18.0,
-              color: Color(0xff00c6ff))
-        ],
+        children: planetCardContenChildren,
       ),
     );
 

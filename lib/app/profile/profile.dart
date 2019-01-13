@@ -55,19 +55,44 @@ class _ProfileEX extends State<ProfileEX> {
       padding: EdgeInsets.fromLTRB(0.0, 72.0, 0.0, 32.0),
       children: <Widget>[
         GLRow(
-          horizontal: false,
-          image: Image.network("https://images.unsplash.com/photo-1535909339361-ef56e179d637?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"),
-          title: profile.name,
-          desc: ""
-        ),
+            horizontal: false,
+            image: Image.network(
+                "https://images.unsplash.com/photo-1535909339361-ef56e179d637?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"),
+            title: profile.name,
+            desc: ""),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 32.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(_overviewTitle, style: headerTextStyle),
-              //Separator(),
+              Divider(),
               Text(profile.desc, style: regularTextStyle),
+              Container(
+                padding: EdgeInsets.only(top: 32.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Actions".toUpperCase(), style: headerTextStyle),
+                    Divider(),
+                    GLRow(
+                      image: Image.asset("assets/images/icon_scroll.png"),
+                      title: "Projects",
+                      desc: "All the stuff you start but never finish.",
+                    ),
+                    GLRow(
+                      image: Image.asset("assets/images/icon_wardrobe.png"),
+                      title: "Wardrobe",
+                      desc: "Walk walk fashion baby. Strike a pose. Vogue.",
+                    ),
+                    GLRow(
+                      image: Image.asset("assets/images/icon_trophy.png"),
+                      title: "Achievements",
+                      desc: "All the achievements you've accomplished in life. In one spot.",
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         ),
