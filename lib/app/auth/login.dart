@@ -63,7 +63,10 @@ class _Login extends State<Login> {
         coins: document.data["coins"],
         projectCount: projects.documents.length,
         achievementCount: achievements.documents.length,
-        wardrobeCount: wardrobes.documents.length);
+        wardrobeCount: wardrobes.documents.length,
+        wardrobeHair: document.data["wardrobe_hair"],
+        wardrobeTop: document.data["wardrobe_top"],
+        wardrobeBottom: document.data["wardrobe_bottom"]);
   }
 
   Widget homePage() {

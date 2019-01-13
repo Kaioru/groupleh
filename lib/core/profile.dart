@@ -1,4 +1,3 @@
-
 class Profile {
   final String id;
 
@@ -10,6 +9,9 @@ class Profile {
   final int projectCount;
   final String image;
 
+  final String wardrobeHair;
+  final String wardrobeTop;
+  final String wardrobeBottom;
 
   Profile(
       {this.id,
@@ -19,5 +21,8 @@ class Profile {
       this.achievementCount,
       this.wardrobeCount,
       this.projectCount,
-      this.image});
+      this.image,
+      this.wardrobeHair,
+      this.wardrobeTop,
+      this.wardrobeBottom});
 }

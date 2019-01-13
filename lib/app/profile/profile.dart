@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/component/gl_row.dart';
+import 'package:groupleh/app/profile/achievement.dart';
+import 'package:groupleh/app/profile/wardrobe.dart';
+import 'package:groupleh/core/item_directory.dart';
 import 'package:groupleh/core/profile.dart';
 
 class ProfileEX extends StatefulWidget {
@@ -18,8 +21,8 @@ class _ProfileEX extends State<ProfileEX> {
 
   Container _getBackground() {
     return Container(
-      child: Image.network(
-        "https://pbs.twimg.com/profile_images/815627823868092417/wqacfWN9_400x400.jpg",
+      child: Image.asset(
+        "assets/images/monodabsa.jpg",
         fit: BoxFit.cover,
         height: 300.0,
       ),
@@ -56,8 +59,7 @@ class _ProfileEX extends State<ProfileEX> {
       children: <Widget>[
         GLRow(
             horizontal: false,
-            image: Image.network(
-                "https://images.unsplash.com/photo-1535909339361-ef56e179d637?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"),
+            image: Image.network(profile.image),
             title: profile.name,
             desc: "",
             more: Flex(
@@ -125,16 +127,28 @@ class _ProfileEX extends State<ProfileEX> {
                       title: "Projects",
                       desc: "All the stuff you start but never finish.",
                     ),
-                    GLRow(
-                      image: Image.asset("assets/images/icon_wardrobe.png"),
-                      title: "Wardrobe",
-                      desc: "Walk walk fashion baby. Strike a pose. Vogue.",
+                    GestureDetector(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Wardrobe(profile, ItemDirectory()))),
+                      child: GLRow(
+                        image: Image.asset("assets/images/icon_wardrobe.png"),
+                        title: "Wardrobe",
+                        desc: "Walk walk fashion baby. Strike a pose. Vogue.",
+                      ),
                     ),
-                    GLRow(
-                      image: Image.asset("assets/images/icon_trophy.png"),
-                      title: "Achievements",
-                      desc:
-                          "All the achievements you've accomplished in life. In one spot.",
+                    GestureDetector(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AchivementEX(profile))),
+                      child: GLRow(
+                        image: Image.asset("assets/images/icon_trophy.png"),
+                        title: "Achievements",
+                        desc:
+                            "All the achievements you've accomplished in life. In one spot.",
+                      ),
                     )
                   ],
                 ),

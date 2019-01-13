@@ -39,10 +39,12 @@ flutter:
   assets:
     - assets/images/mountains.jpg
     - assets/images/mountains.jpeg
+    - assets/images/monodabsa.jpg
     - assets/images/icon_scroll.png
     - assets/images/icon_coin.png
     - assets/images/icon_wardrobe.png
     - assets/images/icon_trophy.png
+    - assets/images/wardrobe/
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
