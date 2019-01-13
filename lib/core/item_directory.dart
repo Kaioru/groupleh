@@ -22,7 +22,7 @@ class ItemDirectory {
       Item(type: ItemType.top, prefab: "top_shirt_white"),
       Item(type: ItemType.bottom, prefab: "bottom_leafa_green"),
       Item(type: ItemType.bottom, prefab: "bottom_short_blue"),
-      Item(type: ItemType.bottom, prefab: "bottom_short_brown"),
+      Item(type: ItemType.bottom, prefab: "bottom_short_brown", name: "Brown Shorts", desc: "Hi! I like shorts! They're comfy and easy to wear!"),
     ]).forEach((i) => items[i.prefab] = i);
   }
 }
