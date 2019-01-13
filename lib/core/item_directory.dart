@@ -1,5 +1,10 @@
+import 'dart:typed_data';
+
+import 'package:flutter/services.dart';
 import 'package:groupleh/core/item.dart';
 import 'package:groupleh/core/item_type.dart';
+import 'package:groupleh/core/profile.dart';
+import 'package:image/image.dart';
 
 class ItemDirectory {
   Map<String, Item> items;
@@ -21,8 +26,36 @@ class ItemDirectory {
       Item(type: ItemType.top, prefab: "top_leafa_green"),
       Item(type: ItemType.top, prefab: "top_shirt_white"),
       Item(type: ItemType.bottom, prefab: "bottom_leafa_green"),
-      Item(type: ItemType.bottom, prefab: "bottom_short_blue", name: "Blue Shorts", desc: "Blue is for cool people."),
-      Item(type: ItemType.bottom, prefab: "bottom_short_brown", name: "Brown Shorts", desc: "Brown is the colour of poo."),
+      Item(
+          type: ItemType.bottom,
+          prefab: "bottom_short_blue",
+          name: "Blue Shorts",
+          desc: "Blue is for cool people."),
+      Item(
+          type: ItemType.bottom,
+          prefab: "bottom_short_brown",
+          name: "Brown Shorts",
+          desc: "Brown is the colour of poo."),
     ]).forEach((i) => items[i.prefab] = i);
+  }
+
+  Future<Uint8List> image(String key) async {
+    Uint8List data = (await rootBundle.load(key)).buffer.asUint8List();
+    return data;
+  }
+
+  Future<List<int>> generate(
+      String wardrobeHair, String wardrobeTop, String wardrobeBottom) async {
+    var prefix = "assets/images/wardrobe/";
+    Image avatar = decodePng(await image(prefix + "avatar_white.png"));
+    Image hair = decodePng(await image(prefix + wardrobeHair + ".png"));
+    Image top = decodePng(await image(prefix + wardrobeTop + ".png"));
+    Image bottom = decodePng(await image(prefix + wardrobeBottom + ".png"));
+
+    drawImage(avatar, hair);
+    drawImage(avatar, top);
+    drawImage(avatar, bottom);
+
+    return encodePng(avatar);
   }
 }

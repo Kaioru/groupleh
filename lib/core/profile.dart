@@ -7,11 +7,11 @@ class Profile {
   final int achievementCount;
   final int wardrobeCount;
   final int projectCount;
-  final String image;
+  String image;
 
-  final String wardrobeHair;
-  final String wardrobeTop;
-  final String wardrobeBottom;
+  String wardrobeHair;
+  String wardrobeTop;
+  String wardrobeBottom;
 
   Profile(
       {this.id,

@@ -51,7 +51,7 @@ class Wardrobe extends StatelessWidget {
             Animation<double> animation,
             int index,
           ) {
-            return WardrobeListing(profile, directory.items[snapshot["item"]]);
+            return WardrobeListing(profile, directory.items[snapshot["item"]], directory);
           },
         ));
   }
