@@ -20,7 +20,13 @@ class ChatListing extends StatelessWidget {
         image: group.image,
         title: group.name,
         desc: "Created on " + DateFormat('yyyy-MM-dd').format(group.date),
-        amount: group.members.length,
+        more: Row(
+          children: <Widget>[
+            Icon(Icons.people, size: 12.0),
+            Container(width: 8.0),
+            Text(group.members.length.toString())
+          ],
+        ),
       ),
     );
   }

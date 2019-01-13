@@ -1,5 +1,3 @@
-import 'package:groupleh/core/group.dart';
-import 'package:groupleh/core/achievement.dart';
 
 class Profile {
   final String id;
@@ -7,17 +5,19 @@ class Profile {
   final String name;
   final String desc;
   final int coins;
+  final int achievementCount;
+  final int wardrobeCount;
+  final int projectCount;
   final String image;
 
-  final List<Group> groups;
-  final List<Achievement> achievements;
 
   Profile(
       {this.id,
       this.name,
       this.desc,
       this.coins,
-      this.image,
-      this.groups,
-      this.achievements});
+      this.achievementCount,
+      this.wardrobeCount,
+      this.projectCount,
+      this.image});
 }

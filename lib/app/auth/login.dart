@@ -42,11 +42,28 @@ class _Login extends State<Login> {
         .collection('profiles')
         .document(user.uid)
         .get();
+
+    var projects = await Firestore.instance
+        .collection('projects')
+        .where('members', arrayContains: user.uid)
+        .getDocuments();
+    var achievements = await Firestore.instance
+        .collection('achievements')
+        .where('user', isEqualTo: user.uid)
+        .getDocuments();
+    var wardrobes = await Firestore.instance
+        .collection('wardrobes')
+        .where('user', isEqualTo: user.uid)
+        .getDocuments();
     return Profile(
         id: document.documentID,
         name: document.data["name"],
         desc: document.data["desc"],
-        image: document.data["image"]);
+        image: document.data["image"],
+        coins: document.data["coins"],
+        projectCount: projects.documents.length,
+        achievementCount: achievements.documents.length,
+        wardrobeCount: wardrobes.documents.length);
   }
 
   Widget homePage() {
@@ -409,7 +426,8 @@ class _Login extends State<Login> {
                                   .setData({
                                 'name': user.email,
                                 'desc': 'about me, myself and i!',
-                                'image': ''
+                                'image': '',
+                                'coins': 0
                               });
 
                               var profile = await _createProfile(user);

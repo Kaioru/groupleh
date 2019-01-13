@@ -59,7 +59,52 @@ class _ProfileEX extends State<ProfileEX> {
             image: Image.network(
                 "https://images.unsplash.com/photo-1535909339361-ef56e179d637?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"),
             title: profile.name,
-            desc: ""),
+            desc: "",
+            more: Flex(
+              direction: Axis.horizontal,
+              children: <Widget>[
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      Image.asset("assets/images/icon_coin.png",
+                          height: 32.0, width: 32.0),
+                      Container(width: 8.0),
+                      Text(profile.coins.toString())
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      Image.asset("assets/images/icon_trophy.png",
+                          height: 32.0, width: 32.0),
+                      Container(width: 8.0),
+                      Text(profile.achievementCount.toString())
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      Image.asset("assets/images/icon_wardrobe.png",
+                          height: 32.0, width: 32.0),
+                      Container(width: 8.0),
+                      Text(profile.wardrobeCount.toString())
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      Image.asset("assets/images/icon_scroll.png",
+                          height: 32.0, width: 32.0),
+                      Container(width: 8.0),
+                      Text(profile.projectCount.toString())
+                    ],
+                  ),
+                )
+              ],
+            )),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 32.0),
           child: Column(
@@ -88,7 +133,8 @@ class _ProfileEX extends State<ProfileEX> {
                     GLRow(
                       image: Image.asset("assets/images/icon_trophy.png"),
                       title: "Achievements",
-                      desc: "All the achievements you've accomplished in life. In one spot.",
+                      desc:
+                          "All the achievements you've accomplished in life. In one spot.",
                     )
                   ],
                 ),
