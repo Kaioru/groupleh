@@ -21,8 +21,8 @@ class ItemDirectory {
       Item(type: ItemType.top, prefab: "top_leafa_green"),
       Item(type: ItemType.top, prefab: "top_shirt_white"),
       Item(type: ItemType.bottom, prefab: "bottom_leafa_green"),
-      Item(type: ItemType.bottom, prefab: "bottom_short_blue"),
-      Item(type: ItemType.bottom, prefab: "bottom_short_brown", name: "Brown Shorts", desc: "Hi! I like shorts! They're comfy and easy to wear!"),
+      Item(type: ItemType.bottom, prefab: "bottom_short_blue"), name: "Blue Shorts", desc: "Blue is for cool people."),
+      Item(type: ItemType.bottom, prefab: "bottom_short_brown", name: "Brown Shorts", desc: "Brown is the colour of poo."),
     ]).forEach((i) => items[i.prefab] = i);
   }
 }
