@@ -42,6 +42,10 @@ class Wardrobe extends StatelessWidget {
             ],
           ),
         )),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(Icons.shopping_basket),
+        ),
         body: FirestoreAnimatedList(
           emptyChild: Container(),
           query: snapshots,

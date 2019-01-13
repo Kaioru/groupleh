@@ -44,6 +44,15 @@ class ItemDirectory {
     return data;
   }
 
+  Future<List<int>> generateHairPreview(String wardrobeHair) async {
+    var prefix = "assets/images/wardrobe/";
+    Image avatar = decodePng(await image(prefix + "avatar_head_only.png"));
+    Image hair = decodePng(await image(prefix + wardrobeHair + ".png"));
+    drawImage(avatar, hair);
+
+    return encodePng(avatar);
+  }
+
   Future<List<int>> generate(
       String wardrobeHair, String wardrobeTop, String wardrobeBottom) async {
     var prefix = "assets/images/wardrobe/";
