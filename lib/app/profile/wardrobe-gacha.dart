@@ -118,7 +118,7 @@ class _WardrobeGacha extends State<WardrobeGacha> {
                       },
                     ),
                     Text(item.name, style: headerTextStyle),
-                    Text("'" + item.desc + "'", style: regularTextStyle),
+                    Text("'" + item.desc + "'", style: regularTextStyle, textAlign: TextAlign.center),
                     Divider(),
                     already
                         ? Text("You already have this wardrobe item..",
