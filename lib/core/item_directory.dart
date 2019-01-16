@@ -1,9 +1,5 @@
-import 'dart:typed_data';
-
-import 'package:flutter/services.dart';
 import 'package:groupleh/core/item.dart';
 import 'package:groupleh/core/item_type.dart';
-import 'package:image/image.dart';
 
 class ItemDirectory {
   Map<String, Item> items;
@@ -78,34 +74,5 @@ class ItemDirectory {
       Item(type: ItemType.bottom, prefab: "bottom_studdent_black"),
       Item(type: ItemType.bottom, prefab: "bottom_uneven_lightgrey"),
     ]).forEach((i) => items[i.prefab] = i);
-  }
-
-  Future<Uint8List> image(String key) async {
-    Uint8List data = (await rootBundle.load(key)).buffer.asUint8List();
-    return data;
-  }
-
-  Future<List<int>> generateHairPreview(String wardrobeHair) async {
-    var prefix = "assets/images/wardrobe/";
-    Image avatar = decodePng(await image(prefix + "avatar_head_only.png"));
-    Image hair = decodePng(await image(prefix + wardrobeHair + ".png"));
-    drawImage(avatar, hair);
-
-    return encodePng(avatar);
-  }
-
-  Future<List<int>> generate(
-      String wardrobeHair, String wardrobeTop, String wardrobeBottom) async {
-    var prefix = "assets/images/wardrobe/";
-    Image avatar = decodePng(await image(prefix + "avatar_white.png"));
-    Image hair = decodePng(await image(prefix + wardrobeHair + ".png"));
-    Image top = decodePng(await image(prefix + wardrobeTop + ".png"));
-    Image bottom = decodePng(await image(prefix + wardrobeBottom + ".png"));
-
-    drawImage(avatar, hair);
-    drawImage(avatar, top);
-    drawImage(avatar, bottom);
-
-    return encodePng(avatar);
   }
 }
