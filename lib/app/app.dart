@@ -48,9 +48,12 @@ class _App extends State<App> with WidgetsBindingObserver, TickerProviderStateMi
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => LoopWheel(appState)));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => Matchmaking(appState)));
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.search),
+        backgroundColor: Color(0xFF00C6FF),
+        foregroundColor: Color(0xFFFFFFFF),
+        
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         appBar: AppBar(
@@ -63,10 +66,10 @@ class _App extends State<App> with WidgetsBindingObserver, TickerProviderStateMi
                   fontSize: 36.0)),
         ),
         bottomNavigationBar: FABBottomAppBar(
-                  centerItemText: 'Matchmake',
-        color: Color(0xFFFFFFFF),
-        selectedColor: Color(0xFF00C6FF),
-        notchedShape: CircularNotchedRectangle(),
+          centerItemText: "Matchmake",
+          color: Color(0xFFFFFFFF),
+          selectedColor: Color(0xFF00C6FF),
+          notchedShape: CircularNotchedRectangle(),
           onTabSelected: (page) {
             pageController.animateToPage(page,
                 duration: const Duration(milliseconds: 250),
