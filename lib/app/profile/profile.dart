@@ -4,6 +4,7 @@ import 'package:groupleh/app/profile/achievement.dart';
 import 'package:groupleh/app/profile/wardrobe.dart';
 import 'package:groupleh/core/item_directory.dart';
 import 'package:groupleh/core/profile.dart';
+import 'package:groupleh/app/auth/login.dart';
 
 class ProfileEX extends StatefulWidget {
   final Profile profile;
@@ -149,7 +150,15 @@ class _ProfileEX extends State<ProfileEX> {
                         desc:
                             "All the achievements you've accomplished in life. In one spot.",
                       ),
-                    )
+                    ),
+
+                    RaisedButton(
+                    child: Text("Log out"),
+                    color: Colors.red,
+                    onPressed: () {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => Login());
+                    })
                   ],
                 ),
               )
