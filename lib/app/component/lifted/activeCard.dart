@@ -1,10 +1,13 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/component/lifted/detail.dart';
+import 'package:groupleh/core/profile.dart';
 import 'package:groupleh/core/project.dart';
 
 Positioned cardDemo(
+    Profile profile,
     Project project,
     double bottom,
     double right,
@@ -45,6 +48,12 @@ Positioned cardDemo(
           dismissImg(project);
         else
           addImg(project);
+
+        project.applicants.add(profile.id);
+        Firestore.instance
+            .collection("projects")
+            .document(project.id)
+            .updateData({"applicants": project.applicants});
       },
       child: new Transform(
         alignment: flag == 0 ? Alignment.bottomRight : Alignment.bottomLeft,
@@ -120,7 +129,12 @@ Positioned cardDemo(
                                   padding: new EdgeInsets.all(0.0),
                                   onPressed: (() async {
                                     swipeRight();
-                                    print("hello");
+                                    project.applicants.add(profile.id);
+                                    Firestore.instance
+                                        .collection("projects")
+                                        .document(project.id)
+                                        .updateData(
+                                            {"applicants": project.applicants});
                                   }),
                                   child: new Container(
                                     height: 60.0,

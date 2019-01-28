@@ -23,13 +23,14 @@ class ProjectEX extends StatelessWidget {
                 id: d.documentID,
                 name: d.data["name"],
                 desc: d.data["desc"],
-                image: d.data["image"]));
+                image: d.data["image"],
+                applicants: List.from(d.data['applicants'])));
           }
         });
         return result;
       }), builder: (context, snapshot) {
         if (!snapshot.hasData) return CircularProgressIndicator();
-        return CardDemo(snapshot.data);
+        return CardDemo(profile, snapshot.data);
       }),
     );
   }

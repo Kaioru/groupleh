@@ -5,21 +5,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:groupleh/app/component/lifted/activeCard.dart';
 import 'package:groupleh/app/component/lifted/dummyCard.dart';
+import 'package:groupleh/core/profile.dart';
 import 'package:groupleh/core/project.dart';
 
 class CardDemo extends StatefulWidget {
+  final Profile profile;
   final List<Project> projects;
 
-  CardDemo(this.projects);
+  CardDemo(this.profile, this.projects);
 
   @override
-  CardDemoState createState() => new CardDemoState(projects);
+  CardDemoState createState() => new CardDemoState(profile, projects);
 }
 
 class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
+  final Profile profile;
   final List<Project> projects;
 
-  CardDemoState(this.projects);
+  CardDemoState(this.profile, this.projects);
 
   AnimationController _buttonController;
   Animation<double> rotate;
@@ -141,6 +144,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
               children: projects.map((item) {
                 if (projects.indexOf(item) == dataLength - 1) {
                   return cardDemo(
+                      profile,
                       item,
                       bottom.value,
                       right.value,
