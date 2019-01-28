@@ -155,6 +155,10 @@ class _ProfileEX extends State<ProfileEX> {
                     child: Text("Log Out"),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
                     color: Colors.red,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10.0,
+                        horizontal: 80.0,
+                      ),
                     onPressed: () {
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => Login()));
