@@ -4,15 +4,23 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:groupleh/app/component/lifted/activeCard.dart';
-import 'package:groupleh/app/component/lifted/data.dart';
 import 'package:groupleh/app/component/lifted/dummyCard.dart';
+import 'package:groupleh/core/project.dart';
 
 class CardDemo extends StatefulWidget {
+  final List<Project> projects;
+
+  CardDemo(this.projects);
+
   @override
-  CardDemoState createState() => new CardDemoState();
+  CardDemoState createState() => new CardDemoState(projects);
 }
 
 class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
+  final List<Project> projects;
+
+  CardDemoState(this.projects);
+
   AnimationController _buttonController;
   Animation<double> rotate;
   Animation<double> right;
@@ -20,7 +28,6 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
   Animation<double> width;
   int flag = 0;
 
-  List data = imageData;
   List selectedData = [];
   void initState() {
     super.initState();
@@ -40,8 +47,8 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
     rotate.addListener(() {
       setState(() {
         if (rotate.isCompleted) {
-          var i = data.removeLast();
-          data.insert(0, i);
+          var i = projects.removeLast();
+          projects.insert(0, i);
 
           _buttonController.reset();
         }
@@ -89,15 +96,15 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
     } on TickerCanceled {}
   }
 
-  dismissImg(DecorationImage img) {
+  dismissImg(Project img) {
     setState(() {
-      data.remove(img);
+      projects.remove(img);
     });
   }
 
-  addImg(DecorationImage img) {
+  addImg(Project img) {
     setState(() {
-      data.remove(img);
+      projects.remove(img);
       selectedData.add(img);
     });
   }
@@ -123,40 +130,40 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
     timeDilation = 0.4;
 
     double initialBottom = 15.0;
-    var dataLength = data.length;
+    var dataLength = projects.length;
     double backCardPosition = initialBottom + (dataLength - 1) * 10 + 10;
     double backCardWidth = -10.0;
     return new Container(
-          alignment: Alignment.center,
-          child: dataLength > 0
-              ? new Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: data.map((item) {
-                    if (data.indexOf(item) == dataLength - 1) {
-                      return cardDemo(
-                          item,
-                          bottom.value,
-                          right.value,
-                          0.0,
-                          backCardWidth + 10,
-                          rotate.value,
-                          rotate.value < -10 ? 0.1 : 0.0,
-                          context,
-                          dismissImg,
-                          flag,
-                          addImg,
-                          swipeRight,
-                          swipeLeft);
-                    } else {
-                      backCardPosition = backCardPosition - 10;
-                      backCardWidth = backCardWidth + 10;
+      alignment: Alignment.center,
+      child: dataLength > 0
+          ? new Stack(
+              alignment: AlignmentDirectional.center,
+              children: projects.map((item) {
+                if (projects.indexOf(item) == dataLength - 1) {
+                  return cardDemo(
+                      item,
+                      bottom.value,
+                      right.value,
+                      0.0,
+                      backCardWidth + 10,
+                      rotate.value,
+                      rotate.value < -10 ? 0.1 : 0.0,
+                      context,
+                      dismissImg,
+                      flag,
+                      addImg,
+                      swipeRight,
+                      swipeLeft);
+                } else {
+                  backCardPosition = backCardPosition - 10;
+                  backCardWidth = backCardWidth + 10;
 
-                      return cardDemoDummy(item, backCardPosition, 0.0, 0.0,
-                          backCardWidth, 0.0, 0.0, context);
-                    }
-                  }).toList())
-              : new Text("daberooskis",
-                  style: new TextStyle(color: Colors.white, fontSize: 50.0)),
-        );
+                  return cardDemoDummy(item, backCardPosition, 0.0, 0.0,
+                      backCardWidth, 0.0, 0.0, context);
+                }
+              }).toList())
+          : new Text("That's it!",
+              style: new TextStyle(color: Colors.white, fontSize: 50.0)),
+    );
   }
 }

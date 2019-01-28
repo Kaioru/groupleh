@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/component/gl_row.dart';
 import 'package:groupleh/app/profile/achievement.dart';
+import 'package:groupleh/app/profile/projects.dart';
 import 'package:groupleh/app/profile/wardrobe.dart';
 import 'package:groupleh/core/item_directory.dart';
 import 'package:groupleh/core/profile.dart';
@@ -122,16 +123,23 @@ class _ProfileEX extends State<ProfileEX> {
                   children: <Widget>[
                     Text("Actions".toUpperCase(), style: headerTextStyle),
                     Divider(),
-                    GLRow(
-                      image: Image.asset("assets/images/icon_scroll.png"),
-                      title: "Projects",
-                      desc: "All the stuff you start but never finish.",
+                    GestureDetector(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Projects(profile))),
+                      child: GLRow(
+                        image: Image.asset("assets/images/icon_scroll.png"),
+                        title: "Projects",
+                        desc: "All the stuff you start but never finish.",
+                      ),
                     ),
                     GestureDetector(
                       onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Wardrobe(profile, ItemDirectory()))),
+                              builder: (context) =>
+                                  Wardrobe(profile, ItemDirectory()))),
                       child: GLRow(
                         image: Image.asset("assets/images/icon_wardrobe.png"),
                         title: "Wardrobe",
