@@ -4,6 +4,7 @@ import 'package:groupleh/app/fabappbar.dart';
 import 'package:groupleh/app/chat/chat.dart';
 import 'package:groupleh/app/profile/profile.dart';
 import 'package:groupleh/app/project/project.dart';
+import 'package:groupleh/app/matchmaking/matchmaking.dart';
 
 class App extends StatefulWidget {
   final AppState appState;
@@ -46,7 +47,9 @@ class _App extends State<App> with WidgetsBindingObserver, TickerProviderStateMi
     
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoopWheel(appState)));
+        },
         child: Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
