@@ -119,7 +119,7 @@ class _ProfileEX extends State<ProfileEX> {
               Container(
                 padding: EdgeInsets.only(top: 32.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text("Actions".toUpperCase(), style: headerTextStyle),
                     Divider(),
@@ -151,17 +151,18 @@ class _ProfileEX extends State<ProfileEX> {
                             "All the achievements you've accomplished in life. In one spot.",
                       ),
                     ),
-
                     RaisedButton(
-                    child: Text("Log out"),
+                    child: Text("Log Out"),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
                     color: Colors.red,
                     onPressed: () {
                       Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => Login());
-                    })
+                          MaterialPageRoute(builder: (context) => Login()));
+                    }
+                  )
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
