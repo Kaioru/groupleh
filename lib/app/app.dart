@@ -48,7 +48,7 @@ class _App extends State<App> with WidgetsBindingObserver, TickerProviderStateMi
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoopWheel(appState)));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => LoopWheel(appState)));
         },
         child: Icon(Icons.add),
       ),
@@ -89,37 +89,6 @@ class _App extends State<App> with WidgetsBindingObserver, TickerProviderStateMi
           },
           children: [Chat(appState), Project(), ProfileEX(appState.profile)],
         )
-        
-        
-        /* BottomNavigationBar(
-          currentIndex: _pageIndex,
-          onTap: (page) {
-            pageController.animateToPage(page,
-                duration: const Duration(milliseconds: 250),
-                curve: Curves.easeInOut);
-          },
-          items: [
-            BottomNavigationBarItem(
-                title: Text("Chat"), icon: Icon(Icons.chat)),
-            BottomNavigationBarItem(
-                title: Text("Project"), icon: Icon(Icons.book)),
-            BottomNavigationBarItem(
-                title: Text("Profile"), icon: Icon(Icons.person)),
-            BottomNavigationBarItem(
-                title: Text("Settings"), icon: Icon(Icons.settings)),
-          ],
-        ),*/
-       /* body: PageView(
-          physics: NeverScrollableScrollPhysics(),
-          controller: pageController,
-          onPageChanged: (index) {
-            setState(() {
-              this._pageIndex = index;
-            });
-          },
-          children: [Chat(appState), Project(), ProfileEX(appState.profile)],
-        )*/
-        );
+      );
   }
-
 }
