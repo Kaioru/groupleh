@@ -69,62 +69,70 @@ class _Login extends State<Login> {
         wardrobeBottom: document.data["wardrobe_bottom"]);
   }
 
-  Widget homePage() {
-    return Container(
+Widget homePage() {
+    return new Container(
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
         color: Color(0xFF303030),
         image: DecorationImage(
-          colorFilter: ColorFilter.mode(
+          colorFilter: new ColorFilter.mode(
               Colors.black.withOpacity(0.1), BlendMode.dstATop),
           image: AssetImage('assets/images/mountains.jpg'),
           fit: BoxFit.cover,
         ),
       ),
-      child: Column(
+      child: new Column(
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(top: 250.0),
             child: Center(
               child: Icon(
                 Icons.headset_mic,
-                color: Colors.white,
+                color: Color(0xFF00C6FF),
                 size: 40.0,
               ),
             ),
           ),
           Container(
             padding: EdgeInsets.only(top: 20.0),
-            child: Text(
-              "GroupLeh",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 48.0,
-              ),
+            child: new Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Material(
+                  type: MaterialType.transparency,
+                    child: Text(
+                    "GroupLeh",
+                    style: TextStyle(
+                      color: Color(0xFF00C6FF),
+                      fontSize: 20.0,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          Container(
+          new Container(
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 150.0),
             alignment: Alignment.center,
-            child: Row(
+            child: new Row(
               children: <Widget>[
-                Expanded(
-                  child: OutlineButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
+                new Expanded(
+                  child: new OutlineButton(
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0)),
                     color: Color(0xFF00C6FF),
                     highlightedBorderColor: Colors.white,
                     onPressed: () => gotoSignup(),
-                    child: Container(
+                    child: new Container(
                       padding: const EdgeInsets.symmetric(
                         vertical: 20.0,
                         horizontal: 20.0,
                       ),
-                      child: Row(
+                      child: new Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Expanded(
+                          new Expanded(
                             child: Text(
                               "SIGN UP",
                               textAlign: TextAlign.center,
@@ -141,27 +149,27 @@ class _Login extends State<Login> {
               ],
             ),
           ),
-          Container(
+          new Container(
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
             alignment: Alignment.center,
-            child: Row(
+            child: new Row(
               children: <Widget>[
-                Expanded(
-                  child: FlatButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
+                new Expanded(
+                  child: new FlatButton(
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0)),
                     color: Color(0xFF00C6FF),
                     onPressed: () => gotoLogin(),
-                    child: Container(
+                    child: new Container(
                       padding: const EdgeInsets.symmetric(
                         vertical: 20.0,
                         horizontal: 20.0,
                       ),
-                      child: Row(
+                      child: new Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Expanded(
+                          new Expanded(
                             child: Text(
                               "LOGIN",
                               textAlign: TextAlign.center,
@@ -182,6 +190,7 @@ class _Login extends State<Login> {
       ),
     );
   }
+
 
   Widget signUpPage() {
     return Scaffold(
@@ -485,7 +494,7 @@ class _Login extends State<Login> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Color(0xFF303030),
             image: DecorationImage(
               colorFilter: ColorFilter.mode(
                   Colors.black.withOpacity(0.05), BlendMode.dstATop),
@@ -501,7 +510,7 @@ class _Login extends State<Login> {
                 child: Center(
                   child: Icon(
                     Icons.headset_mic,
-                    color: Color(0xFF303030),
+                    color: Color(0xFF00C6FF),
                     size: 50.0,
                   ),
                 ),
@@ -515,7 +524,7 @@ class _Login extends State<Login> {
                         "EMAIL",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF303030),
+                          color: Color(0xFF00C6FF),
                           fontSize: 15.0,
                         ),
                       ),
@@ -576,7 +585,7 @@ class _Login extends State<Login> {
                         "PASSWORD",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF303030),
+                          color: Color(0xFF00C6FF),
                           fontSize: 15.0,
                         ),
                       ),
@@ -860,4 +869,4 @@ class _Login extends State<Login> {
           ],
         ));
   }
-}
+} 
