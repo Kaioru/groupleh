@@ -248,7 +248,7 @@ Widget homePage() {
                   border: Border(
                     bottom: BorderSide(
                         color: Color(0xFF00C6FF),
-                        width: 0.5,
+                        width: 1,
                         style: BorderStyle.solid),
                   ),
                 ),
@@ -271,7 +271,7 @@ Widget homePage() {
                           },
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'ayylmaowegotthisboys@gmail.com',
+                            hintText: 'example@hotmail.com',
                             hintStyle: TextStyle(color: Colors.grey),
                           ),
                           style: TextStyle(color: Colors.black),
@@ -309,11 +309,11 @@ Widget homePage() {
                   border: Border(
                     bottom: BorderSide(
                         color: Color(0xFF00C6FF),
-                        width: 0.5,
+                        width: 1,
                         style: BorderStyle.solid),
                   ),
                 ),
-                padding: const EdgeInsets.only(left: 0.0, right: 10.0),
+                padding: const EdgeInsets.only(left: 0.0, right: 10.0, bottom: 5.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -362,11 +362,11 @@ Widget homePage() {
                   border: Border(
                     bottom: BorderSide(
                         color: Color(0xFF00C6FF),
-                        width: 0.5,
+                        width: 1,
                         style: BorderStyle.solid),
                   ),
                 ),
-                padding: const EdgeInsets.only(left: 0.0, right: 10.0),
+                padding: const EdgeInsets.only(left: 0.0, right: 10.0, bottom: 5.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -419,7 +419,7 @@ Widget homePage() {
               Container(
                 width: MediaQuery.of(context).size.width,
                 margin:
-                    const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+                    const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
                 alignment: Alignment.center,
                 child: Row(
                   children: <Widget>[
@@ -540,8 +540,8 @@ Widget homePage() {
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
-                        color: Color(0xFF303030),
-                        width: 0.5,
+                        color: Color(0xFF00C6FF),
+                        width: 1,
                         style: BorderStyle.solid),
                   ),
                 ),
@@ -565,7 +565,7 @@ Widget homePage() {
                           style: TextStyle(color: Colors.black),
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'allahuakbar@gmail.com',
+                            hintText: 'example@hotmail.com',
                             hintStyle: TextStyle(color: Colors.grey),
                           ),
                           keyboardType: TextInputType.emailAddress),
@@ -601,12 +601,12 @@ Widget homePage() {
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
-                        color: Color(0xFF303030),
-                        width: 0.5,
+                        color: Color(0xFF00C6FF),
+                        width: 1,
                         style: BorderStyle.solid),
                   ),
                 ),
-                padding: const EdgeInsets.only(left: 0.0, right: 10.0),
+                padding: const EdgeInsets.only(left: 0.0, right: 10.0, bottom: 10.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
