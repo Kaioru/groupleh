@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/app_state.dart';
+import 'package:groupleh/app/fabappbar.dart';
 import 'package:groupleh/app/chat/chat.dart';
 import 'package:groupleh/app/profile/profile.dart';
 import 'package:groupleh/app/project/project.dart';
@@ -13,9 +14,12 @@ class App extends StatefulWidget {
   State<StatefulWidget> createState() => _App(appState);
 }
 
-class _App extends State<App> with WidgetsBindingObserver {
-  PageController pageController;
+class _App extends State<App> with WidgetsBindingObserver, TickerProviderStateMixin {
+
   int _pageIndex = 0;
+
+  PageController pageController;
+  
 
   final AppState appState;
 
@@ -39,7 +43,13 @@ class _App extends State<App> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         appBar: AppBar(
           backgroundColor: Color(0xFF00C6FF),
           title: Text("GroupLeh",
@@ -49,7 +59,36 @@ class _App extends State<App> with WidgetsBindingObserver {
                   fontWeight: FontWeight.w600,
                   fontSize: 36.0)),
         ),
-        bottomNavigationBar: BottomNavigationBar(
+        bottomNavigationBar: FABBottomAppBar(
+                  centerItemText: 'Matchmake',
+        color: Color(0xFFFFFFFF),
+        selectedColor: Color(0xFF00C6FF),
+        notchedShape: CircularNotchedRectangle(),
+          onTabSelected: (page) {
+            pageController.animateToPage(page,
+                duration: const Duration(milliseconds: 250),
+                curve: Curves.easeInOut);
+                },
+          items: [
+            FABBottomAppBarItem(iconData: Icons.chat, text: 'Chat'),
+            FABBottomAppBarItem(iconData: Icons.book, text: 'Project'),
+            FABBottomAppBarItem(iconData: Icons.person, text: 'Profile'),
+            FABBottomAppBarItem(iconData: Icons.settings, text: 'Settings'),
+          ],
+        ),
+        body: PageView(
+          physics: NeverScrollableScrollPhysics(),
+          controller: pageController,
+          onPageChanged: (index) {
+            setState(() {
+              this._pageIndex = index;
+            });
+          },
+          children: [Chat(appState), Project(), ProfileEX(appState.profile)],
+        )
+        
+        
+        /* BottomNavigationBar(
           currentIndex: _pageIndex,
           onTap: (page) {
             pageController.animateToPage(page,
@@ -66,8 +105,8 @@ class _App extends State<App> with WidgetsBindingObserver {
             BottomNavigationBarItem(
                 title: Text("Settings"), icon: Icon(Icons.settings)),
           ],
-        ),
-        body: PageView(
+        ),*/
+       /* body: PageView(
           physics: NeverScrollableScrollPhysics(),
           controller: pageController,
           onPageChanged: (index) {
@@ -76,6 +115,8 @@ class _App extends State<App> with WidgetsBindingObserver {
             });
           },
           children: [Chat(appState), Project(), ProfileEX(appState.profile)],
-        ));
+        )*/
+        );
   }
+
 }
