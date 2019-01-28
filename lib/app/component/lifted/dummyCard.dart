@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:groupleh/core/project.dart';
 
 Positioned cardDemoDummy(
-    DecorationImage img,
+    Project project,
     double bottom,
     double right,
     double left,
@@ -12,6 +13,10 @@ Positioned cardDemoDummy(
   Size screenSize = MediaQuery.of(context).size;
   // Size screenSize=(500.0,200.0);
   // print("dummyCard");
+  var img = DecorationImage(
+    image: NetworkImage(project.image),
+    fit: BoxFit.cover,
+  );
   return new Positioned(
     bottom: 100.0 + bottom,
     // right: flag == 0 ? right != 0.0 ? right : null : null,

@@ -1,10 +1,14 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/component/lifted/detail.dart';
+import 'package:groupleh/core/profile.dart';
+import 'package:groupleh/core/project.dart';
 
 Positioned cardDemo(
-    DecorationImage img,
+    Profile profile,
+    Project project,
     double bottom,
     double right,
     double left,
@@ -19,6 +23,10 @@ Positioned cardDemo(
     Function swipeLeft) {
   Size screenSize = MediaQuery.of(context).size;
   // print("Card");
+  var img = DecorationImage(
+    image: NetworkImage(project.image),
+    fit: BoxFit.cover,
+  );
   return new Positioned(
     bottom: 100.0 + bottom,
     right: flag == 0 ? right != 0.0 ? right : null : null,
@@ -37,9 +45,15 @@ Positioned cardDemo(
       onDismissed: (DismissDirection direction) {
 //          _swipeAnimation();
         if (direction == DismissDirection.endToStart)
-          dismissImg(img);
+          dismissImg(project);
         else
-          addImg(img);
+          addImg(project);
+
+        project.applicants.add(profile.id);
+        Firestore.instance
+            .collection("projects")
+            .document(project.id)
+            .updateData({"applicants": project.applicants});
       },
       child: new Transform(
         alignment: flag == 0 ? Alignment.bottomRight : Alignment.bottomLeft,
@@ -58,8 +72,8 @@ Positioned cardDemo(
                 //     new MaterialPageRoute(
                 //         builder: (context) => new DetailPage(type: img)));
                 Navigator.of(context).push(new PageRouteBuilder(
-                      pageBuilder: (_, __, ___) => new DetailPage(type: img),
-                    ));
+                  pageBuilder: (_, __, ___) => new DetailPage(project),
+                ));
               },
               child: new Card(
                 color: Colors.transparent,
@@ -113,9 +127,15 @@ Positioned cardDemo(
                                   )),
                               new FlatButton(
                                   padding: new EdgeInsets.all(0.0),
-                                  onPressed: () {
+                                  onPressed: (() async {
                                     swipeRight();
-                                  },
+                                    project.applicants.add(profile.id);
+                                    Firestore.instance
+                                        .collection("projects")
+                                        .document(project.id)
+                                        .updateData(
+                                            {"applicants": project.applicants});
+                                  }),
                                   child: new Container(
                                     height: 60.0,
                                     width: 130.0,
@@ -126,7 +146,7 @@ Positioned cardDemo(
                                           new BorderRadius.circular(60.0),
                                     ),
                                     child: new Text(
-                                      "I'M IN",
+                                      "APPLY",
                                       style: new TextStyle(color: Colors.white),
                                     ),
                                   ))

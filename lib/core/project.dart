@@ -1,13 +1,23 @@
-import 'package:groupleh/core/profile.dart';
+import 'package:flutter/widgets.dart';
 
 class Project {
+  final String id;
   final String name;
   final String desc;
+  final String image;
   final List<String> tags;
   final List<String> applicants;
 
-  final Profile leader;
-  final List<Profile> members;
+  final String leader;
+  final List<String> members;
 
-  Project({this.name, this.desc, this.tags, this.applicants, this.leader, this.members});
+  Project(
+      {this.id,
+      this.name,
+      this.desc,
+      this.image,
+      this.tags,
+      this.applicants,
+      this.leader,
+      this.members});
 }

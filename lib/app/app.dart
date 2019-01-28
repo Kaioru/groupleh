@@ -90,7 +90,7 @@ class _App extends State<App> with WidgetsBindingObserver, TickerProviderStateMi
               this._pageIndex = index;
             });
           },
-          children: [Chat(appState), Project(), ProfileEX(appState.profile)],
+          children: [Chat(appState), ProjectEX(appState.profile), ProfileEX(appState.profile)],
         )
       );
   }
