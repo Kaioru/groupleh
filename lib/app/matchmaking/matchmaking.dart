@@ -17,22 +17,29 @@ class _LoopWheel extends State<LoopWheel> {
   Widget build(BuildContext context) {
     final _style = Theme.of(context).textTheme.display2;  
     return new Scaffold(
-      body: Center(
-        child:Container(
-          height: _style.fontSize,
-            child:Row(
-              children: <Widget>[
-                _scrollLearningStyle(),
-                _scrollNumberOfPeople(),
-                _scrollTimeOfDay(),
-            ],
+      body: Column(
+        children: <Widget>[
+          Container(
+            height: _style.fontSize,
+              child:Row(
+                children: <Widget>[
+                  _scrollLearningStyle(),
+                  _scrollNumberOfPeople(),
+                  _scrollTimeOfDay(),
+              ],
+            ),
           ),
-        ),
-      ),
+          ButtonBar(
+            children: <Widget>[
+              RaisedButton(onPressed: (){ Navigator.pop(context);},)
+                
+          ],)
+        ],)
     );
   }
 
   Widget _scrollLearningStyle(){
+    final _style = Theme.of(context).textTheme.display2; 
     return Expanded(
       flex:4,
       child: Container(
@@ -52,6 +59,7 @@ class _LoopWheel extends State<LoopWheel> {
   }
 
   Widget _scrollNumberOfPeople(){
+    final _style = Theme.of(context).textTheme.display2; 
     return Expanded(
       flex:2,
       child: Container(
@@ -71,6 +79,7 @@ class _LoopWheel extends State<LoopWheel> {
   }
 
   Widget _scrollTimeOfDay(){
+    final _style = Theme.of(context).textTheme.display2; 
     return Expanded(        
       flex:4,
       child: Container(
