@@ -73,22 +73,8 @@ class _Matchmaking extends State<Matchmaking> {
               ),
               Expanded(
                 child: Align(
-                  alignment: FractionalOffset(1, 0.5),
-                  child: ButtonBar(
-                    alignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      RaisedButton(
-                        child: Icon(Icons.remove_circle, color: Color(0xFF303030)),
-                        onPressed: (){ Navigator.pop(context);},
-                        color: Colors.white,
-                      ),
-                      RaisedButton(
-                        child: Icon(Icons.check_circle, color: Color(0xFF303030)),
-                        onPressed: (){},
-                        color: Color(0xFF00C6FF)
-                      ),
-                    ]
-                  ),
+                  alignment: FractionalOffset(1, 1),
+                  child: buildPlatformSpecific()
                 ),
               ),
             ],
@@ -96,6 +82,47 @@ class _Matchmaking extends State<Matchmaking> {
         ),
       ),
     );
+  }
+
+  Widget buildPlatformSpecific(){
+    if(Theme.of(context).platform == TargetPlatform.iOS){
+      return ButtonBar(
+        alignment: MainAxisAlignment.center,
+        children: <Widget>[
+          SizedBox( 
+            width: MediaQuery.of(context).size.width / 3,
+            child: RaisedButton(
+              child: Icon(Icons.remove_circle, color: Color(0xFF303030)),
+              onPressed: (){ Navigator.pop(context);},
+              color: Colors.white,
+            ),
+          ),
+          SizedBox(
+            width:MediaQuery.of(context).size.width / 3,
+            child: RaisedButton(
+              child: Icon(Icons.check_circle, color: Color(0xFF303030)),
+              onPressed: (){},
+              color: Color(0xFF00C6FF)
+            ),
+          ),
+        ]
+      );
+    }
+    else{
+      return ButtonBar(
+        alignment: MainAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(
+            width:2 * (MediaQuery.of(context).size.width / 3),
+            child: RaisedButton(
+              child: Icon(Icons.check_circle, color: Color(0xFF303030)),
+              onPressed: (){},
+              color: Color(0xFF00C6FF)
+            ),
+          ),
+        ]
+      );
+    }
   }
 
   Widget _scrollLearningStyle(){
