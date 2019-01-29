@@ -28,9 +28,9 @@ class _ProfileUpdate extends State<ProfileUpdate> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
-        appBar: AppBar(),
         body: SafeArea(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,//either this or just put it to .start, i can't tell which is better and i don't know how to add padding
             children: <Widget>[
               Text("Edit Profile",
                   style:
@@ -47,7 +47,7 @@ class _ProfileUpdate extends State<ProfileUpdate> {
                       ),
                     ),
                     new ListTile(
-                      leading: const Icon(Icons.book),
+                      leading: const Icon(Icons.cloud),
                       title: new TextField(
                         decoration: new InputDecoration(
                           hintText: "Overview",
@@ -71,7 +71,13 @@ class _ProfileUpdate extends State<ProfileUpdate> {
                       ),
                     ),
                     RaisedButton(
-                      child: Text("Change Background Picture"),
+                      child: Text("Change Background Image"),
+                      color: Colors.deepOrangeAccent,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 15.0,
+                        horizontal: 40.0,
+                      ),
                       onPressed: () async {
                         // var file = await ImagePicker.pickImage(
                         //     source: ImageSource.gallery);
