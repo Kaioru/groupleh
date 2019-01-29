@@ -68,10 +68,10 @@ class _ProfileEX extends State<ProfileEX> {
                   icon: Icon(Icons.edit),
                   iconSize: 30.0,
                   color: Colors.white,
-                  // onPressed: () {
+                   onPressed: () {
                   //   Navigator.pushReplacement(context,
                   //       MaterialPageRoute(builder: (context) => ProfileUpdate()));
-                  // }
+                   }
               )
             ],
           )
@@ -169,19 +169,6 @@ class _ProfileEX extends State<ProfileEX> {
                             "All the achievements you've accomplished in life. In one spot.",
                       ),
                     ),
-                    RaisedButton(
-                    child: Text("Log Out"),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-                    color: Colors.red,
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10.0,
-                        horizontal: 80.0,
-                      ),
-                    onPressed: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => Login()));
-                    }
-                  )
                   ],
                 ),
               ),
@@ -192,8 +179,36 @@ class _ProfileEX extends State<ProfileEX> {
     );
   }
 
+bool darkTheme = false;
   @override
   Widget build(BuildContext context) {
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("App"),
+        ),
+        body: Center(),
+        drawer: Drawer(
+          child: ListView(
+            children: <Widget>[
+              ListTile(
+                title: Text("Dark Theme"),
+                trailing: Switch(
+                  value: darkTheme,
+                  onChanged: (changed) {
+                    setState(() {
+                      darkTheme = changed;
+                    });
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+      theme: darkTheme ? ThemeData.dark() : ThemeData.light(),
+    );
     return Container(
       constraints: BoxConstraints.expand(),
       child: Stack(

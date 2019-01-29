@@ -24,9 +24,13 @@ class _ProfileUpdate extends State<ProfileUpdate> {
 
   _ProfileUpdate(this.state);
 
+bool darkTheme = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Scaffold(
       resizeToAvoidBottomPadding: false,
         body: SafeArea(
           child: Column(
@@ -71,37 +75,90 @@ class _ProfileUpdate extends State<ProfileUpdate> {
                       ),
                     ),
                     RaisedButton(
-                      child: Text("Change Background Image"),
-                      color: Colors.deepOrangeAccent,
+                      child: Text("Save"),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+                      color: Colors.lightGreen,
                       padding: const EdgeInsets.symmetric(
-                        vertical: 15.0,
-                        horizontal: 40.0,
-                      ),
-                      onPressed: () async {
-                        // var file = await ImagePicker.pickImage(
-                        //     source: ImageSource.gallery);
-                        // StorageReference ref = FirebaseStorage.instance
-                        //     .ref()
-                        //     .child(state.user.uid)
-                        //     .child("image.jpg");
-                        // StorageUploadTask uploadTask = ref.putFile(file);
-                        // var info = UserUpdateInfo();
-
-                        // info.photoUrl = await (await uploadTask.onComplete)
-                        //     .ref
-                        //     .getDownloadURL();
-                        // await state.user.updateProfile(info);
-                        // state.user = await _auth.currentUser();
-                        // Navigator.pop(context);
-                      },
+                          vertical: 10.0,
+                          horizontal: 80.0,
+                        ),
+                      onPressed: () {
+                        // Navigator.pushReplacement(context,
+                        //     MaterialPageRoute(builder: (context) => Login()));
+                      }
                     ),
+                    new ListTile(
+                      title: Text("Dark Theme"),
+                      trailing: Switch(
+                        value: darkTheme,
+                        onChanged: (changed) {
+                          setState(() {
+                            darkTheme = changed;
+                          });
+                        },
+                      ),
+                    )
                   ],
                 ),
               )
             ],
           ),
         )
-      );
+      ),
+      ),
+      theme: darkTheme ? ThemeData.dark() : ThemeData.light(),
+    );
+    // return Scaffold(
+    //   resizeToAvoidBottomPadding: false,
+    //     body: SafeArea(
+    //       child: Column(
+    //         mainAxisAlignment: MainAxisAlignment.center,//either this or just put it to .start, i can't tell which is better and i don't know how to add padding
+    //         children: <Widget>[
+    //           Text("Edit Profile",
+    //               style:
+    //                   TextStyle(fontSize: 38.0, fontWeight: FontWeight.bold)),
+    //           Form(
+    //             child: new Column(
+    //               children: <Widget>[
+    //                 new ListTile(
+    //                   leading: const Icon(Icons.person),
+    //                   title: new TextField(
+    //                     decoration: new InputDecoration(
+    //                       hintText: "Display Name",
+    //                     ),
+    //                   ),
+    //                 ),
+    //                 new ListTile(
+    //                   leading: const Icon(Icons.cloud),
+    //                   title: new TextField(
+    //                     decoration: new InputDecoration(
+    //                       hintText: "Overview",
+    //                     ),
+    //                   ),
+    //                 ),
+    //                 new ListTile(
+    //                   leading: const Icon(Icons.lock),
+    //                   title: new TextField(
+    //                     decoration: new InputDecoration(
+    //                       hintText: "Password",
+    //                     ),
+    //                   ),
+    //                 ),
+    //                 new ListTile(
+    //                   leading: const Icon(Icons.phone),
+    //                   title: new TextField(
+    //                     decoration: new InputDecoration(
+    //                       hintText: "Phone",
+    //                     ),
+    //                   ),
+    //                 ),
+    //               ],
+    //             ),
+    //           )
+    //         ],
+    //       ),
+    //     )
+    //   );
   }
 }
+

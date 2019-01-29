@@ -3,6 +3,7 @@ import 'package:groupleh/app/app_state.dart';
 import 'package:groupleh/app/chat/chat.dart';
 import 'package:groupleh/app/profile/profile.dart';
 import 'package:groupleh/app/project/project.dart';
+import 'package:groupleh/app/settings/settings.dart';
 
 class App extends StatefulWidget {
   final AppState appState;
@@ -75,7 +76,7 @@ class _App extends State<App> with WidgetsBindingObserver {
               this._pageIndex = index;
             });
           },
-          children: [Chat(appState), ProfileUpdate(appState), ProfileEX(appState.profile)],
+          children: [Chat(appState), ProfileUpdate(appState), ProfileEX(appState.profile), Settings(appState)],
         ));
   }
 }
