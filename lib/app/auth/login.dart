@@ -439,7 +439,10 @@ Widget homePage() {
                                 'name': user.email,
                                 'desc': 'about me, myself and i!',
                                 'image': '',
-                                'coins': 0
+                                'coins': 300,
+                                'wardrobe_hair': 'hair_quiff_pink',
+                                'wardrobe_top': 'top_layered_shirt_green',
+                                'wardrobe_bottom': 'bottom_elven_pants',
                               });
 
                               var profile = await _createProfile(user);

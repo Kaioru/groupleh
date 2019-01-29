@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/component/gl_row.dart';
+import 'package:groupleh/app/profile/project-approve.dart';
 import 'package:groupleh/app/profile/project-chat.dart';
 import 'package:groupleh/app/profile/project-edit.dart';
 import 'package:groupleh/core/profile.dart';
@@ -56,6 +57,54 @@ class _ProjectDetail extends State<ProjectDetail> {
         fontSize: 9.0,
         fontWeight: FontWeight.w400);
     final _overviewTitle = "Overview".toUpperCase();
+    var dab = <Widget>[];
+
+    dab.addAll([
+      Text("Actions".toUpperCase(), style: headerTextStyle),
+      Divider(),
+      GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ProjectChat(profile, project)));
+        },
+        child: GLRow(
+          title: "Chat",
+          desc: "Chat with your mates",
+        ),
+      ),
+    ]);
+
+    if (profile.id == project.leader) {
+      dab.addAll([
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ProjectEdit(profile, project)));
+          },
+          child: GLRow(
+            title: "Edit",
+            desc: "Edit the project details",
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ProjectApprove(profile, project)));
+          },
+          child: GLRow(
+            title: "Approve",
+            desc: "Approve the project applicants",
+          ),
+        ),
+      ]);
+    }
+
     return ListView(
       padding: EdgeInsets.fromLTRB(0.0, 72.0, 0.0, 32.0),
       children: <Widget>[
@@ -80,43 +129,7 @@ class _ProjectDetail extends State<ProjectDetail> {
                 padding: EdgeInsets.only(top: 32.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text("Actions".toUpperCase(), style: headerTextStyle),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    ProjectChat(profile, project)));
-                      },
-                      child: GLRow(
-                        title: "Chat",
-                        desc: "Chat with your mates",
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    ProjectEdit(profile, project)));
-                      },
-                      child: GLRow(
-                        title: "Edit",
-                        desc: "Edit the project details",
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: GLRow(
-                        title: "Approve",
-                        desc: "Approve the project applicants",
-                      ),
-                    ),
-                  ],
+                  children: dab,
                 ),
               )
             ],
