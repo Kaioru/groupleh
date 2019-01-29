@@ -59,6 +59,7 @@ class Projects extends StatelessWidget {
                     image: snapshot.data["image"],
                     name: snapshot.data["name"],
                     desc: snapshot.data["desc"],
+                    desc2: snapshot.data["desc2"],
                     leader: snapshot.data["leader"],
                     members: members,
                     applicants: applicants));

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:groupleh/app/app_state.dart';
 import 'package:groupleh/app/chat/chat-room.dart';
 import 'package:groupleh/app/component/gl_row.dart';
+import 'package:groupleh/app/profile/project-detail.dart';
 import 'package:groupleh/core/group.dart';
 import 'package:groupleh/core/profile.dart';
 import 'package:groupleh/core/project.dart';
@@ -31,7 +32,12 @@ class ProjectListing extends StatelessWidget {
     }
 
     return GestureDetector(
-      onTap: () => {},
+      onTap: () {
+        if (project.leader == profile.id) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => ProjectDetail(profile, project)));
+        }
+      },
       child: GLRow(
         image: Image.network(project.image),
         title: project.name,

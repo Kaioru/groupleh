@@ -2,8 +2,9 @@ import 'package:flutter/widgets.dart';
 
 class Project {
   final String id;
-  final String name;
-  final String desc;
+  String name;
+  String desc;
+  String desc2;
   final String image;
   final List<String> tags;
   final List<String> applicants;
@@ -15,6 +16,7 @@ class Project {
       {this.id,
       this.name,
       this.desc,
+      this.desc2,
       this.image,
       this.tags,
       this.applicants,

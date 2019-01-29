@@ -37,7 +37,7 @@ class GLRow extends StatelessWidget {
         width: 92.0,
         child: CircleAvatar(
           backgroundColor: Colors.transparent,
-          backgroundImage: image.image,
+          backgroundImage: image == null ? null : image.image,
         ),
       ),
     );
