@@ -5,6 +5,8 @@ import 'package:groupleh/app/profile/wardrobe.dart';
 import 'package:groupleh/core/item_directory.dart';
 import 'package:groupleh/core/profile.dart';
 import 'package:groupleh/app/auth/login.dart';
+import 'package:groupleh/app/chat/chat.dart';
+import 'package:groupleh/app/project/project.dart';
 
 class ProfileEX extends StatefulWidget {
   final Profile profile;
@@ -56,8 +58,24 @@ class _ProfileEX extends State<ProfileEX> {
         fontWeight: FontWeight.w400);
     final _overviewTitle = "Overview".toUpperCase();
     return ListView(
-      padding: EdgeInsets.fromLTRB(0.0, 72.0, 0.0, 32.0),
+      padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 32.0),
       children: <Widget>[
+      Container(
+          child:Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children:<Widget>[ 
+              IconButton(
+                  icon: Icon(Icons.edit),
+                  iconSize: 30.0,
+                  color: Colors.white,
+                  // onPressed: () {
+                  //   Navigator.pushReplacement(context,
+                  //       MaterialPageRoute(builder: (context) => ProfileUpdate()));
+                  // }
+              )
+            ],
+          )
+        ),
         GLRow(
             horizontal: false,
             image: Image.network(profile.image),
@@ -189,3 +207,4 @@ class _ProfileEX extends State<ProfileEX> {
     );
   }
 }
+

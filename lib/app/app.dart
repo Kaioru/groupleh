@@ -75,7 +75,7 @@ class _App extends State<App> with WidgetsBindingObserver {
               this._pageIndex = index;
             });
           },
-          children: [Chat(appState), Project(), ProfileEX(appState.profile)],
+          children: [Chat(appState), ProfileUpdate(appState), ProfileEX(appState.profile)],
         ));
   }
 }
