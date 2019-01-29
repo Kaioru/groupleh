@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firestore_ui/animated_firestore_list.dart';
 import 'package:flutter/material.dart';
+import 'package:groupleh/app/profile/project-add.dart';
 import 'package:groupleh/app/profile/project-listing.dart';
 import 'package:groupleh/core/profile.dart';
 import 'package:groupleh/core/project.dart';
@@ -13,7 +14,8 @@ class Projects extends StatelessWidget {
 
   Projects(this.profile) {
     reference = Firestore.instance.collection('projects').reference();
-    snapshots = reference.where("members", arrayContains: profile.id).snapshots();
+    snapshots =
+        reference.where("members", arrayContains: profile.id).snapshots();
   }
 
   @override
@@ -31,6 +33,13 @@ class Projects extends StatelessWidget {
             ],
           ),
         )),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ProjectAdd(profile)));
+          },
+          child: Icon(Icons.add),
+        ),
         body: FirestoreAnimatedList(
           emptyChild: Container(),
           query: snapshots,

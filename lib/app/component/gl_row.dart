@@ -35,9 +35,9 @@ class GLRow extends StatelessWidget {
       child: SizedBox(
         height: 92.0,
         width: 92.0,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(50.0),
-          child: image,
+        child: CircleAvatar(
+          backgroundColor: Colors.transparent,
+          backgroundImage: image.image,
         ),
       ),
     );
