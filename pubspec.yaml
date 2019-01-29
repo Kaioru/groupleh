@@ -25,7 +25,7 @@ dependencies:
   firestore_ui:
   firebase_storage:
   image: "^2.0.4"
-  image_picker: ^0.5.0
+  image_picker: ^0.4.12+1
 
 dev_dependencies:
   flutter_test:
