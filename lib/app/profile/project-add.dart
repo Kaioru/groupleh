@@ -44,8 +44,7 @@ class _ProjectAdd extends State<ProjectAdd> {
       body: setting
           ? Container(
               child: Center(
-                child: Text("Creating project..",
-                    style: headerTextStyle),
+                child: Text("Creating project..", style: headerTextStyle),
               ),
             )
           : Container(

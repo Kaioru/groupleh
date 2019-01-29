@@ -15,6 +15,21 @@ class ProjectListing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var poop = <Widget>[
+      Icon(Icons.people, size: 12.0),
+      Container(width: 8.0),
+      Text(project.members.length.toString()),
+      SizedBox(width: 12.0),
+      Icon(Icons.check, size: 12.0),
+      Container(width: 8.0),
+      Text(project.applicants.length.toString())
+    ];
+
+    if (project.leader == profile.id) {
+      poop.add(SizedBox(width: 12.0));
+      poop.add(Icon(Icons.star, size: 12.0));
+    }
+
     return GestureDetector(
       onTap: () => {},
       child: GLRow(
@@ -22,15 +37,7 @@ class ProjectListing extends StatelessWidget {
         title: project.name,
         desc: project.desc,
         more: Row(
-          children: <Widget>[
-            Icon(Icons.people, size: 12.0),
-            Container(width: 8.0),
-            Text(project.members.length.toString()),
-            SizedBox(width: 12.0),
-            Icon(Icons.check, size: 12.0),
-            Container(width: 8.0),
-            Text(project.applicants.length.toString())
-          ],
+          children: poop,
         ),
       ),
     );
