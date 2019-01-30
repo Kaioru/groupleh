@@ -23,6 +23,7 @@ class ProjectEX extends StatelessWidget {
                 id: d.documentID,
                 name: d.data["name"],
                 desc: d.data["desc"],
+                desc2: d.data["desc2"],
                 image: d.data["image"],
                 applicants: List.from(d.data['applicants'])));
           }

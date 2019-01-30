@@ -143,7 +143,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
-                                  new Text(project.desc)
+                                  new Text(project.desc2)
                                 ],
                               ),
                             ),
