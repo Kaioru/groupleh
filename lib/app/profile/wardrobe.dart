@@ -23,15 +23,6 @@ class Wardrobe extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = const TextStyle(fontFamily: 'Poppins');
-    final headerTextStyle = textStyle.copyWith(
-        color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w600);
-    final headerTextStyle2 = textStyle.copyWith(
-        color: Colors.white, fontSize: 32.0, fontWeight: FontWeight.w600);
-    final regularTextStyle = textStyle.copyWith(
-        color: const Color(0xffb6b2df),
-        fontSize: 9.0,
-        fontWeight: FontWeight.w400);
     return Scaffold(
         appBar: AppBar(
             title: ListTile(

@@ -1,5 +1,3 @@
-import 'package:flutter/widgets.dart';
-
 class Project {
   final String id;
   String name;

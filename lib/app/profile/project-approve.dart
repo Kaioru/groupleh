@@ -29,10 +29,6 @@ class _ProjectApprove extends State<ProjectApprove> {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = const TextStyle(fontFamily: 'Poppins');
-    final headerTextStyle = textStyle.copyWith(
-        color: Colors.white, fontSize: 32.0, fontWeight: FontWeight.w600);
-
     return Scaffold(
         appBar: AppBar(
             title: ListTile(

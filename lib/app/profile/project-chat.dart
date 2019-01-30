@@ -2,8 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firestore_ui/firestore_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:groupleh/core/group.dart';
-import 'package:groupleh/app/app_state.dart';
 import 'package:groupleh/core/profile.dart';
 import 'package:groupleh/core/project.dart';
 
