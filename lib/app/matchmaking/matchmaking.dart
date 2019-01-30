@@ -33,11 +33,10 @@ class _Matchmaking extends State<Matchmaking> {
     final _style = Theme.of(context).textTheme.display2;  
     return Scaffold(
       body: Center(
-        child: Container(
+        child: SafeArea(
           child: Column(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.only(top:40.0),
                 child: Column(
                   children: <Widget>[
                     Text("Matchmaking", 
@@ -92,7 +91,7 @@ class _Matchmaking extends State<Matchmaking> {
     final _style = Theme.of(context).textTheme.display2;  
     return Scaffold(
       body: Center(
-        child: Container(
+        child: SafeArea(
           child: Column(
             children: <Widget>[
               Container(
@@ -170,7 +169,7 @@ class _Matchmaking extends State<Matchmaking> {
     final _style = Theme.of(context).textTheme.display2;  
     return Scaffold(
       body: Center(
-        child: Container(
+        child: SafeArea(
           child: Column(
             children: <Widget>[
               Container(
