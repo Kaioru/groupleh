@@ -234,7 +234,9 @@ class _Matchmaking extends State<Matchmaking> {
                       child: RaisedButton(
                           child: Icon(Icons.check, color: Color(0xFF303030)),
                           // insert firebase configs here
-                          onPressed: () {},
+                          onPressed: () {
+                            showAlert(context);
+                          },
                           color: Color(0xFF00C6FF)),
                     ),
                   ]),
@@ -408,6 +410,25 @@ class _Matchmaking extends State<Matchmaking> {
       2,
       duration: Duration(milliseconds: 200),
       curve: Curves.fastOutSlowIn,
+    );
+  }
+
+  void showAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+            title: Text("Success!"),
+            content: Text("Hang on while we find you the perfect group"),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Ok"),
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          ),
     );
   }
 }

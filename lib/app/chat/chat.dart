@@ -31,7 +31,23 @@ class _Chat extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return FirestoreAnimatedList(
-      emptyChild: Container(),
+      emptyChild: Column(children:<Widget>[Expanded(child: Align(
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+        Text("Looks like you don't have any chats :(",
+          style: const TextStyle(
+              color: Colors.grey,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w600,
+              fontSize: 20.0)),
+        Text("Find a group by tapping the search icon!",
+            style: const TextStyle( 
+                color: Colors.grey,
+                fontFamily: 'Poppins',
+                fontSize: 12.0))
+      ],)))]),
       query: snapshots,
       itemBuilder: (
         BuildContext context,

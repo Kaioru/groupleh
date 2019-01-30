@@ -30,7 +30,7 @@ class ProjectEX extends StatelessWidget {
         });
         return result;
       }), builder: (context, snapshot) {
-        if (!snapshot.hasData) return CircularProgressIndicator();
+        if (!snapshot.hasData) return Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[CircularProgressIndicator()],);
         return CardDemo(profile, snapshot.data);
       }),
     );
