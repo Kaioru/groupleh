@@ -167,12 +167,12 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                       backCardWidth, 0.0, 0.0, context);
                 }
               }).toList())
-          : new Text("That's it!",
-              style: new TextStyle(
-                  color: ThemeState.theme == ThemeData.dark()
-                      ? Color(0xFFFFFFFF)
-                      : Colors.black,
-                  fontSize: 50.0)),
+          : Text("That's all folks!",
+              style: const TextStyle(
+                  color: Colors.grey,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20.0)),
     );
   }
 }
