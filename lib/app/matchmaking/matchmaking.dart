@@ -37,6 +37,7 @@ class _Matchmaking extends State<Matchmaking> {
           child: Column(
             children: <Widget>[
               Container(
+                padding: EdgeInsets.only(top: 40.0),
                 child: Column(
                   children: <Widget>[
                     Text("Matchmaking",
