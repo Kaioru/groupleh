@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:flutter/services.dart';
 import 'package:groupleh/core/item.dart';
 import 'package:groupleh/core/item_type.dart';
-import 'package:groupleh/core/profile.dart';
 import 'package:image/image.dart';
 
 class ItemDirectory {

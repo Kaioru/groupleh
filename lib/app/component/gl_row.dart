@@ -26,7 +26,6 @@ class GLRow extends StatelessWidget {
         color: const Color(0xffb6b2df),
         fontSize: 9.0,
         fontWeight: FontWeight.w400);
-    TextStyle subHeaderTextStyle = regularTextStyle.copyWith(fontSize: 12.0);
 
     final planetThumbnail = Container(
       margin: EdgeInsets.symmetric(vertical: 16.0),
@@ -41,16 +40,6 @@ class GLRow extends StatelessWidget {
         ),
       ),
     );
-
-    Widget _planetValue({String value, String image}) {
-      return Container(
-        child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-          Image.asset(image, height: 12.0),
-          Container(width: 8.0),
-          Text(value, style: regularTextStyle),
-        ]),
-      );
-    }
 
     final planetCardContenChildren = <Widget>[
       Container(height: 4.0),

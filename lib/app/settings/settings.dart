@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:groupleh/app/component/gl_row.dart';
 import 'package:groupleh/app/component/gl_row2.dart';
-import 'package:groupleh/app/component/lifted/index.dart';
-import 'package:flutter/material.dart';
 import 'package:groupleh/app/app_state.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:groupleh/app/auth/login.dart';
 import 'package:groupleh/app/settings/about.dart';
 import 'package:groupleh/app/settings/profile-edit.dart';
@@ -22,7 +16,6 @@ class Settings extends StatefulWidget {
 
 class _Settings extends State<Settings> {
   final AppState state;
-  final _auth = FirebaseAuth.instance;
 
   _Settings(this.state);
 

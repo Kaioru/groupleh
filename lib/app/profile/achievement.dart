@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firestore_ui/animated_firestore_list.dart';
 import 'package:flutter/material.dart';
-import 'package:groupleh/app/app_state.dart';
 import 'package:groupleh/app/profile/achievement-listing.dart';
 import 'package:groupleh/core/achievement.dart';
 import 'package:groupleh/core/profile.dart';
