@@ -8,6 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:groupleh/app/auth/login.dart';
+import 'package:groupleh/app/settings/about.dart';
 
 class Settings extends StatefulWidget {
   final AppState state;
@@ -46,7 +47,10 @@ bool _value = false;
                         onChanged: (bool value){_onChanged(value);},
                     ),
                     GestureDetector(
-                      onTap: (){},
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => About())),
                       child: GLRow2(
                         title: "About Us",
                         desc: "GroupLeh is an app made for the truly intellectual beings.",
