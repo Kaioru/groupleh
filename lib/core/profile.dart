@@ -1,8 +1,8 @@
 class Profile {
   final String id;
 
-  final String name;
-  final String desc;
+  String name;
+  String desc;
   int coins;
   final int achievementCount;
   final int wardrobeCount;

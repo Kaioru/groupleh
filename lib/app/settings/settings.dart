@@ -9,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:groupleh/app/auth/login.dart';
 import 'package:groupleh/app/settings/about.dart';
+import 'package:groupleh/app/settings/profile-edit.dart';
 
 class Settings extends StatefulWidget {
   final AppState state;
@@ -65,7 +66,8 @@ class _Settings extends State<Settings> {
           ),
         ),
         GestureDetector(
-          onTap: () {},
+          onTap: () => Navigator.push(
+              context, MaterialPageRoute(builder: (context) => ProfileEdit(state.profile))),
           child: GLRow2(
             title: "Edit Profile",
             desc: "Edit the profile tings yaknow.",
