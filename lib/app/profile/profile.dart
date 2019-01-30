@@ -69,8 +69,8 @@ class _ProfileEX extends State<ProfileEX> {
                   iconSize: 30.0,
                   color: Colors.white,
                    onPressed: () {
-                  //   Navigator.pushReplacement(context,
-                  //       MaterialPageRoute(builder: (context) => ProfileUpdate()));
+                    // Navigator.pushReplacement(context,
+                    //     MaterialPageRoute(builder: (context) => ProfileUpdate()));
                    }
               )
             ],

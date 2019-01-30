@@ -34,6 +34,36 @@ bool _value = false;
     });
   }
 
+   void _showDialog() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Last Chance, no takebacks."),
+          content: new Text("I mean, why go through the trouble of logging back in right?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Cancel"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            new FlatButton(
+              child: new Text("Log Out"),
+              onPressed: (){
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => Login()));
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +98,7 @@ bool _value = false;
                       ),
                     ),
                     GestureDetector(
-                      onTap: (){},
+                      onTap: (){_showDialog();},
                       child: GLRow2(
                         title: "Log Out",
                         desc: "Are you sure you want to log out of this amazing app??",
