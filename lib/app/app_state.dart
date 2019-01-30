@@ -1,7 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:groupleh/core/profile.dart';
+import 'package:groupleh/main.dart';
 
 class AppState {
-  FirebaseUser user;
+  Profile profile;
 
-  AppState(this.user);
+  AppState(this.profile);
+}
+
+class ThemeState {
+  static State<MyApp> help;
+  static ThemeData theme = ThemeData.dark();
 }

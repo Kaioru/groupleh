@@ -20,10 +20,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   firebase_auth: ^0.6.2+1
+  intl: ^0.15.7
   cloud_firestore:
   firestore_ui:
   firebase_storage:
-  image_picker:
+  image: "^2.0.4"
+  image_picker: ^0.4.12+1
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +37,15 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  assets:
+    - assets/images/mountains.jpg
+    - assets/images/mountains.jpeg
+    - assets/images/monodabsa.jpg
+    - assets/images/icon_scroll.png
+    - assets/images/icon_coin.png
+    - assets/images/icon_wardrobe.png
+    - assets/images/icon_trophy.png
+    - assets/images/wardrobe/
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -72,13 +83,9 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
   fonts:
-    - family: quicksand
+    - family: Poppins
       fonts:
-        - asset: font/Quicksand-Regular.otf
-        - asset: font/Quicksand-Italic.otf
-          style: italic
-        - asset: font/Quicksand-Bold.otf
-          weight: 700
-        - asset: font/Quicksand-BoldItalic.otf
-          style: italic
-          weight: 700
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400

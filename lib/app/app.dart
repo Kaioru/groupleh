@@ -1,25 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:groupleh/app/tab/groups.dart';
-import 'package:groupleh/app/tab/matchmaking.dart';
-import 'package:groupleh/app/tab/projects.dart';
-import 'package:groupleh/app/tab/profile.dart';
 import 'package:groupleh/app/app_state.dart';
+import 'package:groupleh/app/fabappbar.dart';
+import 'package:groupleh/app/chat/chat.dart';
+import 'package:groupleh/app/profile/profile.dart';
+import 'package:groupleh/app/project/project.dart';
+import 'package:groupleh/app/matchmaking/matchmaking.dart';
+import 'package:groupleh/app/settings/settings.dart';
 
 class App extends StatefulWidget {
-  final AppState state;
+  final AppState appState;
 
-  App(this.state);
+  App(this.appState);
 
   @override
-  State<StatefulWidget> createState() => _App(state);
+  State<StatefulWidget> createState() => _App(appState);
 }
 
-class _App extends State<App> with WidgetsBindingObserver {
-  final AppState state;
-  PageController pageController;
+class _App extends State<App>
+    with WidgetsBindingObserver, TickerProviderStateMixin {
   int _pageIndex = 0;
 
-  _App(this.state);
+  PageController pageController;
+
+  final AppState appState;
+
+  _App(this.appState);
 
   @override
   void initState() {
@@ -40,22 +45,40 @@ class _App extends State<App> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _pageIndex,
-          onTap: (page) {
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Matchmaking(appState)));
+          },
+          child: Icon(Icons.search),
+          backgroundColor: Color(0xFF00C6FF),
+          foregroundColor: Color(0xFFFFFFFF),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        appBar: AppBar(
+          backgroundColor: Color(0xFF00C6FF),
+          title: Text("GroupLeh",
+              style: const TextStyle(
+                  color: Color(0xFFFFFFFF),
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 36.0)),
+        ),
+        bottomNavigationBar: FABBottomAppBar(
+          centerItemText: "Matchmake",
+          color: ThemeState.theme == ThemeData.dark() ? Color(0xFFFFFFFF) : Colors.black,
+          selectedColor: Color(0xFF00C6FF),
+          notchedShape: CircularNotchedRectangle(),
+          onTabSelected: (page) {
             pageController.animateToPage(page,
                 duration: const Duration(milliseconds: 250),
                 curve: Curves.easeInOut);
           },
           items: [
-            BottomNavigationBarItem(
-                title: Text("Groups"), icon: Icon(Icons.people)),
-            BottomNavigationBarItem(
-                title: Text("Matchmaking"), icon: Icon(Icons.search)),
-            BottomNavigationBarItem(
-                title: Text("Projects"), icon: Icon(Icons.book)),
-            BottomNavigationBarItem(
-                title: Text("Profile"), icon: Icon(Icons.person)),
+            FABBottomAppBarItem(iconData: Icons.chat, text: 'Chat'),
+            FABBottomAppBarItem(iconData: Icons.book, text: 'Project'),
+            FABBottomAppBarItem(iconData: Icons.person, text: 'Profile'),
+            FABBottomAppBarItem(iconData: Icons.settings, text: 'Settings'),
           ],
         ),
         body: PageView(
@@ -67,10 +90,10 @@ class _App extends State<App> with WidgetsBindingObserver {
             });
           },
           children: [
-            Groups(pageController, state),
-            Matchmaking(state),
-            Projects(state),
-            Profile(state)
+            Chat(appState),
+            ProjectEX(appState.profile),
+            ProfileEX(appState.profile),
+            Settings(appState)
           ],
         ));
   }
