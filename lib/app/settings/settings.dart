@@ -45,6 +45,37 @@ class _Settings extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
+    void _showDialog() {
+      // flutter defined function
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          // return object of type Dialog
+          return AlertDialog(
+            title: new Text("Last Chance, no takebacks."),
+            content: new Text(
+                "I mean, why go through the trouble of logging back in right?"),
+            actions: <Widget>[
+              // usually buttons at the bottom of the dialog
+              new FlatButton(
+                child: new Text("Cancel"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              new FlatButton(
+                child: new Text("Log Out"),
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => Login()));
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
@@ -67,7 +98,9 @@ class _Settings extends State<Settings> {
         ),
         GestureDetector(
           onTap: () => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ProfileEdit(state.profile))),
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ProfileEdit(state.profile))),
           child: GLRow2(
             title: "Edit Profile",
             desc: "Edit the profile tings yaknow.",
@@ -76,7 +109,9 @@ class _Settings extends State<Settings> {
           ),
         ),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            _showDialog();
+          },
           child: GLRow2(
             title: "Log Out",
             desc: "Are you sure you want to log out of this amazing app??",
