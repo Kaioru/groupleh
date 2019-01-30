@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/app_state.dart';
 
@@ -14,6 +15,10 @@ class _Matchmaking extends State<Matchmaking> {
   PageController _pageController =
       PageController(initialPage: 0, viewportFraction: 1.0);
   final AppState state;
+
+  int selSize = 0;
+  int selTime = 0;
+
   _Matchmaking(this.state);
   @override
   Widget build(BuildContext context) {
@@ -336,6 +341,9 @@ class _Matchmaking extends State<Matchmaking> {
           ConstrainedBox(
             constraints: BoxConstraints(maxWidth: 50),
             child: ListWheelScrollView.useDelegate(
+              onSelectedItemChanged: (s) {
+                selSize = s;
+              },
               physics: FixedExtentScrollPhysics(),
               itemExtent: _style.fontSize,
               childDelegate:
@@ -369,11 +377,17 @@ class _Matchmaking extends State<Matchmaking> {
           ConstrainedBox(
             constraints: BoxConstraints(maxWidth: 100),
             child: ListWheelScrollView.useDelegate(
+              onSelectedItemChanged: (s) {
+                selTime = s;
+              },
               physics: FixedExtentScrollPhysics(),
               itemExtent: _style.fontSize,
               childDelegate:
                   ListWheelChildLoopingListDelegate(children: const <Widget>[
                 Text("7am-1pm",
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0)),
+                Text("2pm-4pm",
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0)),
                 Text("5pm-9pm",
@@ -424,6 +438,16 @@ class _Matchmaking extends State<Matchmaking> {
               FlatButton(
                 child: Text("Ok"),
                 onPressed: () {
+                  selSize = selSize == 0 ? 1 : 2;
+                  selTime = selTime == 0 ? 1 : selTime == 1 ? 2 : 4;
+
+                  Firestore.instance.collection("matchmaking").add({
+                    "user": state.profile.id,
+                    "preferredGenders": 0x4,
+                    "preferredTimes": selTime,
+                    "preferredSizes": selSize
+                  });
+
                   Navigator.pop(context);
                   Navigator.pop(context);
                 },
