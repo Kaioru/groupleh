@@ -3,6 +3,7 @@ import 'dart:async';
 //import 'package:animation_exp/PageReveal/page_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
+import 'package:groupleh/app/app_state.dart';
 import 'package:groupleh/app/component/lifted/activeCard.dart';
 import 'package:groupleh/app/component/lifted/dummyCard.dart';
 import 'package:groupleh/core/profile.dart';
@@ -167,7 +168,11 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                 }
               }).toList())
           : new Text("That's it!",
-              style: new TextStyle(color: Colors.white, fontSize: 50.0)),
+              style: new TextStyle(
+                  color: ThemeState.theme == ThemeData.dark()
+                      ? Color(0xFFFFFFFF)
+                      : Colors.black,
+                  fontSize: 50.0)),
     );
   }
 }

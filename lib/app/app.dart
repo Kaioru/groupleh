@@ -5,6 +5,7 @@ import 'package:groupleh/app/chat/chat.dart';
 import 'package:groupleh/app/profile/profile.dart';
 import 'package:groupleh/app/project/project.dart';
 import 'package:groupleh/app/matchmaking/matchmaking.dart';
+import 'package:groupleh/app/settings/settings.dart';
 
 class App extends StatefulWidget {
   final AppState appState;
@@ -15,12 +16,11 @@ class App extends StatefulWidget {
   State<StatefulWidget> createState() => _App(appState);
 }
 
-class _App extends State<App> with WidgetsBindingObserver, TickerProviderStateMixin {
-
+class _App extends State<App>
+    with WidgetsBindingObserver, TickerProviderStateMixin {
   int _pageIndex = 0;
 
   PageController pageController;
-  
 
   final AppState appState;
 
@@ -44,18 +44,17 @@ class _App extends State<App> with WidgetsBindingObserver, TickerProviderStateMi
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => Matchmaking(appState)));
-        },
-        child: Icon(Icons.search),
-        backgroundColor: Color(0xFF00C6FF),
-        foregroundColor: Color(0xFFFFFFFF),
-        
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Matchmaking(appState)));
+          },
+          child: Icon(Icons.search),
+          backgroundColor: Color(0xFF00C6FF),
+          foregroundColor: Color(0xFFFFFFFF),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         appBar: AppBar(
           backgroundColor: Color(0xFF00C6FF),
           title: Text("GroupLeh",
@@ -67,14 +66,14 @@ class _App extends State<App> with WidgetsBindingObserver, TickerProviderStateMi
         ),
         bottomNavigationBar: FABBottomAppBar(
           centerItemText: "Matchmake",
-          color: Color(0xFFFFFFFF),
+          color: ThemeState.theme == ThemeData.dark() ? Color(0xFFFFFFFF) : Colors.black,
           selectedColor: Color(0xFF00C6FF),
           notchedShape: CircularNotchedRectangle(),
           onTabSelected: (page) {
             pageController.animateToPage(page,
                 duration: const Duration(milliseconds: 250),
                 curve: Curves.easeInOut);
-                },
+          },
           items: [
             FABBottomAppBarItem(iconData: Icons.chat, text: 'Chat'),
             FABBottomAppBarItem(iconData: Icons.book, text: 'Project'),
@@ -90,8 +89,12 @@ class _App extends State<App> with WidgetsBindingObserver, TickerProviderStateMi
               this._pageIndex = index;
             });
           },
-          children: [Chat(appState), ProjectEX(appState.profile), ProfileEX(appState.profile)],
-        )
-      );
+          children: [
+            Chat(appState),
+            ProjectEX(appState.profile),
+            ProfileEX(appState.profile),
+            Settings(appState)
+          ],
+        ));
   }
 }
