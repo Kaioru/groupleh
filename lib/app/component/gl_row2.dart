@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class GLRow extends StatelessWidget {
+class GLRow2 extends StatelessWidget {
   final Image image;
   final String title;
   final String desc;
@@ -9,7 +9,7 @@ class GLRow extends StatelessWidget {
 
   final bool horizontal;
 
-  GLRow(
+  GLRow2(
       {Key key,
       this.image,
       this.title,
@@ -23,10 +23,10 @@ class GLRow extends StatelessWidget {
   Widget build(BuildContext context) {
     TextStyle textStyle = const TextStyle(fontFamily: 'Poppins');
     TextStyle headerTextStyle = textStyle.copyWith(
-        color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w600);
+        color: Colors.white, fontSize: 24.0, fontWeight: FontWeight.w600);
     TextStyle regularTextStyle = textStyle.copyWith(
         color: const Color(0xffb6b2df),
-        fontSize: 9.0,
+        fontSize: 11.0,
         fontWeight: FontWeight.w400);
     TextStyle subHeaderTextStyle = regularTextStyle.copyWith(fontSize: 12.0);
 
@@ -77,7 +77,7 @@ class GLRow extends StatelessWidget {
 
     final planetCardContent = Container(
       margin: EdgeInsets.fromLTRB(
-          horizontal ? 76.0 : 16.0, horizontal ? 16.0 : 42.0, 16.0, 16.0),
+          horizontal ? 76.0 : 16.0, horizontal ? 16.0 : 18.0, 16.0, 16.0),
       constraints: BoxConstraints.expand(),
       child: Column(
         crossAxisAlignment:
@@ -88,9 +88,9 @@ class GLRow extends StatelessWidget {
 
     final planetCard = Container(
       child: planetCardContent,
-      height: horizontal ? 124.0 : 154.0,
+      height: horizontal ? 124.0 : 124.0,
       margin:
-          horizontal ? EdgeInsets.only(left: 46.0) : EdgeInsets.only(top: 72.0),
+          horizontal ? EdgeInsets.only(left: 46.0) : EdgeInsets.only(top: 0.0),
       decoration: BoxDecoration(
         color: Color(color),
         shape: BoxShape.rectangle,
@@ -112,7 +112,6 @@ class GLRow extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           planetCard,
-          planetThumbnail,
         ],
       ),
     );

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:groupleh/app/component/gl_row.dart';
+import 'package:groupleh/app/component/gl_row2.dart';
 import 'package:groupleh/app/component/lifted/index.dart';
 import 'package:flutter/material.dart';
 import 'package:groupleh/app/app_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:groupleh/app/auth/login.dart';
 
 class Settings extends StatefulWidget {
   final AppState state;
@@ -22,39 +25,56 @@ class _Settings extends State<Settings> {
   
   _Settings(this.state);
 
-// bool _value = false;
+bool _value = false;
 
-//   void _onChanged(bool value){
-//     setState(() {
-//      _value = value; 
-//     });
-//   }
+  void _onChanged(bool value){
+    setState(() {
+     _value = value; 
+    });
+  }
 
-bool darkTheme = false;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: new Container(
-            padding: EdgeInsets.all(32.0),
-            child: new Column(
-              children: <Widget>[
-                    new ListTile(
+    return Scaffold(
+      body:SafeArea(
+       child:Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+                    new SwitchListTile(
                       title: Text("Dark Theme"),
-                      trailing: Switch(
-                        value: darkTheme,
-                        onChanged: (changed) {
-                          setState(() {
-                            darkTheme = changed;
-                          });
-                        },
+                        value: _value,
+                        onChanged: (bool value){_onChanged(value);},
+                    ),
+                    GestureDetector(
+                      onTap: (){},
+                      child: GLRow2(
+                        title: "About",
+                        desc: "GroupLeh is an app made for the truly intellectual beings.",
+                        horizontal: false,
+                        color: 0xFF01579B,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: (){},
+                      child: GLRow2(
+                        title: "Edit Profile",
+                        desc: "Edit the profile tings yaknow.",
+                        horizontal: false,
+                        color: 0xFF4527A0,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: (){},
+                      child: GLRow2(
+                        title: "Log Out",
+                        desc: "Are you sure you want to log out of this amazing app??",
+                        horizontal: false,
+                        color: 0xFFC62828,
                       ),
                     ),
                 ],
-            ),
-          ),
-      ),
-    theme: darkTheme ? ThemeData.dark() : ThemeData.light(),
+            )
+      )
     );
   }
 }

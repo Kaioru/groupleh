@@ -182,33 +182,33 @@ class _ProfileEX extends State<ProfileEX> {
 bool darkTheme = false;
   @override
   Widget build(BuildContext context) {
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("App"),
-        ),
-        body: Center(),
-        drawer: Drawer(
-          child: ListView(
-            children: <Widget>[
-              ListTile(
-                title: Text("Dark Theme"),
-                trailing: Switch(
-                  value: darkTheme,
-                  onChanged: (changed) {
-                    setState(() {
-                      darkTheme = changed;
-                    });
-                  },
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-      theme: darkTheme ? ThemeData.dark() : ThemeData.light(),
-    );
+    // MaterialApp(
+    //   debugShowCheckedModeBanner: false,
+    //   home: Scaffold(
+    //     appBar: AppBar(
+    //       title: Text("App"),
+    //     ),
+    //     body: Center(),
+    //     drawer: Drawer(
+    //       child: ListView(
+    //         children: <Widget>[
+    //           ListTile(
+    //             title: Text("Dark Theme"),
+    //             trailing: Switch(
+    //               value: darkTheme,
+    //               onChanged: (changed) {
+    //                 setState(() {
+    //                   darkTheme = changed;
+    //                 });
+    //               },
+    //             ),
+    //           )
+    //         ],
+    //       ),
+    //     ),
+    //   ),
+    //   theme: darkTheme ? ThemeData.dark() : ThemeData.light(),
+    // );
     return Container(
       constraints: BoxConstraints.expand(),
       child: Stack(
