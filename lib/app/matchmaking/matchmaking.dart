@@ -440,6 +440,7 @@ class _Matchmaking extends State<Matchmaking> {
                 onPressed: () {
                   selSize = selSize == 0 ? 1 : 2;
                   selTime = selTime == 0 ? 1 : selTime == 1 ? 2 : 4;
+                  state.profile.coins += 100;
 
                   Firestore.instance.collection("matchmaking").add({
                     "user": state.profile.id,
@@ -447,6 +448,10 @@ class _Matchmaking extends State<Matchmaking> {
                     "preferredTimes": selTime,
                     "preferredSizes": selSize
                   });
+                  Firestore.instance
+                      .collection("profiles")
+                      .document(state.profile.id)
+                      .updateData({"coins": state.profile.coins});
 
                   Navigator.pop(context);
                   Navigator.pop(context);
