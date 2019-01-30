@@ -48,7 +48,7 @@ bool _value = false;
                     GestureDetector(
                       onTap: (){},
                       child: GLRow2(
-                        title: "About",
+                        title: "About Us",
                         desc: "GroupLeh is an app made for the truly intellectual beings.",
                         horizontal: false,
                         color: 0xFF01579B,
