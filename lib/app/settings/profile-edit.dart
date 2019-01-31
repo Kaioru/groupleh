@@ -2,12 +2,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:groupleh/core/profile.dart';
 
-class ProfileEdit extends StatelessWidget {
+class ProfileEdit extends StatefulWidget {
+  final Profile profile;
+  ProfileEdit(this.profile);
+
+  @override
+  State<StatefulWidget> createState() => _ProfileEdit(profile);
+
+}
+
+class _ProfileEdit extends State<ProfileEdit> {
   final Profile profile;
   final _nameController = TextEditingController();
   final _descController = TextEditingController();
 
-  ProfileEdit(this.profile) {
+  _ProfileEdit(this.profile) {
     _nameController.text = profile.name;
     _descController.text = profile.desc;
   }
