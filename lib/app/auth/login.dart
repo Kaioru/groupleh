@@ -69,7 +69,7 @@ class _Login extends State<Login> {
         wardrobeBottom: document.data["wardrobe_bottom"]);
   }
 
-Widget homePage() {
+  Widget homePage() {
     return new Container(
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
@@ -86,11 +86,9 @@ Widget homePage() {
           Container(
             padding: EdgeInsets.only(top: 250.0),
             child: Center(
-              child: Icon(
-                Icons.headset_mic,
-                color: Color(0xFF00C6FF),
-                size: 40.0,
-              ),
+              child: Center(
+                  child: Image.asset("assets/images/GroupLeh.png", height: 80.0)
+                ),
             ),
           ),
           Container(
@@ -100,7 +98,7 @@ Widget homePage() {
               children: <Widget>[
                 Material(
                   type: MaterialType.transparency,
-                    child: Text(
+                  child: Text(
                     "GroupLeh",
                     style: TextStyle(
                       color: Color(0xFF00C6FF),
@@ -190,7 +188,6 @@ Widget homePage() {
       ),
     );
   }
-
 
   Widget signUpPage() {
     return Scaffold(
@@ -313,7 +310,8 @@ Widget homePage() {
                         style: BorderStyle.solid),
                   ),
                 ),
-                padding: const EdgeInsets.only(left: 0.0, right: 10.0, bottom: 5.0),
+                padding:
+                    const EdgeInsets.only(left: 0.0, right: 10.0, bottom: 5.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -366,7 +364,8 @@ Widget homePage() {
                         style: BorderStyle.solid),
                   ),
                 ),
-                padding: const EdgeInsets.only(left: 0.0, right: 10.0, bottom: 5.0),
+                padding:
+                    const EdgeInsets.only(left: 0.0, right: 10.0, bottom: 5.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -511,175 +510,181 @@ Widget homePage() {
                 padding:
                     EdgeInsets.symmetric(horizontal: 120.0, vertical: 90.0),
                 child: Center(
-                  child: Icon(
-                    Icons.headset_mic,
-                    color: Color(0xFF00C6FF),
-                    size: 50.0,
-                  ),
+                  child: Image.asset("assets/images/GroupLeh.png", height: 80.0)
                 ),
               ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 40.0),
-                      child: Text(
-                        "EMAIL",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00C6FF),
-                          fontSize: 15.0,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                margin:
-                    const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
+              Expanded(
+                  child: Align(
                 alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                        color: Color(0xFF00C6FF),
-                        width: 1,
-                        style: BorderStyle.solid),
-                  ),
-                ),
-                padding: const EdgeInsets.only(left: 0.0, right: 10.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      child: TextFormField(
-                          controller: _emailControllerLogin,
-                          validator: (val) {
-                            Pattern pattern =
-                                r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                            RegExp regex = RegExp(pattern);
-                            if (!regex.hasMatch(val))
-                              return 'Please enter a valid email!';
-                            else
-                              return null;
-                          },
-                          style: TextStyle(color: Colors.white),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'example@hotmail.com',
-                            hintStyle: TextStyle(color: Colors.grey),
-                          ),
-                          keyboardType: TextInputType.emailAddress),
-                    ),
-                  ],
-                ),
-              ),
-              Divider(
-                height: 24.0,
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 40.0),
-                      child: Text(
-                        "PASSWORD",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00C6FF),
-                          fontSize: 15.0,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                margin:
-                    const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                        color: Color(0xFF00C6FF),
-                        width: 1,
-                        style: BorderStyle.solid),
-                  ),
-                ),
-                padding: const EdgeInsets.only(left: 0.0, right: 10.0, bottom: 10.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      child: TextFormField(
-                          controller: _passwordControllerLogin,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'hunter2',
-                            hintStyle: TextStyle(color: Colors.grey),
-                          ),
-                          obscureText: true,
-                          style: TextStyle(color: Colors.white),
-                          keyboardType: TextInputType.text),
-                    ),
-                  ],
-                ),
-              ),
-              Divider(
-                height: 24.0,
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                margin:
-                    const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
-                alignment: Alignment.center,
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: FlatButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        color: Color(0xFF00C6FF),
-                        onPressed: () async {
-                          if (_formKeyLogin.currentState.validate()) {
-                            await _handleSignIn().then((user) async {
-                              var profile = await _createProfile(user);
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          App(AppState(profile))));
-                            });
-                          }
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 20.0,
-                            horizontal: 20.0,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Expanded(
-                                child: Text(
-                                  "LOGIN",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
+                child: Column(
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 40.0),
+                              child: Text(
+                                "EMAIL",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF00C6FF),
+                                  fontSize: 15.0,
                                 ),
                               ),
-                            ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: const EdgeInsets.only(
+                            left: 40.0, right: 40.0, top: 10.0),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                                color: Color(0xFF00C6FF),
+                                width: 1,
+                                style: BorderStyle.solid),
                           ),
                         ),
+                        padding: const EdgeInsets.only(left: 0.0, right: 10.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Expanded(
+                              child: TextFormField(
+                                  controller: _emailControllerLogin,
+                                  validator: (val) {
+                                    Pattern pattern =
+                                        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                                    RegExp regex = RegExp(pattern);
+                                    if (!regex.hasMatch(val))
+                                      return 'Please enter a valid email!';
+                                    else
+                                      return null;
+                                  },
+                                  style: TextStyle(color: Colors.white),
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'example@hotmail.com',
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                  ),
+                                  keyboardType: TextInputType.emailAddress),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                      Divider(
+                        height: 24.0,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 40.0),
+                              child: Text(
+                                "PASSWORD",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF00C6FF),
+                                  fontSize: 15.0,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: const EdgeInsets.only(
+                            left: 40.0, right: 40.0, top: 10.0),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                                color: Color(0xFF00C6FF),
+                                width: 1,
+                                style: BorderStyle.solid),
+                          ),
+                        ),
+                        padding: const EdgeInsets.only(
+                            left: 0.0, right: 10.0, bottom: 10.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Expanded(
+                              child: TextFormField(
+                                  controller: _passwordControllerLogin,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'hunter2',
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                  ),
+                                  obscureText: true,
+                                  style: TextStyle(color: Colors.white),
+                                  keyboardType: TextInputType.text),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Divider(
+                        height: 24.0,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: const EdgeInsets.only(
+                            left: 30.0, right: 30.0, top: 20.0),
+                        alignment: Alignment.center,
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: FlatButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                                color: Color(0xFF00C6FF),
+                                onPressed: () async {
+                                  if (_formKeyLogin.currentState.validate()) {
+                                    await _handleSignIn().then((user) async {
+                                      var profile = await _createProfile(user);
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  App(AppState(profile))));
+                                    });
+                                  }
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 20.0,
+                                    horizontal: 20.0,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Expanded(
+                                        child: Text(
+                                          "LOGIN",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -720,4 +725,4 @@ Widget homePage() {
           ],
         ));
   }
-} 
+}

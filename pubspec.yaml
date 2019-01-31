@@ -46,6 +46,7 @@ flutter:
     - assets/images/icon_wardrobe.png
     - assets/images/icon_trophy.png
     - assets/images/wardrobe/
+    - assets/images/GroupLeh.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
