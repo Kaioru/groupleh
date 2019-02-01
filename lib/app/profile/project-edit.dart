@@ -23,17 +23,17 @@ class _ProjectEdit extends State<ProjectEdit> {
 
   var setting = false;
 
-  _ProjectEdit(this.profile, this.project);
+  _ProjectEdit(this.profile, this.project) {
+    _titleController.text = project.name;
+    _descController.text = project.desc;
+    _desc2Controller.text = project.desc2;
+  }
 
   @override
   Widget build(BuildContext context) {
     final textStyle = const TextStyle(fontFamily: 'Poppins');
     final headerTextStyle = textStyle.copyWith(
         color: Colors.white, fontSize: 32.0, fontWeight: FontWeight.w600);
-    
-    _titleController.text = project.name;
-    _descController.text = project.desc;
-    _desc2Controller.text = project.desc2;
     return Scaffold(
       appBar: AppBar(
           title: ListTile(
